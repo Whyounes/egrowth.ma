@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# lighthouse ci reports (npm run check:lighthouse)
+.lighthouseci/
+
 # dependencies
 node_modules/
 

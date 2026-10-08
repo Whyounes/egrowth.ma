@@ -40,6 +40,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* An Arabic fragment on a page that is not in Arabic — the word "العربية" in
+   the language menu, the recovery lines on the 404 — uses whatever Arabic font
+   the reader's device already has. Without this, that one menu item pulls
+   44 KB of IBM Plex Sans Arabic onto every French and English page: Plex is
+   first in the stack and its unicode-range covers the glyph, so the browser is
+   right to fetch it. Measured: 92 KB per LTR page before, 48 KB after.
+   `--font-body` still applies wherever the page itself is Arabic. */
+html:not([lang='ar']) [lang='ar'] {
+  font-family: 'Geeza Pro', 'Noto Naskh Arabic', 'Noto Sans Arabic', 'Segoe UI',
+    Tahoma, sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -201,7 +213,7 @@ html[lang='ar'] .eyebrow {
 .eyebrow--blue { color: var(--c-blue); }
 .eyebrow--clay { color: var(--c-clay); }
 .eyebrow--ochre { color: var(--c-ochre); }
-.eyebrow--muted { color: var(--c-ink-4); }
+.eyebrow--muted { color: var(--c-ink-3); }
 
 /* --- Lead paragraph ------------------------------------------------------ */
 

@@ -38,6 +38,15 @@ export const fr = {
     allPlatforms: 'Les cinq plateformes',
   },
 
+  notFound: {
+    metaTitle: 'Page introuvable (404) | eGrowth',
+    title: 'Cette page n’existe pas.',
+    lead:
+      "Soit l'adresse a changé, soit nous avons cassé un lien. Dans les deux cas, voici les endroits où vous alliez probablement.",
+    backHome: 'Retour à l’accueil',
+    popular: 'Pages principales',
+  },
+
   form: {
     title: 'Demander un compte',
     lead: 'Trois champs. Une personne nommée vous répond sur WhatsApp sous deux heures ouvrées.',

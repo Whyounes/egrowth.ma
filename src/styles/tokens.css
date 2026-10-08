@@ -14,27 +14,37 @@
   --c-green-tint: #e6f2ec;
   --c-green-line: #cfe3d9;
   --c-green-on-dark: #6fd8af;
+  --c-green-on-tint: #3f6b5a; /* 5.3:1 on its own tint */
 
   --c-blue: #3b4fa8;         /* 7.2:1 — paid media, data, reporting */
   --c-blue-tint: #e8eaf7;
   --c-blue-line: #d3d8f0;
   --c-blue-on-dark: #9db0ff;
+  --c-blue-on-tint: #47528a; /* 6.2:1 on its own tint */
 
   --c-clay: #af4f2b;         /* 5.3:1 — store, app and website builds */
   --c-clay-tint: #faebe4;
   --c-clay-line: #ebd2c6;
   --c-clay-on-dark: #f0a383;
+  --c-clay-on-tint: #7f5747; /* 5.4:1 on its own tint */
 
   --c-ochre: #8f6010;        /* 5.6:1 — UGC and creative production */
   --c-ochre-tint: #f8f0de;
   --c-ochre-line: #eadcc0;
   --c-ochre-on-dark: #e3be6e;
+  --c-ochre-on-tint: #6b5520; /* 6.3:1 on its own tint */
 
-  /* --- Neutrals ----------------------------------------------------------- */
+  /* --- Neutrals ------------------------------------------------------------
+     Every grey below that carries TEXT clears 4.5:1 not just on white but on
+     the four pale tints above — the blue tint is the darkest ground at 0.83
+     luminance, so it sets the floor. Lighthouse CI asserts zero contrast
+     findings, which is what keeps this honest: #6b7178 looked fine on white
+     at 4.9:1 and failed at 4.1:1 the moment it sat on a tinted card. */
   --c-ink: #0e1116;          /* body text, dark bands, footer */
-  --c-ink-2: #585f67;        /* 5.6:1 — the only grey allowed for prose */
-  --c-ink-3: #6b7178;        /* 4.8:1 — captions and metadata only */
-  --c-ink-4: #8a9096;        /* 3.2:1 — eyebrows at >=24px, never body copy */
+  --c-ink-2: #585f67;        /* 5.4:1 on tint — the only grey allowed for prose */
+  --c-ink-3: #636a72;        /* 4.6:1 on tint — captions, metadata, eyebrows */
+  --c-ink-faint: #8a9096;    /* 3.2:1 — DECORATION ONLY: dots, marks, rules.
+                                Never text at any size. */
 
   --c-bg: #ffffff;
   --c-bg-2: #f7f8f9;         /* the alternating section band */
@@ -45,9 +55,9 @@
   --c-dark: #0e1116;
   --c-dark-2: #181c22;
   --c-dark-line: #2a2f37;
-  --c-dark-ink: #b6bcc3;
-  --c-dark-ink-2: #9ba2aa;
-  --c-dark-ink-3: #6b7178;
+  --c-dark-ink: #b6bcc3;     /* 9.9:1 on --c-dark */
+  --c-dark-ink-2: #9ba2aa;   /* 7.3:1 */
+  --c-dark-ink-3: #8d949c;   /* 6.2:1 — the dimmest ink the footer may use */
 
   /* --- Caution block. Amber, bordered, never red. ------------------------- */
   --c-warn-bg: #fff8ec;

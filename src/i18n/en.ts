@@ -36,6 +36,15 @@ export const en: Copy = {
     allPlatforms: 'All five platforms',
   },
 
+  notFound: {
+    metaTitle: 'Page not found (404) | eGrowth',
+    title: 'This page does not exist.',
+    lead:
+      'Either the address changed or we broke a link. Either way, here are the places you were probably heading.',
+    backHome: 'Back to the English home page',
+    popular: 'Main pages',
+  },
+
   form: {
     title: 'Request an account',
     lead: 'Three fields. A named person replies on WhatsApp within two business hours.',

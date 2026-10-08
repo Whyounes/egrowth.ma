@@ -62,8 +62,13 @@ const { lang, label } = Astro.props;
     {
       heroSlides.map((slide, i) => (
         <li>
+          {/* The dot carries no text: its only name is the aria-label. An
+              earlier version put the slide number inside and hid it with
+              text-indent, which left the visible text ("2") disagreeing with
+              the accessible name — a WCAG 2.5.3 failure that Lighthouse
+              catches as label-content-name-mismatch. */}
           <a href={`#hero-${i + 1}`} aria-label={slide.alt[lang]}>
-            <span class="num">{i + 1}</span>
+            <span class="hs__dot" />
           </a>
         </li>
       ))
@@ -125,19 +130,19 @@ const { lang, label } = Astro.props;
 
   .hs__slide[data-accent='green'] .hs__todo {
     background: var(--c-green-tint);
-    color: #4e7d6b;
+    color: var(--c-green-on-tint);
   }
   .hs__slide[data-accent='ochre'] .hs__todo {
     background: var(--c-ochre-tint);
-    color: #7a6232;
+    color: var(--c-ochre-on-tint);
   }
   .hs__slide[data-accent='blue'] .hs__todo {
     background: var(--c-blue-tint);
-    color: #4e5a8f;
+    color: var(--c-blue-on-tint);
   }
   .hs__slide[data-accent='clay'] .hs__todo {
     background: var(--c-clay-tint);
-    color: #8a6453;
+    color: var(--c-clay-on-tint);
   }
 
   .hs__todoKey {
@@ -171,7 +176,7 @@ const { lang, label } = Astro.props;
     flex-shrink: 0;
     font-size: var(--t-xs);
     font-weight: 700;
-    color: var(--c-ink-4);
+    color: var(--c-ink-3);
   }
 
   .hs__dots {
@@ -191,19 +196,17 @@ const { lang, label } = Astro.props;
     height: 44px;
   }
 
-  .hs__dots span {
+  .hs__dot {
     display: block;
     width: 10px;
     height: 10px;
-    overflow: hidden;
-    text-indent: -99em;
     background: var(--c-line-2);
     border-radius: 5px;
     transition: background-color var(--dur) var(--ease);
   }
 
-  .hs__dots a:hover span {
-    background: var(--c-ink-4);
+  .hs__dots a:hover .hs__dot {
+    background: var(--c-ink-faint);
   }
 
   /* :target styles the slide that the anchors scrolled to. */

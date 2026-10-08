@@ -170,11 +170,9 @@ const builds = [
             {
               builds.map((b) => (
                 <div class="row">
-                  <div>
-                    <dt>{b.name}</dt>
-                    <dd class="row__span num">{b.span} {c.home.buildWeeksUnit}</dd>
-                  </div>
-                  <p class="row__price num">{c.common.from} MAD {b.price}</p>
+                  <dt>{b.name}</dt>
+                  <dd class="row__span num">{b.span} {c.home.buildWeeksUnit}</dd>
+                  <dd class="row__price num">{c.common.from} MAD {b.price}</dd>
                 </div>
               ))
             }
@@ -185,18 +183,14 @@ const builds = [
           <p class="lead secL">{p.ugcLead}</p>
           <dl class="rows">
             <div class="row">
-              <div>
-                <dt>{p.ugcStandalone}</dt>
-                <dd class="row__span">{p.ugcStandaloneNote}</dd>
-              </div>
-              <p class="row__price num">MAD {site.pricing.ugcPerVideo}</p>
+              <dt>{p.ugcStandalone}</dt>
+              <dd class="row__span">{p.ugcStandaloneNote}</dd>
+              <dd class="row__price num">MAD {site.pricing.ugcPerVideo}</dd>
             </div>
             <div class="row">
-              <div>
-                <dt>{p.ugcIncluded}</dt>
-                <dd class="row__span">{p.ugcIncludedNote}</dd>
-              </div>
-              <p class="row__price">{p.ugcIncludedPrice}</p>
+              <dt>{p.ugcIncluded}</dt>
+              <dd class="row__span">{p.ugcIncludedNote}</dd>
+              <dd class="row__price">{p.ugcIncludedPrice}</dd>
             </div>
           </dl>
         </div>
@@ -295,7 +289,7 @@ const builds = [
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--c-ink-4);
+    color: var(--c-ink-3);
     background: var(--c-bg-2);
   }
 
@@ -328,28 +322,38 @@ const builds = [
     flex-direction: column;
   }
 
+  /* Grid rather than flex, because inside a <dl> the only element allowed to
+     group a dt with its dd is a single <div> — no second wrapper to push the
+     price to the end with. So all three children are direct children of the
+     group and the grid places them: name and detail stack in column 1, the
+     price sits in column 2 spanning both rows. */
   .row {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: baseline;
-    justify-content: space-between;
-    gap: var(--s-3);
+    column-gap: var(--s-4);
     padding-block: var(--s-4);
     border-block-end: 1px solid var(--c-line);
   }
 
   .row dt {
+    grid-column: 1;
     font-size: 1rem;
     font-weight: 700;
   }
 
   .row__span {
+    grid-column: 1;
     margin: 0;
     font-size: var(--t-xs);
     color: var(--c-ink-3);
   }
 
   .row__price {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-self: end;
+    margin: 0;
     font-size: 1.0625rem;
     font-weight: 800;
     letter-spacing: -0.02em;

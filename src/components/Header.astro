@@ -65,7 +65,12 @@ const ctaHref = isBuilt('adAccounts') ? pathFor('adAccounts', lang) : '#request'
     <div class="hdr__end">
       {/* Native disclosure: keyboard-operable, and zero JavaScript. */}
       <details class="lang">
-        <summary class="lang__btn" aria-label={c.nav.language}>
+        {/* The word "Langue" is a visually hidden span rather than an
+            aria-label: an aria-label would REPLACE the visible "FR" in the
+            accessible name, and a name that does not contain the visible
+            text fails WCAG 2.5.3. Here the name reads "Langue FR". */}
+        <summary class="lang__btn">
+          <span class="vh">{c.nav.language}</span>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <circle cx="8" cy="8" r="6.3" stroke="currentColor" stroke-width="1.4"></circle>
             <path

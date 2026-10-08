@@ -8,10 +8,21 @@ export default defineConfig({
   site: 'https://egrowth.ma',
 
   // One canonical shape for every URL: no trailing slash, real .html on disk.
-  // Cloudflare Pages and GitHub Pages both serve /comptes-publicitaires from
-  // comptes-publicitaires.html, so the canonical in <head> always matches.
+  // The nginx and Apache snippets in the README serve /comptes-publicitaires
+  // from comptes-publicitaires.html, so the canonical in <head> always matches
+  // the URL the visitor asked for.
   trailingSlash: 'never',
-  build: { format: 'file' },
+  build: {
+    format: 'file',
+
+    // All CSS goes inline in <style>, never a <link>. The whole stylesheet is
+    // ~11 KB raw / 9 KB gzipped, so a linked file costs two render-blocking
+    // round trips to save bytes that are cheaper than the round trips —
+    // Lighthouse measured FCP at 1.36 s linked and the budget is 1.3 s.
+    // The trade is that CSS is no longer cached across pages; for a site whose
+    // visitors arrive cold from search or an ad, the first paint wins.
+    inlineStylesheets: 'always',
+  },
 
   i18n: {
     defaultLocale: DEFAULT_LOCALE,
@@ -26,6 +37,10 @@ export default defineConfig({
 
   integrations: [
     sitemap({
+      // /404 is a real file (the host points error_page at it) but it is not a
+      // page anyone should be sent to, so it stays out of the sitemap. It also
+      // carries noindex; the two are separate signals and both are wanted.
+      filter: (page) => !/\/404(\.html)?$/.test(page),
       i18n: {
         defaultLocale: DEFAULT_LOCALE,
         locales: { fr: 'fr-MA', en: 'en', ar: 'ar-MA' },

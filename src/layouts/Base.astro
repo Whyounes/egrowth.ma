@@ -9,19 +9,26 @@ import '../styles/base.css';
 
 export interface Props {
   lang: Locale;
-  routeKey: RouteKey;
+  /**
+   * Omitted only by pages that are not a route — the 404. Without it there is
+   * no canonical and no hreflang set, which is correct: an error page must not
+   * claim to be the canonical version of anything.
+   */
+  routeKey?: RouteKey;
   title: string;
   description: string;
   /** Extra JSON-LD nodes for this page (Service, FAQPage, BreadcrumbList…). */
   schema?: Record<string, unknown>[];
+  /** Keeps the page out of the index. The sitemap excludes it separately. */
+  noindex?: boolean;
 }
 
-const { lang, routeKey, title, description, schema = [] } = Astro.props;
+const { lang, routeKey, title, description, schema = [], noindex = false } = Astro.props;
 
 const dir = (LOCALE_DIR as Record<string, string>)[lang] ?? 'ltr';
-const canonical = urlFor(routeKey, lang, site.url);
-const alternates = alternatesFor(routeKey, site.url);
-const xDefault = alternates.find((a) => a.lang === defaultLocale)!;
+const canonical = routeKey ? urlFor(routeKey, lang, site.url) : null;
+const alternates = routeKey ? alternatesFor(routeKey, site.url) : [];
+const xDefault = alternates.find((a) => a.lang === defaultLocale);
 
 /* Organization is emitted once on every page: it is the entity signal that
    both Google's local pack and the AI crawlers resolve the brand against. */
@@ -69,11 +76,12 @@ const jsonLd = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     {/* Reciprocal hreflang on all three locales, plus x-default on French. */}
     {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
-    <link rel="alternate" hreflang="x-default" href={xDefault.href} />
+    {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault.href} />}
 
     {/* Self-hosted subsets, same origin. Preload only what this locale paints
         above the fold: Latin everywhere, plus the two Arabic weights on /ar. */}
@@ -110,7 +118,7 @@ const jsonLd = {
     <meta property="og:site_name" content={site.brandName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:locale" content={localeTags[lang].replace('-', '_')} />
     <meta name="twitter:card" content="summary_large_image" />
 
