@@ -25,12 +25,24 @@ async function htmlFiles(dir) {
 
 const files = await htmlFiles(DIST);
 
+/** The same hint reaches HTML text and a JSON-LD string with different
+    escaping, so normalise before using it as a key or the list double-counts. */
+function normalise(hint) {
+  return hint
+    .replace(/&quot;|\\"/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 /** hint -> set of pages it appears on */
 const found = new Map();
 
 for (const file of files) {
   const html = await readFile(file, 'utf8');
-  for (const [, hint] of html.matchAll(MARKER)) {
+  for (const [, rawHint] of html.matchAll(MARKER)) {
+    const hint = normalise(rawHint);
     const page = '/' + relative(DIST, file).replace(/\\/g, '/');
     if (!found.has(hint)) found.set(hint, new Set());
     found.get(hint).add(page);

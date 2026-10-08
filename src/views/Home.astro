@@ -1,7 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSlider from '../components/HeroSlider.astro';
+import PlatformIcon from '../components/PlatformIcon.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Check from '../components/Check.astro';
+
 import { t } from '../i18n';
-import type { Locale, RouteKey } from '../data/routes';
+import { site, caseStudies } from '../data/site';
+import { platforms, platformByKey } from '../data/platforms';
+import { pathFor, isBuilt, type Locale, type RouteKey } from '../data/routes';
+import { faqSchema, serviceSchema } from '../lib/schema';
+import { richText } from '../lib/text';
 
 export interface Props {
   lang: Locale;
@@ -10,15 +22,879 @@ export interface Props {
 
 const { lang, routeKey } = Astro.props;
 const c = t(lang);
+const h = c.home;
+
+const accountsHref = isBuilt('adAccounts') ? pathFor('adAccounts', lang) : '#build';
+
+const schema = [
+  faqSchema(h.faq),
+  serviceSchema({
+    name: h.svcAccountsTitle,
+    description: h.svcAccountsBody,
+    lang,
+    siteUrl: site.url,
+  }),
+];
+
+const stats = [
+  { value: `MAD ${site.stats.adSpendManaged}`, label: h.statAdSpend, accent: 'green' },
+  { value: site.stats.accountsProvisioned, label: `${h.statAccounts} ${site.foundingYear}`, accent: 'blue' },
+  { value: `${site.stats.medianRoas}×`, label: h.statRoas, accent: 'clay' },
+  { value: site.stats.activationMedian, label: h.statActivation, accent: 'ochre' },
+];
+
+const buildItems = [
+  { t: h.buildStore, d: h.buildStoreBody, span: '4–6', spanLabel: h.buildWeeks, from: site.pricing.storeFrom, lead: true },
+  { t: h.buildApp, d: h.buildAppBody, span: '8–12', spanLabel: h.buildMvp, from: site.pricing.appFrom, lead: false },
+  { t: h.buildSite, d: h.buildSiteBody, span: '2–4', spanLabel: h.buildWeeks, from: site.pricing.websiteFrom, lead: false },
+  { t: h.buildTools, d: h.buildToolsBody, span: '1–3', spanLabel: h.buildWeeks, from: site.pricing.toolsFrom, lead: false },
+];
+
+const steps = [
+  { n: '01', when: h.stepDay1, t: h.step1, d: h.step1Body, accent: 'green' },
+  { n: '02', when: h.stepDay2, t: h.step2, d: h.step2Body, accent: 'blue' },
+  { n: '03', when: h.stepDay37, t: h.step3, d: h.step3Body, accent: 'ochre' },
+  { n: '04', when: h.stepOngoing, t: h.step4, d: h.step4Body, accent: 'clay' },
+];
+
+const tiers = [
+  { t: h.tierAccount, n: h.tierAccountNote, p: `MAD ${site.pricing.accountOnly}${c.common.perMonth}` },
+  { t: h.tierManaged, n: h.tierManagedNote, p: `MAD ${site.pricing.accountPlusManagement}${c.common.perMonth}` },
+  { t: h.tierGrowth, n: h.tierGrowthNote, p: `${c.common.from} MAD ${site.pricing.growthRetainerFrom}${c.common.perMonth}` },
+  { t: h.tierBuild, n: h.tierBuildNote, p: `${c.common.from} MAD ${site.pricing.buildFrom}` },
+];
 ---
 
-<Base lang={lang} routeKey={routeKey} title={c.home.metaTitle} description={c.home.metaDescription}>
+<Base lang={lang} routeKey={routeKey} title={h.metaTitle} description={h.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+
   <main id="main">
-    <section class="section">
-      <div class="container">
-        <h1>{c.home.heroTitle}</h1>
-        <p class="lead">{c.home.heroLead}</p>
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <p class="hero__badge"><span aria-hidden="true"></span>{h.heroBadge}</p>
+          <h1>{h.heroTitle}</h1>
+          <p class="lead hero__lead">{h.heroLead}</p>
+          <div class="hero__btns">
+            <a class="btn btn--primary" href={accountsHref}>{c.common.requestAccount}</a>
+            <a class="btn btn--secondary" href={site.bookingUrl}>{c.common.bookAudit}</a>
+          </div>
+          <p class="hero__note">{h.heroNote}</p>
+        </div>
+        <HeroSlider lang={lang} label={c.common.heroImages} />
       </div>
     </section>
+
+    <!-- ================= PLATFORM STRIP ================= -->
+    <section class="strip">
+      <div class="container strip__inner">
+        <h2 class="eyebrow eyebrow--muted strip__label">{c.common.platformsLabel}</h2>
+        {
+          platforms.map((p) => (
+            <span class="strip__item">
+              {p.icons.map((icon) => <PlatformIcon name={icon} size={26} />)}
+              <span>{p.label}</span>
+            </span>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ================= STATS ================= -->
+    <section class="section">
+      <div class="container grid grid--stats">
+        {
+          stats.map((s) => (
+            <div>
+              <p class="stat__v num" data-accent={s.accent}>{s.value}</p>
+              <p class="stat__l">{s.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section id="services" class="section section--band">
+      <div class="container">
+        <div class="intro">
+          <p class="eyebrow">{h.servicesEyebrow}</p>
+          <h2>{h.servicesTitle}</h2>
+          <p class="lead">{h.servicesLead}</p>
+        </div>
+
+        <div class="grid grid--2 svc">
+          <article class="card svc__card">
+            <div class="svc__head">
+              <span class="svc__icon" data-accent="green">
+                <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="2.8" y="5" width="18.4" height="14" rx="2.6" stroke="currentColor" stroke-width="1.8"></rect>
+                  <path d="M2.8 9.6h18.4" stroke="currentColor" stroke-width="1.8"></path>
+                  <path d="M6.4 14.2h4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                </svg>
+              </span>
+              <h3>{h.svcAccountsTitle}</h3>
+            </div>
+            <p class="svc__body">{h.svcAccountsBody}</p>
+            <div class="svc__logos">
+              {platforms.flatMap((p) => p.icons).map((icon) => <PlatformIcon name={icon} size={22} />)}
+            </div>
+            <a class="arrowLink svc__link" href={accountsHref}>{h.svcAccountsLink}</a>
+          </article>
+
+          <article class="card svc__card">
+            <div class="svc__head">
+              <span class="svc__icon" data-accent="blue">
+                <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M3.5 19.5V13m5.2 6.5V7.6m5.2 11.9v-8.3m5.2 8.3V4.5"
+                    stroke="currentColor"
+                    stroke-width="1.9"
+                    stroke-linecap="round"></path>
+                </svg>
+              </span>
+              <h3>{h.svcMediaTitle}</h3>
+            </div>
+            <p class="svc__body">{h.svcMediaBody}</p>
+            <ul class="checks">
+              {h.svcMediaChecks.map((item) => <Check accent="blue">{item}</Check>)}
+            </ul>
+          </article>
+
+          <article class="card svc__card">
+            <div class="svc__head">
+              <span class="svc__icon" data-accent="clay">
+                <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M9 7.5L4.5 12 9 16.5M15 7.5L19.5 12 15 16.5"
+                    stroke="currentColor"
+                    stroke-width="1.9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <h3>{h.svcBuildTitle}</h3>
+            </div>
+            <p class="svc__body">{h.svcBuildBody}</p>
+            <ul class="checks">
+              {h.svcBuildChecks.map((item) => <Check accent="clay">{item}</Check>)}
+            </ul>
+            <a class="arrowLink svc__link" href="#build">{h.svcBuildLink}</a>
+          </article>
+
+          <article class="card svc__card">
+            <div class="svc__head">
+              <span class="svc__icon" data-accent="ochre">
+                <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="2.6" y="6" width="12.8" height="12" rx="2.6" stroke="currentColor" stroke-width="1.8"></rect>
+                  <path
+                    d="M15.4 11l5-2.9v7.8l-5-2.9V11Z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <h3>{h.svcUgcTitle}</h3>
+            </div>
+            <p class="svc__body">{h.svcUgcBody}</p>
+            <ul class="checks">
+              {h.svcUgcChecks.map((item) => <Check accent="ochre">{item}</Check>)}
+            </ul>
+            <a class="arrowLink svc__link" href="#ugc">{h.svcUgcLink}</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= AD ACCOUNTS BAND ================= -->
+    <section class="section section--dark">
+      <div class="container band">
+        <div>
+          <p class="eyebrow band__eyebrow">{h.bandEyebrow}</p>
+          <h2>{h.bandTitle}</h2>
+          <p class="lead band__lead">{h.bandLead}</p>
+          <a class="btn btn--onDark" href={accountsHref}>{h.bandCta}</a>
+        </div>
+        <div class="band__cards">
+          <div class="band__card"><h3 data-accent="green">{h.bandCard1Title}</h3><p>{h.bandCard1Body}</p></div>
+          <div class="band__card"><h3 data-accent="blue">{h.bandCard2Title}</h3><p>{h.bandCard2Body}</p></div>
+          <div class="band__card"><h3 data-accent="clay">{h.bandCard3Title}</h3><p>{h.bandCard3Body}</p></div>
+          <div class="band__card"><h3 data-accent="ochre">{h.bandCard4Title}</h3><p>{h.bandCard4Body}</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BUILD ================= -->
+    <section id="build" class="section">
+      <div class="container">
+        <div class="intro intro--row">
+          <div>
+            <p class="eyebrow eyebrow--clay">{h.buildEyebrow}</p>
+            <h2>{h.buildTitle}</h2>
+            <p class="lead">{h.buildLead}</p>
+          </div>
+          <a class="btn btn--primary build__cta" href={site.bookingUrl}>{h.buildCta}</a>
+        </div>
+
+        <div class="grid grid--4">
+          {
+            buildItems.map((item) => (
+              <article class:list={['card', 'build__card', { 'build__card--lead': item.lead }]}>
+                <h3>{item.t}</h3>
+                <p class="build__body">{item.d}</p>
+                <dl class="build__meta">
+                  <div>
+                    <dt>{item.spanLabel}</dt>
+                    <dd class="num">{item.span} {h.buildWeeksUnit}</dd>
+                  </div>
+                  <div>
+                    <dt>{c.common.from}</dt>
+                    <dd class="num">MAD {item.from}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))
+          }
+        </div>
+
+        <p class="build__note">{h.buildNote}</p>
+      </div>
+    </section>
+
+    <!-- ================= UGC ================= -->
+    <section id="ugc" class="section ugc">
+      <div class="container">
+        <div class="intro">
+          <p class="eyebrow eyebrow--ochre">{h.ugcEyebrow}</p>
+          <h2>{h.ugcTitle}</h2>
+          <p class="lead ugc__lead" set:html={richText(h.ugcLead)} />
+        </div>
+
+        <div class="grid grid--3 ugc__steps">
+          <article class="card ugc__step">
+            <div class="ugc__stepTop">
+              <span class="eyebrow eyebrow--ochre">01</span>
+              <span class="ugc__icons">
+                <PlatformIcon name="tiktok" size={20} />
+                <PlatformIcon name="instagram" size={20} />
+              </span>
+            </div>
+            <h3>{h.ugcStep1}</h3>
+            <p>{h.ugcStep1Body}</p>
+          </article>
+          <article class="card ugc__step">
+            <div class="ugc__stepTop">
+              <span class="eyebrow eyebrow--ochre">02</span>
+              <span class="ugc__icons"><PlatformIcon name="snapchat" size={20} /></span>
+            </div>
+            <h3>{h.ugcStep2}</h3>
+            <p>{h.ugcStep2Body}</p>
+          </article>
+          <article class="card ugc__step">
+            <div class="ugc__stepTop">
+              <span class="eyebrow eyebrow--ochre">03</span>
+              <span class="ugc__badge">{h.ugcStep3Badge}</span>
+            </div>
+            <h3>{h.ugcStep3}</h3>
+            <p>{h.ugcStep3Body}</p>
+          </article>
+        </div>
+
+        <div class="card ugc__compare">
+          <div>
+            <h3>{h.ugcCompareTitle}</h3>
+            <p class="ugc__compareBody">{h.ugcCompareBody}</p>
+          </div>
+          <dl class="ugc__stats">
+            <div><dt class="num">{site.ugc.videosPerMonth}</dt><dd>{h.ugcStatVideos}</dd></div>
+            <div><dt class="num">{site.ugc.creatorsInNetwork}</dt><dd>{h.ugcStatCreators}</dd></div>
+            <div><dt class="num">72h</dt><dd>{h.ugcStatSpeed}</dd></div>
+            <div><dt class="num">MAD {site.pricing.ugcPerVideo}</dt><dd>{h.ugcStatPrice}</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROCESS ================= -->
+    <section class="section section--band">
+      <div class="container">
+        <div class="intro">
+          <p class="eyebrow">{h.processEyebrow}</p>
+          <h2>{h.processTitle}</h2>
+        </div>
+        <div class="grid grid--4">
+          {
+            steps.map((s) => (
+              <div class="step" data-accent={s.accent}>
+                <p class="step__n">
+                  <span class="num">{s.n}</span> &middot; {s.when}
+                </p>
+                <h3>{s.t}</h3>
+                <p class="step__d">{s.d}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESULTS ================= -->
+    <section id="results" class="section">
+      <div class="container">
+        <div class="intro">
+          <p class="eyebrow">{h.resultsEyebrow}</p>
+          <h2>{h.resultsTitle}</h2>
+        </div>
+        <div class="grid grid--3">
+          {
+            caseStudies.map((cs) => {
+              const platform = platformByKey[cs.platform];
+              return (
+                <article class="card case" data-accent={cs.accentKey}>
+                  <div class="case__head">
+                    {platform.icons.map((icon) => <PlatformIcon name={icon} size={18} />)}
+                    <span class="case__platform">{platform.label}</span>
+                  </div>
+                  <h3>{cs.anonymised ? h.resultsAnonymised : cs.client}</h3>
+                  <dl class="case__metrics">
+                    {cs.metrics.map((m) => (
+                      <div>
+                        <dt class="num">{m.value}</dt>
+                        <dd>{m.label[lang]}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRICING TEASER ================= -->
+    <section id="pricing" class="section">
+      <div class="container pricing">
+        <div>
+          <p class="eyebrow">{h.pricingEyebrow}</p>
+          <h2>{h.pricingTitle}</h2>
+          <p class="lead pricing__lead">{h.pricingLead}</p>
+          {isBuilt('pricing') && <a class="btn btn--primary" href={pathFor('pricing', lang)}>{h.pricingCta}</a>}
+        </div>
+        <div class="pricing__panel">
+          {
+            tiers.map((tier) => (
+              <div class="pricing__row">
+                <div>
+                  <p class="pricing__rowT">{tier.t}</p>
+                  <p class="pricing__rowN">{tier.n}</p>
+                </div>
+                <p class="pricing__p num">{tier.p}</p>
+              </div>
+            ))
+          }
+          <p class="pricing__note">{h.pricingNote}</p>
+        </div>
+      </div>
+    </section>
+
+    <Faq title={h.faqTitle} items={h.faq} />
+    <CtaBand lang={lang} title={h.ctaTitle} lead={h.ctaLead} />
   </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
 </Base>
+
+<style>
+  /* --- Hero ------------------------------------------------------------- */
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(27.5rem, 100%), 1fr));
+    gap: var(--s-16) var(--s-12);
+    align-items: center;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    min-height: 30px;
+    padding-inline: var(--s-3);
+    margin-block-end: var(--s-6);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    color: var(--c-green);
+    background: var(--c-green-tint);
+    border-radius: var(--r-badge);
+  }
+
+  .hero__badge span {
+    width: 6px;
+    height: 6px;
+    background: var(--c-green);
+    border-radius: 50%;
+  }
+
+  .hero__lead {
+    margin-block: var(--s-6) var(--s-8);
+  }
+
+  .hero__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+
+  .hero__note {
+    margin-block-start: var(--s-6);
+    font-size: var(--t-small);
+    color: var(--c-ink-3);
+    max-width: 32rem;
+  }
+
+  /* --- Platform strip --------------------------------------------------- */
+  .strip {
+    border-block: 1px solid var(--c-line);
+    background: var(--c-bg);
+  }
+
+  .strip__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-4) var(--s-8);
+    padding-block: var(--s-6);
+  }
+
+  .strip__label {
+    margin: 0;
+  }
+
+  .strip__item {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-size: 1.03125rem;
+    font-weight: 700;
+    color: #3c434a;
+  }
+
+  /* --- Stats ------------------------------------------------------------ */
+  .stat__v {
+    font-size: clamp(2rem, 1.4rem + 2.2vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    margin-block-end: var(--s-2);
+  }
+
+  .stat__l {
+    font-size: var(--t-small);
+    line-height: 1.45;
+    color: var(--c-ink-2);
+  }
+
+  [data-accent='green'] { color: var(--c-green); }
+  [data-accent='blue'] { color: var(--c-blue); }
+  [data-accent='clay'] { color: var(--c-clay); }
+  [data-accent='ochre'] { color: var(--c-ochre); }
+
+  /* --- Section intro ---------------------------------------------------- */
+  .intro {
+    max-width: 43.75rem;
+    margin-block-end: var(--s-12);
+  }
+
+  .intro .eyebrow {
+    margin-block-end: var(--s-3);
+  }
+
+  .intro h2 + .lead {
+    margin-block-start: var(--s-4);
+  }
+
+  .intro--row {
+    max-width: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--s-6);
+  }
+
+  .intro--row > div {
+    max-width: 43.75rem;
+  }
+
+  /* --- Services --------------------------------------------------------- */
+  .svc__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .svc__head {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+  }
+
+  .svc__icon {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+  }
+
+  .svc__icon[data-accent='green'] { background: var(--c-green-tint); }
+  .svc__icon[data-accent='blue'] { background: var(--c-blue-tint); }
+  .svc__icon[data-accent='clay'] { background: var(--c-clay-tint); }
+  .svc__icon[data-accent='ochre'] { background: var(--c-ochre-tint); }
+
+  .svc__body {
+    font-size: 0.96875rem;
+    line-height: 1.6;
+    color: var(--c-ink-2);
+  }
+
+  .svc__logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+
+  .svc__link {
+    margin-block-start: auto;
+  }
+
+  /* --- Dark band -------------------------------------------------------- */
+  .band {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(26.25rem, 100%), 1fr));
+    gap: var(--s-16) var(--s-12);
+    align-items: center;
+  }
+
+  .band__eyebrow {
+    color: var(--c-green-on-dark);
+    margin-block-end: var(--s-3);
+  }
+
+  .band__lead {
+    margin-block: var(--s-5, 1.25rem) var(--s-8);
+  }
+
+  .band__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(12.5rem, 100%), 1fr));
+    gap: var(--s-4);
+  }
+
+  .band__card {
+    padding: var(--s-6);
+    background: var(--c-dark-2);
+    border: 1px solid var(--c-dark-line);
+    border-radius: var(--r-panel);
+  }
+
+  .band__card h3 {
+    font-size: 0.96875rem;
+    margin-block-end: var(--s-2);
+  }
+
+  .band__card h3[data-accent='green'] { color: var(--c-green-on-dark); }
+  .band__card h3[data-accent='blue'] { color: var(--c-blue-on-dark); }
+  .band__card h3[data-accent='clay'] { color: var(--c-clay-on-dark); }
+  .band__card h3[data-accent='ochre'] { color: var(--c-ochre-on-dark); }
+
+  .band__card p {
+    font-size: var(--t-small);
+    line-height: 1.55;
+    color: var(--c-dark-ink-2);
+  }
+
+  /* --- Build ------------------------------------------------------------ */
+  .build__cta {
+    flex-shrink: 0;
+    background: var(--c-clay);
+  }
+
+  .build__cta:hover {
+    background: #96431f;
+  }
+
+  .build__card {
+    padding: var(--s-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .build__card--lead {
+    background: var(--c-clay-tint);
+    border-color: var(--c-clay-line);
+  }
+
+  .build__body {
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-ink-2);
+  }
+
+  .build__card--lead .build__body {
+    color: #6b4a3c;
+  }
+
+  .build__meta {
+    margin-block-start: auto;
+    padding-block-start: var(--s-3);
+    border-block-start: 1px solid var(--c-line);
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .build__card--lead .build__meta {
+    border-color: var(--c-clay-line);
+  }
+
+  .build__meta > div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+    font-size: var(--t-xs);
+  }
+
+  .build__meta dt {
+    color: var(--c-ink-3);
+  }
+
+  .build__meta dd {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .build__note {
+    margin-block-start: var(--s-6);
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-ink-3);
+    max-width: 56rem;
+  }
+
+  /* --- UGC -------------------------------------------------------------- */
+  .ugc {
+    background: var(--c-ochre-tint);
+    border-block-start: 1px solid var(--c-ochre-line);
+  }
+
+  .ugc__lead {
+    color: #5e4d28;
+  }
+
+  .ugc__steps {
+    margin-block-end: var(--s-6);
+  }
+
+  .ugc__step {
+    padding: var(--s-6);
+    border-color: var(--c-ochre-line);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .ugc__stepTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+  }
+
+  .ugc__icons {
+    display: flex;
+    gap: 5px;
+  }
+
+  .ugc__badge {
+    padding: 4px 9px;
+    font-size: 0.71875rem;
+    font-weight: 700;
+    color: var(--c-green);
+    background: var(--c-green-tint);
+    border-radius: 6px;
+  }
+
+  .ugc__step p {
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-ink-2);
+  }
+
+  .ugc__compare {
+    border-color: var(--c-ochre-line);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(22.5rem, 100%), 1fr));
+    gap: var(--s-12);
+    align-items: center;
+  }
+
+  .ugc__compareBody {
+    margin-block-start: var(--s-3);
+    font-size: 0.96875rem;
+    line-height: 1.65;
+    color: var(--c-ink-2);
+  }
+
+  .ugc__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
+    gap: var(--s-4);
+  }
+
+  .ugc__stats > div {
+    padding: var(--s-5, 1.25rem);
+    background: var(--c-ochre-tint);
+    border-radius: 14px;
+  }
+
+  .ugc__stats dt {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--c-ochre);
+    margin-block-end: var(--s-1, 0.25rem);
+  }
+
+  .ugc__stats dd {
+    margin: 0;
+    font-size: var(--t-xs);
+    line-height: 1.5;
+    color: #5e4d28;
+  }
+
+  /* --- Process ---------------------------------------------------------- */
+  .step {
+    padding-block-start: var(--s-5, 1.25rem);
+    border-block-start: 2px solid currentColor;
+  }
+
+  .step h3 {
+    color: var(--c-ink);
+    margin-block: var(--s-3);
+  }
+
+  .step__n {
+    font-size: var(--t-xs);
+    font-weight: 700;
+  }
+
+  .step__d {
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-ink-2);
+  }
+
+  /* --- Case studies ----------------------------------------------------- */
+  .case {
+    padding: var(--s-6);
+  }
+
+  .case__head {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin-block-end: var(--s-3);
+  }
+
+  .case__platform {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--c-ink-4);
+  }
+
+  .case__metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-8);
+    margin-block-start: var(--s-4);
+    padding-block-start: var(--s-4);
+    border-block-start: 1px solid var(--c-line);
+  }
+
+  .case__metrics dt {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: inherit;
+  }
+
+  .case__metrics dd {
+    margin: 0;
+    font-size: var(--t-xs);
+    color: var(--c-ink-3);
+  }
+
+  /* --- Pricing ---------------------------------------------------------- */
+  .pricing {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(23.75rem, 100%), 1fr));
+    gap: var(--s-12);
+    align-items: center;
+  }
+
+  .pricing__lead {
+    margin-block: var(--s-4) var(--s-6);
+  }
+
+  .pricing__panel {
+    padding: var(--s-8);
+    background: var(--c-bg-2);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-card);
+  }
+
+  .pricing__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding-block: var(--s-4);
+    border-block-end: 1px solid var(--c-line);
+  }
+
+  .pricing__rowT {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .pricing__rowN {
+    font-size: var(--t-xs);
+    color: var(--c-ink-3);
+  }
+
+  .pricing__p {
+    font-size: 1.1875rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+  }
+
+  .pricing__note {
+    margin-block-start: var(--s-4);
+    font-size: var(--t-xs);
+    line-height: 1.55;
+    color: var(--c-ink-3);
+  }
+</style>

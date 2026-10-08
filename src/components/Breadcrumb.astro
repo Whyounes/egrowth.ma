@@ -1,0 +1,75 @@
+---
+import { pathFor, type Locale, type RouteKey } from '../data/routes';
+import { t } from '../i18n';
+
+export interface Props {
+  lang: Locale;
+  /** Home is prepended automatically; the last item renders as plain text. */
+  trail: { label: string; key: RouteKey }[];
+}
+
+const { lang, trail } = Astro.props;
+const c = t(lang);
+const steps = [{ label: c.nav.home, key: 'home' as RouteKey }, ...trail];
+---
+
+<nav class="bc" aria-label={c.nav.breadcrumb}>
+  <div class="container">
+    <ol>
+      {
+        steps.map((step, i) => (
+          <li>
+            {i < steps.length - 1 ? (
+              <>
+                <a href={pathFor(step.key, lang)}>{step.label}</a>
+                <span class="bc__sep" aria-hidden="true">/</span>
+              </>
+            ) : (
+              <span aria-current="page">{step.label}</span>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</nav>
+
+<style>
+  .bc {
+    border-block-end: 1px solid #eef0f2;
+    background: var(--c-bg);
+  }
+
+  .bc ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2);
+    padding-block: var(--s-3);
+    font-size: var(--t-xs);
+  }
+
+  .bc li {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+  }
+
+  .bc a {
+    color: var(--c-ink-3);
+  }
+
+  .bc a:hover {
+    color: var(--c-green);
+  }
+
+  .bc__sep {
+    color: #c6cad1;
+  }
+
+  .bc [aria-current='page'] {
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+</style>

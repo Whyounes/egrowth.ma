@@ -1,0 +1,203 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PlatformIcon from '../components/PlatformIcon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Check from '../components/Check.astro';
+import RequestForm from '../components/RequestForm.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { platformByRoute } from '../data/platforms';
+import { pathFor, type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema, serviceSchema } from '../lib/schema';
+import { fill } from '../lib/text';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const pp = c.platformPages;
+
+const platform = platformByRoute[routeKey];
+if (!platform) throw new Error(`No platform mapped to route "${routeKey}"`);
+
+const copy = pp[platform.key];
+const meta = site.platforms[platform.key];
+const setupLabel = meta.setup === 'under24h' ? c.common.under24h : c.common.h24to48;
+
+const title = fill(pp.titlePattern, { platform: platform.label });
+const metaTitle = fill(pp.metaTitlePattern, { platform: platform.label });
+const metaDescription = fill(pp.metaDescriptionPattern, {
+  platform: platform.label,
+  setup: setupLabel,
+});
+
+const trail = [
+  { label: c.nav.adAccounts, key: 'adAccounts' as RouteKey },
+  { label: platform.label, key: routeKey },
+];
+
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+  serviceSchema({ name: title, description: copy.tagline, lang, siteUrl: site.url }),
+];
+---
+
+<Base lang={lang} routeKey={routeKey} title={metaTitle} description={metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <div class="hero__brand">
+            {platform.icons.map((icon) => <PlatformIcon name={icon} size={40} />)}
+          </div>
+          <h1>{title}</h1>
+          <p class="lead hero__lead">{copy.tagline}</p>
+
+          <dl class="facts">
+            <div>
+              <dt>{c.common.setup}</dt>
+              <dd>{setupLabel}</dd>
+            </div>
+            <div>
+              <dt>{c.common.fee}</dt>
+              <dd class="num">MAD {meta.fee}{c.common.perMonth}</dd>
+            </div>
+            <div>
+              <dt>{c.common.minBudget}</dt>
+              <dd class="num">{meta.minBudget} MAD{c.common.perMonth}</dd>
+            </div>
+          </dl>
+        </div>
+        <RequestForm lang={lang} platform={platform.key} />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container body">
+        <div class="body__main">
+          <h2>{pp.whyTitle}</h2>
+          <p class="body__p">{copy.why}</p>
+
+          <h2 class="body__h2">{pp.eligibilityTitle}</h2>
+          <p class="body__p">{copy.eligibility}</p>
+        </div>
+
+        <aside class="body__side">
+          <div class="card side__card">
+            <h2 class="side__title">{pp.bestForTitle}</h2>
+            <ul class="checks">
+              {copy.bestFor.map((item) => <Check accent={platform.accentKey}>{item}</Check>)}
+            </ul>
+          </div>
+          <a class="arrowLink" href={pathFor('adAccounts', lang)}>{pp.backToAll}</a>
+        </aside>
+      </div>
+    </section>
+
+    <CtaBand lang={lang} title={c.adAccounts.ctaTitle} lead={c.adAccounts.ctaLead} dark />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(26.25rem, 100%), 1fr));
+    gap: var(--s-16) var(--s-12);
+    align-items: start;
+  }
+
+  .hero__brand {
+    display: flex;
+    gap: var(--s-3);
+    margin-block-end: var(--s-6);
+  }
+
+  .hero__lead {
+    margin-block: var(--s-5, 1.25rem) var(--s-8);
+  }
+
+  .facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    padding-block: var(--s-6);
+    border-block: 1px solid var(--c-line);
+  }
+
+  .facts > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--s-3);
+  }
+
+  .facts dt {
+    font-size: var(--t-small);
+    color: var(--c-ink-2);
+  }
+
+  .facts dd {
+    margin: 0;
+    font-size: var(--t-small);
+    font-weight: 700;
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(21.875rem, 100%), 1fr));
+    gap: var(--s-12);
+    align-items: start;
+  }
+
+  .body__main {
+    max-width: 40rem;
+  }
+
+  .body__p {
+    margin-block-start: var(--s-4);
+    font-size: 1.03125rem;
+    line-height: 1.7;
+    color: var(--c-ink-2);
+  }
+
+  .body__h2 {
+    margin-block-start: var(--s-12);
+  }
+
+  .body__side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6);
+    align-items: flex-start;
+  }
+
+  .side__card {
+    padding: var(--s-6);
+    background: var(--c-bg-2);
+    width: 100%;
+  }
+
+  .side__title {
+    font-size: 1.0625rem;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin-block-end: var(--s-4);
+  }
+</style>

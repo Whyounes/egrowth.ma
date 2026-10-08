@@ -113,7 +113,7 @@ export const routes: Record<RouteKey, RouteDef> = {
       en: 'agency-ad-account/meta',
       ar: 'حساب-إعلاني-وكالة/ميتا',
     },
-    built: false,
+    built: true,
     targets: {
       fr: 'compte publicitaire meta maroc',
       en: 'agency ad account meta',
@@ -126,7 +126,7 @@ export const routes: Record<RouteKey, RouteDef> = {
       en: 'agency-ad-account/tiktok',
       ar: 'حساب-إعلاني-وكالة/تيك-توك',
     },
-    built: false,
+    built: true,
     targets: {
       fr: 'compte publicitaire tiktok maroc',
       en: 'agency ad account tiktok',
@@ -139,7 +139,7 @@ export const routes: Record<RouteKey, RouteDef> = {
       en: 'agency-ad-account/snapchat',
       ar: 'حساب-إعلاني-وكالة/سناب-شات',
     },
-    built: false,
+    built: true,
     targets: {
       fr: 'compte publicitaire snapchat maroc',
       en: 'agency ad account snapchat',
@@ -152,7 +152,7 @@ export const routes: Record<RouteKey, RouteDef> = {
       en: 'agency-ad-account/google',
       ar: 'حساب-إعلاني-وكالة/جوجل',
     },
-    built: false,
+    built: true,
     targets: {
       fr: 'compte google ads agency maroc',
       en: 'agency ad account google',
@@ -165,7 +165,7 @@ export const routes: Record<RouteKey, RouteDef> = {
       en: 'agency-ad-account/linkedin',
       ar: 'حساب-إعلاني-وكالة/لينكد-إن',
     },
-    built: false,
+    built: true,
     targets: {
       fr: 'compte publicitaire linkedin maroc',
       en: 'agency ad account linkedin',

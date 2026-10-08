@@ -1,0 +1,26 @@
+---
+export interface Props {
+  accent?: 'green' | 'blue' | 'clay' | 'ochre';
+}
+
+const { accent = 'green' } = Astro.props;
+---
+
+<li data-accent={accent}>
+  <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <path
+      d="M4 10.5l4 4 8-9"
+      stroke="currentColor"
+      stroke-width="2.1"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+  <span><slot /></span>
+</li>
+
+<style>
+  li[data-accent='green'] svg { color: var(--c-green); }
+  li[data-accent='blue'] svg { color: var(--c-blue); }
+  li[data-accent='clay'] svg { color: var(--c-clay); }
+  li[data-accent='ochre'] svg { color: var(--c-ochre); }
+</style>

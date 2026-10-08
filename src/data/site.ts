@@ -28,6 +28,9 @@ export const site = {
   whatsappLink: TODO('wa.me link, e.g. https://wa.me/2126XXXXXXXX'),
   email: TODO('public contact email'),
   bookingUrl: TODO('calendar link for the 20-minute audit call'),
+  /** Where the account-request form POSTs. Any static form service works
+      (Formspree, Basin, a Cloudflare Worker). Must accept a plain POST. */
+  formEndpoint: TODO('form POST endpoint for the account request'),
 
   /* --- Social (used for Schema.org sameAs and the footer) --------------- */
   social: {

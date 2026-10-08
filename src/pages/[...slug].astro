@@ -10,6 +10,7 @@ import { routes, routeKeys, locales, type Locale, type RouteKey } from '../data/
 
 import Home from '../views/Home.astro';
 import AdAccounts from '../views/AdAccounts.astro';
+import AdAccountPlatform from '../views/AdAccountPlatform.astro';
 
 export function getStaticPaths() {
   const paths: { params: { slug: string | undefined }; props: { routeKey: RouteKey; lang: Locale } }[] = [];
@@ -38,6 +39,11 @@ const { routeKey, lang } = Astro.props;
 const views = {
   home: Home,
   adAccounts: AdAccounts,
+  adAccountsMeta: AdAccountPlatform,
+  adAccountsTiktok: AdAccountPlatform,
+  adAccountsSnapchat: AdAccountPlatform,
+  adAccountsGoogle: AdAccountPlatform,
+  adAccountsLinkedin: AdAccountPlatform,
 } as const;
 
 const View = views[routeKey as keyof typeof views];

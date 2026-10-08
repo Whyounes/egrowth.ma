@@ -1,0 +1,72 @@
+---
+import PlatformIcon from './PlatformIcon.astro';
+import { site } from '../data/site';
+import { t } from '../i18n';
+import { pathFor, isBuilt, type Locale } from '../data/routes';
+
+export interface Props {
+  lang: Locale;
+  title: string;
+  lead: string;
+  dark?: boolean;
+}
+
+const { lang, title, lead, dark = false } = Astro.props;
+const c = t(lang);
+
+const primaryHref = isBuilt('adAccounts') ? pathFor('adAccounts', lang) : '#request';
+---
+
+<section class:list={['section', 'cta', { 'section--dark': dark }]}>
+  <div class="container cta__inner">
+    <h2>{title}</h2>
+    <p class="lead cta__lead">{lead}</p>
+
+    <div class="cta__buttons">
+      <a class:list={['btn', dark ? 'btn--onDark' : 'btn--primary']} href={primaryHref}>
+        {c.common.requestAccount}
+      </a>
+      <a class:list={['btn', dark ? 'btn--ghostOnDark' : 'btn--secondary']} href={site.bookingUrl}>
+        {c.common.bookAudit}
+      </a>
+    </div>
+
+    <a class="cta__wa" href={site.whatsappLink}>
+      <PlatformIcon name="whatsapp" size={20} />
+      <span>{c.common.whatsappLine} {site.whatsapp}</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta__inner {
+    max-width: 51.25rem;
+    text-align: center;
+  }
+
+  .cta__lead {
+    margin-block: var(--s-4) var(--s-8);
+    margin-inline: auto;
+  }
+
+  .cta__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    justify-content: center;
+  }
+
+  .cta__wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-block-start: var(--s-6);
+    font-size: var(--t-small);
+    font-weight: 600;
+    color: var(--c-ink-2);
+  }
+
+  .section--dark .cta__wa {
+    color: var(--c-dark-ink);
+  }
+</style>

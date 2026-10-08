@@ -1,0 +1,215 @@
+---
+import Logo from './Logo.astro';
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { pathFor, isBuilt, locales, type Locale, type RouteKey } from '../data/routes';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+
+/* Only built routes appear, so the header never links to a 404. As each page
+   lands, flip `built` in routes.ts and it shows up here automatically. */
+const allNav: { key: RouteKey; label: string }[] = [
+  { key: 'adAccounts', label: c.nav.adAccounts },
+  { key: 'services', label: c.nav.services },
+  { key: 'work', label: c.nav.work },
+  { key: 'pricing', label: c.nav.pricing },
+  { key: 'resources', label: c.nav.resources },
+  { key: 'about', label: c.nav.about },
+];
+
+const navItems = allNav.filter((item) => isBuilt(item.key));
+
+/* The same page in the other two locales. A locale is only offered where the
+   route exists in it, which is always true today but will not be if a guide
+   ships in French first. */
+const languageLinks = locales.map((l) => ({
+  lang: l,
+  label: t(l).localeName,
+  short: t(l).localeShort,
+  href: pathFor(routeKey, l),
+  current: l === lang,
+}));
+
+const ctaHref = isBuilt('adAccounts') ? pathFor('adAccounts', lang) : '#request';
+---
+
+<header class="hdr">
+  <div class="container hdr__inner">
+    <a class="hdr__brand" href={pathFor('home', lang)}>
+      <Logo size={22} />
+      <span class="hdr__name">{site.brandName}</span>
+    </a>
+
+    {
+      navItems.length > 0 && (
+        <nav class="hdr__nav" aria-label={c.nav.menu}>
+          {navItems.map((item) => (
+            <a
+              class="hdr__link"
+              href={pathFor(item.key, lang)}
+              aria-current={item.key === routeKey ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )
+    }
+
+    <div class="hdr__end">
+      {/* Native disclosure: keyboard-operable, and zero JavaScript. */}
+      <details class="lang">
+        <summary class="lang__btn" aria-label={c.nav.language}>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="6.3" stroke="currentColor" stroke-width="1.4"></circle>
+            <path
+              d="M1.7 8h12.6M8 1.7c3.2 3.4 3.2 9 0 12.6-3.2-3.6-3.2-9.2 0-12.6Z"
+              stroke="currentColor"
+              stroke-width="1.4"></path>
+          </svg>
+          {c.localeShort}
+        </summary>
+        <ul class="lang__list">
+          {
+            languageLinks.map((l) => (
+              <li>
+                <a href={l.href} hreflang={l.lang} lang={l.lang} aria-current={l.current ? 'true' : undefined}>
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
+
+      <a class="btn btn--primary btn--sm hdr__cta" href={ctaHref}>{c.nav.cta}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hdr {
+    position: relative;
+    z-index: 20;
+    border-block-end: 1px solid var(--c-line);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  .hdr__inner {
+    min-height: 68px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-3) var(--s-6);
+    padding-block: var(--s-3);
+  }
+
+  .hdr__brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--c-ink);
+    flex-shrink: 0;
+  }
+
+  .hdr__name {
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: -0.022em;
+  }
+
+  /* flex: 999 lets the nav take the slack and wrap below on a phone, which is
+     why the header needs no breakpoint of its own. */
+  .hdr__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-3) var(--s-6);
+    flex: 999 1 16rem;
+    min-width: 0;
+  }
+
+  .hdr__link {
+    font-size: var(--t-small);
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+
+  .hdr__link[aria-current='page'] {
+    color: var(--c-green);
+    font-weight: 700;
+  }
+
+  .hdr__end {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    flex-shrink: 0;
+    margin-inline-start: auto;
+  }
+
+  .hdr__cta {
+    white-space: nowrap;
+  }
+
+  .lang {
+    position: relative;
+  }
+
+  .lang__btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 38px;
+    padding-inline: var(--s-3);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    color: var(--c-ink-2);
+    border: 1px solid var(--c-line);
+    border-radius: 9px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .lang__btn::-webkit-details-marker {
+    display: none;
+  }
+
+  .lang__list {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-start: calc(100% + 6px);
+    min-width: 9rem;
+    list-style: none;
+    padding: 6px;
+    background: var(--c-bg);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-control);
+    box-shadow: var(--e-raised);
+  }
+
+  .lang__list a {
+    display: block;
+    padding: 9px 10px;
+    font-size: var(--t-small);
+    font-weight: 600;
+    color: var(--c-ink);
+    border-radius: var(--r-badge);
+  }
+
+  .lang__list a:hover {
+    background: var(--c-bg-2);
+  }
+
+  .lang__list a[aria-current='true'] {
+    color: var(--c-green);
+    background: var(--c-green-tint);
+  }
+</style>
