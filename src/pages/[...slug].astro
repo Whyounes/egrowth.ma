@@ -16,6 +16,13 @@ import Service from '../views/Service.astro';
 import ResourcesHub from '../views/ResourcesHub.astro';
 import Guide from '../views/Guide.astro';
 import Glossary from '../views/Glossary.astro';
+import Pricing from '../views/Pricing.astro';
+import Contact from '../views/Contact.astro';
+import Audit from '../views/Audit.astro';
+import Work from '../views/Work.astro';
+import Industry from '../views/Industry.astro';
+import About from '../views/About.astro';
+import Legal from '../views/Legal.astro';
 
 export function getStaticPaths() {
   const paths: { params: { slug: string | undefined }; props: { routeKey: RouteKey; lang: Locale } }[] = [];
@@ -64,6 +71,15 @@ const views = {
   resourcesCosts: Guide,
   resourcesRestricted: Guide,
   glossary: Glossary,
+  pricing: Pricing,
+  contact: Contact,
+  audit: Audit,
+  work: Work,
+  industriesCod: Industry,
+  industriesB2b: Industry,
+  about: About,
+  terms: Legal,
+  privacy: Legal,
 } as const;
 
 const View = views[routeKey as keyof typeof views];

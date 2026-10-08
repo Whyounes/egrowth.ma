@@ -955,4 +955,459 @@ export const fr = {
       },
     ],
   },
+
+  pricing: {
+    metaTitle: 'Tarifs — comptes publicitaires, gestion et développement au Maroc | eGrowth',
+    metaDescription:
+      'Tarifs publiés en dirhams : frais de compte par plateforme, formules de gestion, projets de développement et vidéos UGC. Aucune commission sur votre budget média.',
+    title: 'Nos tarifs, publiés, en dirhams.',
+    lead:
+      "Au Maroc, les frais de gestion vont de 1 500 à 25 000 MAD par mois selon les sources, et presque personne ne dit lesquels. Voici les nôtres. Si vous trouvez moins cher, demandez simplement ce qui est inclus.",
+    mediaNote:
+      "**Le budget média n'est jamais inclus dans ces montants.** Il est payé directement à la plateforme, en votre nom, et nous ne prenons aucune commission dessus. Budget média de départ recommandé pour un test e-commerce : 4 000 à 8 000 MAD par mois.",
+
+    retainersTitle: 'Formules mensuelles',
+    tierAccount: 'Compte seul',
+    tierAccountNote: 'Vous gérez les campagnes vous-même',
+    tierAccountIncludes: [
+      'Un compte agence sur la plateforme de votre choix, actif en moins de 24 h',
+      'Accès partenaire sur votre Business Manager',
+      'Facture marocaine en dirhams, TVA traitée correctement',
+      'Un responsable de compte nommé, joignable sur WhatsApp',
+    ],
+    tierManaged: 'Compte et gestion',
+    tierManagedNote: 'Nous gérons les campagnes, vous validez',
+    tierManagedIncludes: [
+      'Tout ce qui précède, sur une plateforme',
+      'Structure de campagnes, pilotage quotidien et tests créatifs',
+      'Pixel et Conversions API vérifiés sur de vraies commandes test',
+      'Rapport hebdomadaire sur les commandes confirmées et la marge',
+    ],
+    tierGrowth: 'Formule growth',
+    tierGrowthNote: 'Publicités, UGC, CRO et tech',
+    tierGrowthIncludes: [
+      'Jusqu’à trois plateformes gérées en parallèle',
+      'Production UGC continue avec notre réseau de créateurs',
+      'Travail CRO sur la landing page et le taux de confirmation',
+      'Temps de développement inclus pour les correctifs techniques',
+    ],
+
+    platformsTitle: 'Frais de compte par plateforme',
+    platformsLead:
+      "Si vous ne prenez que le compte, voici le tarif par plateforme, avec le budget média minimum en dessous duquel le test ne produit pas de données exploitables.",
+    colPlatform: 'Plateforme',
+
+    buildsTitle: 'Projets de développement',
+    buildsLead:
+      'Au forfait, après un cadrage écrit. Les délais sont ceux que nous tenons réellement, pas les plus optimistes.',
+
+    ugcTitle: 'Vidéos UGC',
+    ugcLead:
+      "À l'unité si vous ne voulez que les fichiers, ou incluses dans la formule growth avec le test en compte.",
+    ugcStandalone: 'À l’unité',
+    ugcStandaloneNote: 'Droits publicitaires inclus, fichiers sources livrés',
+    ugcIncluded: 'En formule growth',
+    ugcIncludedNote: 'Production continue, testée dans votre compte',
+    ugcIncludedPrice: 'Incluse',
+
+    neverTitle: 'Ce que nous ne facturons jamais',
+    neverItems: [
+      'Aucune commission sur votre budget média, à aucun pourcentage',
+      "Aucuns frais de mise en place sur les formules mensuelles",
+      'Aucun engagement de durée : un mois de préavis suffit',
+      "Aucun frais de sortie, et vos actifs sont déjà chez vous",
+      "L'appel de cadrage et l'audit de compte, qui restent gratuits même si vous ne signez pas",
+    ],
+
+    faqTitle: 'Questions sur les tarifs',
+    faq: [
+      {
+        q: 'Pourquoi facturez-vous moins que certaines agences et plus que d’autres ?',
+        a: "Parce que le prix suit le périmètre, pas le positionnement. Une offre à 2 000 MAD par mois qui ne produit aucune créa et ne vérifie pas le tracking vous coûtera plus cher au final qu'une offre plus chère qui fait les deux. Comparez le nombre de créas incluses par mois, qui les produit, et sur quel indicateur le rapport est construit.",
+      },
+      {
+        q: 'Y a-t-il un engagement de durée ?',
+        a: "Non. Un mois de préavis, et vos actifs — Business Manager, pixel, audiences, catalogue — sont déjà dans votre portefeuille, donc il n'y a rien à récupérer. C'est volontairement construit comme ça : une agence qui a besoin d'un engagement de douze mois pour vous garder a un problème de résultats, pas de contrat.",
+      },
+      {
+        q: 'Que se passe-t-il si je veux ajouter une plateforme en cours de route ?',
+        a: "Les frais de compte de la plateforme ajoutée s'appliquent au prorata du mois en cours. Nous vous dirons franchement si l'ajout a du sens : dans la plupart des cas, concentrer le budget sur une plateforme qui fonctionne bat la dispersion sur trois.",
+      },
+      {
+        q: 'Le budget média peut-il passer par vous ?',
+        a: "Non, et c'est délibéré. Le budget est payé directement à la plateforme, en votre nom. C'est la seule configuration dans laquelle vous pouvez vérifier vous-même, dans l'interface de la plateforme, exactement ce qui a été dépensé.",
+      },
+    ],
+    ctaTitle: 'Un chiffre réel, en vingt minutes.',
+    ctaLead:
+      "Dites-nous ce que vous vendez et votre marge. Vous repartez avec un budget chiffré et la formule qui correspond, que vous signiez ou non.",
+  },
+
+  contact: {
+    metaTitle: 'Contact — eGrowth, agence tech et marketing au Maroc',
+    metaDescription:
+      'Contactez eGrowth : WhatsApp, téléphone, e-mail et adresse. Réponse sous deux heures ouvrées, par une personne nommée.',
+    title: 'Parlons-en.',
+    lead:
+      "WhatsApp est le canal le plus rapide, et c'est une personne nommée qui vous répond — pas un formulaire de ticket ni un robot.",
+    whatsappTitle: 'WhatsApp',
+    whatsappNote: 'Réponse sous deux heures ouvrées',
+    phoneTitle: 'Téléphone',
+    hours: 'Du lundi au vendredi, 9h – 18h',
+    emailTitle: 'E-mail',
+    emailNote: 'Réponse sous un jour ouvré',
+    addressTitle: 'Adresse',
+    entityTitle: 'Informations légales',
+    legalName: 'Raison sociale',
+    taxId: 'Identifiant fiscal',
+  },
+
+  audit: {
+    metaTitle: 'Audit gratuit de compte publicitaire au Maroc | eGrowth',
+    metaDescription:
+      'Vingt minutes sur votre compte, votre offre et vos chiffres. Vous repartez avec un budget chiffré et les deux choses à corriger en premier. Gratuit, sans engagement.',
+    eyebrow: 'Gratuit, sans engagement',
+    title: 'Vingt minutes, et un chiffre réel.',
+    lead:
+      "Ce n'est pas un appel commercial déguisé. Nous regardons votre compte, votre offre et vos chiffres, et nous vous disons ce que coûteraient vos cent premières commandes — ou pourquoi vous ne devriez pas encore faire de publicité.",
+    note: 'Si nous ne sommes pas les bons pour ce que vous vendez, nous vous le dirons pendant l’appel et nous vous orienterons.',
+
+    lookTitle: 'Ce que nous regardons',
+    lookItems: [
+      'La structure de votre compte, et si vos ad sets sortent de la phase d’apprentissage',
+      'Vos créas actuelles, et combien d’angles différents ont réellement été testés',
+      'Votre tracking : le pixel double-compte-t-il, et la Conversions API remonte-t-elle les bonnes commandes',
+      'Votre landing page sur un Android d’entrée de gamme et une connexion lente',
+      'Votre taux de confirmation COD, s’il est mesuré — et sinon, c’est souvent là que tout se joue',
+      'Votre situation fiscale sur le compte, depuis l’arrivée de la TVA de 20 %',
+    ],
+    getTitle: 'Ce que vous repartez avec',
+    getItems: [
+      'Un coût par commande cible chiffré, calculé sur votre marge réelle',
+      'Un budget média de départ réaliste, en dirhams',
+      'Les deux choses à corriger en premier, dans l’ordre',
+      'Une réponse franche sur l’opportunité de faire de la publicité maintenant',
+      'Rien à signer, et aucune relance si vous ne donnez pas suite',
+    ],
+
+    bringTitle: 'Ce qu’il faut avoir sous la main',
+    bringLead:
+      "Rien d'obligatoire, mais l'appel est beaucoup plus utile avec ces éléments. Un accès en lecture au compte suffit, nous ne demandons jamais de mot de passe.",
+    bringItems: [
+      'Votre marge brute par produit, même approximative',
+      'Vos dépenses publicitaires et vos commandes des trois derniers mois',
+      'Un accès en lecture à votre compte publicitaire, ou simplement des captures d’écran',
+      'Votre taux de confirmation et votre taux de retour, si vous les suivez',
+    ],
+
+    faqTitle: 'Questions sur l’audit',
+    faq: [
+      {
+        q: 'C’est vraiment gratuit ?',
+        a: "Oui, et sans contrepartie. Nous le faisons parce que c'est la façon la plus rapide de savoir si nous pouvons vous être utiles, et parce qu'un annonceur qui démarre sur de mauvaises bases coûte plus de temps à tout le monde qu'un appel de vingt minutes.",
+      },
+      {
+        q: 'Faut-il vous donner accès à mon compte ?',
+        a: "Non. Un accès en lecture rend l'appel plus précis, mais des captures d'écran suffisent, et nous ne demandons jamais de mot de passe. Aucune agence sérieuse ne devrait vous en demander un.",
+      },
+      {
+        q: 'Et si mon compte est actuellement restreint ?',
+        a: "C'est précisément un bon moment pour appeler. Nous commençons par chercher la cause, parce qu'une restriction due à la créa ou à la landing page vous suivra sur n'importe quel nouveau compte, y compris un compte agence.",
+      },
+    ],
+    ctaTitle: 'Réservez les vingt minutes.',
+    ctaLead: 'Un créneau, une personne nommée, et un chiffre à la fin.',
+  },
+
+  work: {
+    metaTitle: 'Réalisations — résultats clients au Maroc | eGrowth',
+    metaDescription:
+      'Résultats de campagnes au Maroc, avec la méthode qui va avec : e-commerce en paiement à la livraison, acquisition B2B, et ce que nous avons réellement changé.',
+    title: 'Des chiffres, avec la méthode qui va avec.',
+    lead:
+      "Un chiffre sans méthode ne vaut rien : il est impossible à vérifier et impossible à reproduire. Pour chaque dossier ci-dessous, nous disons ce que nous avons changé, pas seulement ce qui s'est amélioré.",
+    cases: {
+      'cosmetics-cod':
+        "Sorti d'un compte personnel restreint deux fois, tracking reconstruit côté serveur, puis créas ramenées aux deux seuls angles qui tenaient la distance.",
+      'home-goods-shopify':
+        "Boutique reconstruite pour la vitesse, flux de confirmation WhatsApp en darija ajouté, et budget réaffecté de la portée TikTok vers les conversions Meta.",
+      'b2b-leadgen':
+        "Search et LinkedIn structurés autour d'une seule définition écrite du lead qualifié, avec un CRM qui renvoie à la plateforme lesquels étaient réels.",
+    },
+    methodNote:
+      "Ces clients sont sous accord de confidentialité : nous publions les chiffres et la méthode, pas les noms. Nous pouvons organiser un appel de référence avec un client du même secteur si vous en avez besoin pour décider.",
+
+    howTitle: 'Comment nous mesurons',
+    howLead:
+      "Les règles que nous appliquons à nos propres chiffres, pour qu'ils veuillent dire quelque chose.",
+    howItems: [
+      'Nous comptons les commandes confirmées, jamais les commandes passées',
+      'Les fenêtres de comparaison sont de même durée et de même saisonnalité',
+      'Le ROAS est calculé sur le chiffre d’affaires livré, pas sur l’attribution de la plateforme',
+      'Nous disons ce qui a changé en même temps : prix, offre, boutique, transporteur',
+      'Quand un résultat vient d’un facteur hors publicité, nous l’écrivons',
+    ],
+    industriesTitle: 'Par secteur',
+    ctaTitle: 'Votre secteur est-il là-dedans ?',
+    ctaLead:
+      "Dites-nous ce que vous vendez. Si nous avons déjà fait tourner une offre comparable, nous vous dirons ce qui a marché et ce qui n'a pas marché.",
+  },
+
+  industries: {
+    cod: {
+      metaTitle: 'E-commerce et paiement à la livraison au Maroc — acquisition | eGrowth',
+      metaDescription:
+        'Acquisition pour le e-commerce en paiement à la livraison au Maroc : taux de confirmation, coût par commande livrée, créas en darija et tracking côté serveur.',
+      title: 'E-commerce et paiement à la livraison',
+      lead:
+        "Au Maroc, le taux de confirmation décide de la rentabilité plus sûrement que le taux de conversion. C'est le secteur que nous connaissons le mieux, et celui où les erreurs coûtent le plus vite.",
+      sections: [
+        {
+          h: 'Le vrai problème n’est pas le coût par clic',
+          body: [
+            "Un e-commerce marocain en paiement à la livraison peut afficher un ROAS de 3 sur la plateforme et perdre de l'argent. La raison est simple : entre 20 et 40 % des commandes passées ne sont jamais confirmées au téléphone, et une partie de celles qui le sont est refusée à la porte ou retournée.",
+            "Tant que votre reporting s'arrête à la commande passée, vous optimisez vers un chiffre qui n'existe pas. **Le seul indicateur qui compte est le coût par commande livrée et encaissée**, et c'est celui sur lequel nous construisons nos rapports.",
+          ],
+        },
+        {
+          h: 'Ce que nous changeons en premier',
+          body: [
+            "Presque toujours la même chose : le tracking, puis le flux de confirmation. Nous reconstruisons la mesure côté serveur pour que la plateforme reçoive le bon signal, puis nous ajoutons un flux de confirmation WhatsApp en darija qui récupère les commandes hésitantes avant qu'elles ne deviennent des refus.",
+            "Ensuite seulement vient la créa, et là le levier est le volume d'angles testés, pas la qualité de production. Un e-commerce qui teste cinq angles par mois bat systématiquement celui qui relance trois vidéos soignées pendant un trimestre.",
+          ],
+        },
+        {
+          h: 'Ce qui ne marche pas, et que nous refusons',
+          body: [
+            "Les fausses urgences, les faux avis, les prix qui changent au checkout et les allégations de résultats. Ce ne sont pas seulement des causes de restriction de compte : elles font monter votre taux de refus à la livraison, parce que le client qui a commandé sous pression change d'avis en voyant le livreur.",
+            "Un taux de refus élevé est presque toujours un symptôme de l'offre, pas de la logistique.",
+          ],
+        },
+      ],
+      playbookTitle: 'Le playbook COD',
+      playbook: [
+        'Mesure côté serveur avant toute augmentation de budget',
+        'Flux de confirmation WhatsApp en darija dans les deux heures',
+        'Checkout en une page, testé sur un Android d’entrée de gamme',
+        'Cinq angles créatifs par mois minimum, les perdants coupés chaque semaine',
+        'Rapport construit sur la commande livrée, pas sur la commande passée',
+      ],
+      faqTitle: 'Questions e-commerce et COD',
+      faq: [
+        {
+          q: 'Quel taux de confirmation est normal au Maroc ?',
+          a: "Nous observons le plus souvent entre 60 et 80 % selon le produit, le prix et surtout la rapidité de l'appel de confirmation. En dessous de 60 %, le problème est presque toujours dans l'offre ou dans le délai de rappel, pas dans la publicité.",
+        },
+        {
+          q: 'Faut-il proposer le paiement en ligne aussi ?',
+          a: "Oui, en complément, jamais en remplacement. Une part des acheteurs marocains paie volontiers en ligne et ces commandes ne se refusent pas, ce qui améliore votre marge moyenne. Mais retirer le paiement à la livraison fait chuter le volume.",
+        },
+        {
+          q: 'Combien de produits faut-il pour commencer ?',
+          a: "Un seul, avec une offre claire. Les comptes qui démarrent avec quinze références dispersent le budget et n'apprennent rien sur aucune. Nous préférons prouver une offre, puis élargir.",
+        },
+      ],
+      ctaTitle: 'Dites-nous votre marge, et nous vous dirons si ça tient.',
+      ctaLead:
+        'Vingt minutes sur votre produit, votre taux de confirmation et vos coûts logistiques.',
+    },
+    b2b: {
+      metaTitle: 'Acquisition B2B et génération de leads au Maroc | eGrowth',
+      metaDescription:
+        'Acquisition B2B au Maroc : Google Search et LinkedIn structurés autour d’une définition unique du lead qualifié, avec retour CRM vers la plateforme.',
+      title: 'B2B et services',
+      lead:
+        "En B2B, le volume de leads est le mauvais objectif. Ce qui compte est le nombre de rendez-vous qualifiés, et le seul moyen d'y arriver est de renvoyer la qualification vers la plateforme.",
+      sections: [
+        {
+          h: 'Pourquoi la plupart des campagnes B2B échouent',
+          body: [
+            "Elles optimisent vers le formulaire rempli. La plateforme fait alors exactement ce qu'on lui demande : elle trouve les gens qui remplissent des formulaires, ce qui n'est pas la même population que les gens qui achètent.",
+            "**La correction est toujours la même : une définition unique et écrite du lead qualifié, et un retour depuis le CRM vers la plateforme** indiquant lesquels l'étaient. À partir de là, l'algorithme travaille pour vous au lieu de travailler contre vous.",
+          ],
+        },
+        {
+          h: 'Search d’abord, LinkedIn ensuite',
+          body: [
+            "Pour un service B2B au Maroc, Google Search capte une intention qui existe déjà et coûte beaucoup moins cher par rendez-vous qualifié que n'importe quelle plateforme sociale. Nous commençons presque toujours par vérifier s'il y a du volume de recherche réel sur votre catégorie.",
+            "LinkedIn vient ensuite, pour atteindre des fonctions et des entreprises précises qu'aucune autre plateforme ne permet de cibler. Son coût par clic est le plus élevé des cinq plateformes, et c'est sans importance si votre valeur client le justifie.",
+          ],
+        },
+        {
+          h: 'Le cycle de vente change le reporting',
+          body: [
+            "Avec un cycle de trois à six mois, juger une campagne sur le mois en cours n'a aucun sens. Nous suivons les cohortes par mois d'arrivée du lead et nous rapportons l'avancement du pipeline, pas seulement le coût par lead.",
+            "Cela suppose un CRM tenu correctement. Quand il ne l'est pas, c'est la première chose que nous construisons — souvent avant de toucher aux campagnes.",
+          ],
+        },
+      ],
+      playbookTitle: 'Le playbook B2B',
+      playbook: [
+        'Une définition écrite du lead qualifié, validée par le commercial',
+        'Vérification du volume de recherche avant tout budget Search',
+        'Retour CRM vers la plateforme sur la qualification réelle',
+        'Suivi par cohorte, aligné sur la durée du cycle de vente',
+        'LinkedIn seulement quand la valeur client le justifie',
+      ],
+      faqTitle: 'Questions B2B',
+      faq: [
+        {
+          q: 'Quel budget minimum en B2B ?',
+          a: "Plus élevé qu'en e-commerce, parce que les clics coûtent plus cher et que les volumes sont plus faibles : comptez au minimum 8 000 MAD de média par mois sur LinkedIn, moins sur Search selon votre catégorie. En dessous, le délai pour obtenir une lecture statistique dépasse votre patience.",
+        },
+        {
+          q: 'LinkedIn fonctionne-t-il au Maroc ?',
+          a: "Pour certaines cibles, oui : cadres, secteur financier, industrie, services aux entreprises, recrutement de profils spécialisés. Pour des cibles TPE ou commerçants, non, et nous vous le dirons plutôt que de vous vendre la plateforme.",
+        },
+        {
+          q: 'Et si nous n’avons pas de CRM ?',
+          a: "Nous en mettons un en place, ou nous connectons celui que vous avez. C'est rarement le travail qu'un client imagine en appelant une agence publicitaire, mais sans lui vous payez pour des leads que personne ne peut qualifier.",
+        },
+      ],
+      ctaTitle: 'Combien vaut un client pour vous ?',
+      ctaLead:
+        'Avec ce chiffre, nous pouvons vous dire en vingt minutes si les plateformes payantes ont du sens dans votre cas.',
+    },
+  },
+
+  about: {
+    metaTitle: 'À propos — eGrowth, agence tech et marketing au Maroc',
+    metaDescription:
+      'eGrowth : comptes publicitaires agence, acquisition payante, développement et UGC pour les marques et vendeurs e-commerce marocains. Informations légales et positions.',
+    title: 'Ce que nous sommes, et ce que nous refusons d’être.',
+    lead:
+      "eGrowth est une agence tech et marketing basée au Maroc. Nous fournissons des comptes publicitaires agence, nous gérons les campagnes qui tournent dessus, nous construisons les boutiques et les applications vers lesquelles elles pointent, et nous produisons les vidéos qu'elles contiennent.",
+    sections: [
+      {
+        h: 'Pourquoi les quatre ensemble',
+        body: [
+          "Un annonceur marocain qui brief une société pour les publicités, une autre pour la boutique et une troisième pour les vidéos paie la coordination entre les trois, et personne n'est responsable du résultat. Quand la boutique est lente, l'agence média dit que c'est la boutique ; quand les publicités ne convertissent pas, le développeur dit que c'est la publicité.",
+          "Nous faisons les quatre parce que ce sont les quatre faces du même problème : **le coût pour obtenir une commande livrée**. C'est le seul chiffre sur lequel nous acceptons d'être jugés.",
+        ],
+      },
+      {
+        h: 'Sur les comptes publicitaires, soyons précis',
+        body: [
+          "Un compte publicitaire ne s'achète pas et ne se vend pas : les conditions des plateformes encadrent le transfert de comptes. Nous ne vous en vendrons donc jamais un, et nous ne prétendrons pas le contraire pour conclure.",
+          "Ce que nous fournissons est un accès géré à la diffusion via notre structure agence, encadré par un contrat qui dit ce qu'il advient de vos actifs, de votre solde et de vos données si vous partez. **Votre Business Manager, votre pixel, vos audiences et votre catalogue restent à vous**, ce qui veut dire que vous pouvez nous quitter sans rien perdre. C'est volontaire.",
+        ],
+      },
+      {
+        h: 'Ce que nous publions, et pourquoi',
+        body: [
+          "Nos tarifs sont publiés en dirhams. Nos guides citent leurs sources et datent leurs chiffres. Le code de ce site est public. Et quand nous ne savons pas, nous l'écrivons — la page sur la TVA dit explicitement ce que les sources ne précisent pas.",
+          "Ce n'est pas de la transparence pour la vitrine. Dans un marché où les offres les plus bruyantes promettent un « budget illimité » et « zéro suspension », la chose la plus différenciante qu'une agence puisse faire est de mettre ses conditions par écrit et de s'y tenir.",
+        ],
+      },
+    ],
+    entityTitle: 'L’entreprise',
+    legalName: 'Raison sociale',
+    taxId: 'Identifiant fiscal',
+    founded: 'Créée en',
+    addressTitle: 'Siège',
+    entityNote:
+      'eGrowth est une agence indépendante et n’est pas affiliée à Meta, TikTok, Snap, Google ou LinkedIn.',
+
+    refuseTitle: 'Ce que nous refusons',
+    refuseLead:
+      "Un compte restreint pénalise tous les annonceurs de notre portefeuille, et une promesse intenable finit toujours par se payer. Nous disons donc non à :",
+    refuseItems: [
+      'Promettre un budget illimité ou une immunité contre les suspensions — personne ne contrôle ni l’un ni l’autre',
+      'Prendre une commission sur un budget média sans le dire',
+      'Publier un chiffre de résultat sans la méthode qui permet de le vérifier',
+      'Les produits qui ne peuvent pas être annoncés, et les offres qui reposent sur de fausses urgences',
+      'Garder un client qui ne gagne pas d’argent avec nous, simplement parce qu’un contrat le retient',
+    ],
+    ctaTitle: 'Le plus simple reste de nous parler vingt minutes.',
+    ctaLead: 'Vous saurez à la fin de l’appel si nous sommes utiles dans votre cas.',
+  },
+
+  legal: {
+    updated: '2026-10-08',
+    tocLabel: 'Sommaire',
+    terms: {
+      metaTitle: 'Conditions générales de service | eGrowth',
+      metaDescription:
+        'Conditions générales de service d’eGrowth : accès aux comptes publicitaires, propriété des actifs, plafonds de dépenses, facturation, résiliation et responsabilités.',
+      title: 'Conditions générales de service',
+      lead:
+        "Ces conditions encadrent l'accès aux comptes publicitaires et les prestations de services. Elles sont la contrepartie écrite de ce que nous affirmons sur le reste du site : si une clause ci-dessous contredit une promesse commerciale, c'est la clause qui vaut.",
+      clauses: [
+        {
+          h: 'Objet et définitions',
+          body: '[[TODO: clause « Objet et définitions » — à rédiger par votre conseil juridique]]',
+        },
+        {
+          h: 'Accès au compte publicitaire',
+          body: "[[TODO: clause « Accès au compte publicitaire » — doit indiquer explicitement que le compte reste dans le portefeuille agence d'eGrowth et qu'aucune vente ni transfert de compte n'a lieu]]",
+        },
+        {
+          h: 'Propriété des actifs du client',
+          body: '[[TODO: clause « Propriété des actifs » — Business Manager, Page, pixel, jeux de données, audiences, catalogue et fichiers créatifs]]',
+        },
+        {
+          h: 'Plafond de dépenses et prépaiement',
+          body: '[[TODO: clause « Plafond de dépenses et prépaiement » — fixation, révision et notification du plafond]]',
+        },
+        {
+          h: 'Facturation, TVA et remboursement du solde',
+          body: '[[TODO: clause « Facturation, TVA et remboursement du solde » — y compris le délai de remboursement du solde non dépensé]]',
+        },
+        {
+          h: 'Conformité aux politiques des plateformes',
+          body: '[[TODO: clause « Conformité aux politiques des plateformes » — responsabilités respectives et conséquences d’une restriction]]',
+        },
+        {
+          h: 'Durée, préavis et résiliation',
+          body: '[[TODO: clause « Durée, préavis et résiliation » — y compris le retrait des accès et la restitution des actifs]]',
+        },
+        {
+          h: 'Responsabilité et droit applicable',
+          body: '[[TODO: clause « Responsabilité et droit applicable » — limitation de responsabilité, droit marocain et juridiction compétente]]',
+        },
+      ],
+      contact:
+        '**Une question sur ces conditions ?** Écrivez-nous avant de signer, pas après. Nous préférons une question gênante maintenant à un désaccord dans six mois.',
+    },
+    privacy: {
+      metaTitle: 'Politique de confidentialité et protection des données | eGrowth',
+      metaDescription:
+        'Politique de confidentialité d’eGrowth : données collectées, finalités, base légale, durée de conservation, sous-traitants et vos droits au titre de la loi 09-08.',
+      title: 'Confidentialité et protection des données',
+      lead:
+        "Comment nous traitons les données que vous nous confiez, et celles de vos clients lorsque nous intervenons sur vos outils de mesure. Rédigée au regard de la loi marocaine 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel.",
+      clauses: [
+        {
+          h: 'Responsable du traitement',
+          body: '[[TODO: clause « Responsable du traitement » — identité, coordonnées et, le cas échéant, déclaration CNDP]]',
+        },
+        {
+          h: 'Données collectées et finalités',
+          body: '[[TODO: clause « Données collectées et finalités » — formulaire de demande de compte, échanges WhatsApp, données de mesure]]',
+        },
+        {
+          h: 'Base légale du traitement',
+          body: '[[TODO: clause « Base légale du traitement » — consentement, exécution du contrat, intérêt légitime]]',
+        },
+        {
+          h: 'Durée de conservation',
+          body: '[[TODO: clause « Durée de conservation » — par catégorie de données]]',
+        },
+        {
+          h: 'Sous-traitants et transferts hors du Maroc',
+          body: '[[TODO: clause « Sous-traitants et transferts » — hébergement, plateformes publicitaires, outils de mesure, et transferts hors du Maroc]]',
+        },
+        {
+          h: 'Cookies et mesure d’audience',
+          body: '[[TODO: clause « Cookies et mesure d’audience » — ce site n’utilise aucun cookie publicitaire ; décrire précisément la mesure utilisée]]',
+        },
+        {
+          h: 'Vos droits et comment les exercer',
+          body: '[[TODO: clause « Vos droits » — accès, rectification, opposition, suppression, et la procédure pour les exercer]]',
+        },
+      ],
+      contact:
+        '**Pour exercer vos droits ou poser une question sur vos données**, écrivez-nous. Nous répondons sous un jour ouvré.',
+    },
+  },
 };

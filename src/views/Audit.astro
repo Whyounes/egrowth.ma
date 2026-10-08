@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Check from '../components/Check.astro';
+import Faq from '../components/Faq.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema, faqSchema } from '../lib/schema';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const a = c.audit;
+
+const trail = [{ label: a.title, key: routeKey }];
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+  faqSchema(a.faq),
+];
+---
+
+<Base lang={lang} routeKey={routeKey} title={a.metaTitle} description={a.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <p class="eyebrow">{a.eyebrow}</p>
+        <h1>{a.title}</h1>
+        <p class="lead hero__lead">{a.lead}</p>
+        <a class="btn btn--primary" href={site.bookingUrl}>{c.common.bookAudit}</a>
+        <p class="hero__note">{a.note}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container two">
+        <div class="card panel">
+          <h2>{a.lookTitle}</h2>
+          <ul class="checks">
+            {a.lookItems.map((item) => <Check>{item}</Check>)}
+          </ul>
+        </div>
+        <div class="card panel panel--on">
+          <h2>{a.getTitle}</h2>
+          <ul class="checks">
+            {a.getItems.map((item) => <Check>{item}</Check>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--band">
+      <div class="container bring">
+        <h2>{a.bringTitle}</h2>
+        <p class="lead bring__lead">{a.bringLead}</p>
+        <ul class="checks">
+          {a.bringItems.map((item) => <Check>{item}</Check>)}
+        </ul>
+      </div>
+    </section>
+
+    <Faq title={a.faqTitle} items={a.faq} />
+    <CtaBand lang={lang} title={a.ctaTitle} lead={a.ctaLead} />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__inner { max-width: 46rem; }
+  .hero__inner .eyebrow { margin-block-end: var(--s-3); }
+  .hero__lead { margin-block: var(--s-6) var(--s-8); }
+
+  .hero__note {
+    margin-block-start: var(--s-4);
+    font-size: var(--t-small);
+    color: var(--c-ink-3);
+  }
+
+  .two {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(23.75rem, 100%), 1fr));
+    gap: var(--s-6);
+    align-items: start;
+  }
+
+  .panel h2 {
+    font-size: 1.25rem;
+    margin-block-end: var(--s-6);
+  }
+
+  .panel--on {
+    background: var(--c-green-tint);
+    border-color: var(--c-green-line);
+  }
+
+  .panel .checks :global(li) { font-size: 0.96875rem; }
+
+  .bring { max-width: 46rem; }
+  .bring__lead { margin-block: var(--s-4) var(--s-6); }
+  .bring .checks :global(li) { font-size: 0.96875rem; }
+</style>

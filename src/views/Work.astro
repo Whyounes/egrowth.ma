@@ -1,0 +1,231 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PlatformIcon from '../components/PlatformIcon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Check from '../components/Check.astro';
+
+import { t } from '../i18n';
+import { site, caseStudies } from '../data/site';
+import { platformByKey } from '../data/platforms';
+import { pathFor, isBuilt, type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema } from '../lib/schema';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const w = c.work;
+
+const trail = [{ label: c.nav.work, key: routeKey }];
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+];
+
+const industries: { key: 'cod' | 'b2b'; route: RouteKey }[] = [
+  { key: 'cod', route: 'industriesCod' },
+  { key: 'b2b', route: 'industriesB2b' },
+];
+---
+
+<Base lang={lang} routeKey={routeKey} title={w.metaTitle} description={w.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <h1>{w.title}</h1>
+        <p class="lead hero__lead">{w.lead}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid--3">
+          {
+            caseStudies.map((cs) => {
+              const platform = platformByKey[cs.platform];
+              return (
+                <article class="card case" data-accent={cs.accentKey}>
+                  <div class="case__head">
+                    {platform.icons.map((icon) => <PlatformIcon name={icon} size={18} />)}
+                    <span class="case__platform">{platform.label}</span>
+                  </div>
+                  <h2 class="case__name">
+                    {cs.anonymised ? c.home.resultsAnonymised : cs.client}
+                  </h2>
+                  <p class="case__sum">{w.cases[cs.slug]}</p>
+                  <dl class="case__metrics">
+                    {cs.metrics.map((m) => (
+                      <div>
+                        <dt class="num">{m.value}</dt>
+                        <dd>{m.label[lang]}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              );
+            })
+          }
+        </div>
+
+        <div class="caution method">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="8.2" stroke="currentColor" stroke-width="1.6"></circle>
+            <path d="M10 6v5.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            <circle cx="10" cy="13.8" r="0.9" fill="currentColor"></circle>
+          </svg>
+          <p>{w.methodNote}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--band">
+      <div class="container">
+        <h2 class="secT">{w.howTitle}</h2>
+        <p class="lead secL">{w.howLead}</p>
+        <ul class="checks how">
+          {w.howItems.map((item) => <Check>{item}</Check>)}
+        </ul>
+      </div>
+    </section>
+
+    {
+      industries.some((i) => isBuilt(i.route)) && (
+        <section class="section">
+          <div class="container">
+            <h2 class="secT">{w.industriesTitle}</h2>
+            <div class="grid grid--2">
+              {industries
+                .filter((i) => isBuilt(i.route))
+                .map((i) => (
+                  <a class="card ind" href={pathFor(i.route, lang)}>
+                    <h3>{c.industries[i.key].title}</h3>
+                    <p>{c.industries[i.key].lead}</p>
+                    <span class="arrowLink ind__more">{c.common.readMore}</span>
+                  </a>
+                ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <CtaBand lang={lang} title={w.ctaTitle} lead={w.ctaLead} dark />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__inner { max-width: 46rem; }
+  .hero__lead { margin-block-start: var(--s-6); }
+
+  .secT { margin-block-end: var(--s-4); }
+  .secL { margin-block-end: var(--s-8); }
+
+  .case { padding: var(--s-6); }
+
+  .case__head {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin-block-end: var(--s-3);
+  }
+
+  .case__platform {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--c-ink-4);
+  }
+
+  :global(html[lang='ar']) .case__platform {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .case__name {
+    font-size: 1.25rem;
+    letter-spacing: -0.022em;
+    font-weight: 700;
+  }
+
+  .case__sum {
+    margin-block-start: var(--s-3);
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-ink-2);
+  }
+
+  .case__metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-8);
+    margin-block-start: var(--s-4);
+    padding-block-start: var(--s-4);
+    border-block-start: 1px solid var(--c-line);
+  }
+
+  .case__metrics dt {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .case[data-accent='green'] .case__metrics dt { color: var(--c-green); }
+  .case[data-accent='blue'] .case__metrics dt { color: var(--c-blue); }
+  .case[data-accent='clay'] .case__metrics dt { color: var(--c-clay); }
+  .case[data-accent='ochre'] .case__metrics dt { color: var(--c-ochre); }
+
+  .case__metrics dd {
+    margin: 0;
+    font-size: var(--t-xs);
+    color: var(--c-ink-3);
+  }
+
+  .method {
+    margin-block-start: var(--s-8);
+    max-width: 56rem;
+  }
+
+  .how { max-width: 48rem; }
+  .how :global(li) { font-size: 0.96875rem; }
+
+  .ind {
+    padding: var(--s-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    color: var(--c-ink);
+  }
+
+  .ind:hover {
+    color: var(--c-ink);
+    border-color: var(--c-line-2);
+    box-shadow: var(--e-raised);
+  }
+
+  .ind p {
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-ink-2);
+  }
+
+  .ind__more {
+    margin-block-start: auto;
+    color: var(--c-green);
+  }
+</style>

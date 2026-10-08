@@ -107,8 +107,12 @@ export const site = {
    Three on the home page. Each needs written client permission before the
    name or the numbers go live; use `anonymised: true` until you have it. */
 
+/** A union, not a string: adding a case study forces its summary into all
+    three locale dictionaries rather than silently rendering nothing. */
+export type CaseStudySlug = 'cosmetics-cod' | 'home-goods-shopify' | 'b2b-leadgen';
+
 export type CaseStudy = {
-  slug: string;
+  slug: CaseStudySlug;
   client: string;
   anonymised: boolean;
   platform: 'meta' | 'tiktok' | 'snapchat' | 'google' | 'linkedin';

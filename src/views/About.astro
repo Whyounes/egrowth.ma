@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Check from '../components/Check.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema } from '../lib/schema';
+import { richText } from '../lib/text';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const ab = c.about;
+
+const trail = [{ label: c.nav.about, key: routeKey }];
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+  { '@type': 'AboutPage', name: ab.title, description: ab.metaDescription },
+];
+---
+
+<Base lang={lang} routeKey={routeKey} title={ab.metaTitle} description={ab.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <h1>{ab.title}</h1>
+        <p class="lead hero__lead">{ab.lead}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container body">
+        <div class="body__main">
+          {
+            ab.sections.map((section) => (
+              <section class="chunk">
+                <h2>{section.h}</h2>
+                {section.body.map((para) => <p set:html={richText(para)} />)}
+              </section>
+            ))
+          }
+        </div>
+
+        <aside class="side">
+          <div class="card side__card">
+            <h2 class="side__t">{ab.entityTitle}</h2>
+            <dl class="facts">
+              <div><dt>{ab.legalName}</dt><dd>{site.legalName}</dd></div>
+              <div><dt>RC</dt><dd class="num">{site.rcNumber}</dd></div>
+              <div><dt>ICE</dt><dd class="num">{site.iceNumber}</dd></div>
+              <div><dt>{ab.taxId}</dt><dd class="num">{site.taxId}</dd></div>
+              <div><dt>{ab.founded}</dt><dd class="num">{site.foundingYear}</dd></div>
+              <div>
+                <dt>{ab.addressTitle}</dt>
+                <dd>{site.addressLine}, {site.postalCode} {site.city}</dd>
+              </div>
+            </dl>
+            <p class="side__n">{ab.entityNote}</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--band">
+      <div class="container no">
+        <h2>{ab.refuseTitle}</h2>
+        <p class="lead no__lead">{ab.refuseLead}</p>
+        <ul class="checks">
+          {ab.refuseItems.map((item) => <Check>{item}</Check>)}
+        </ul>
+      </div>
+    </section>
+
+    <CtaBand lang={lang} title={ab.ctaTitle} lead={ab.ctaLead} />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__inner { max-width: 46rem; }
+  .hero__lead { margin-block-start: var(--s-6); }
+
+  .body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(21.875rem, 100%), 1fr));
+    gap: var(--s-12);
+    align-items: start;
+  }
+
+  .body__main { max-width: 40rem; }
+
+  .chunk + .chunk { margin-block-start: var(--s-12); }
+
+  .chunk h2 {
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 1.875rem);
+    margin-block-end: var(--s-4);
+  }
+
+  .chunk p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--c-ink-2);
+  }
+
+  :global(html[lang='ar']) .chunk p { line-height: 1.95; }
+  .chunk p + p { margin-block-start: var(--s-4); }
+  .chunk :global(strong) { color: var(--c-ink); font-weight: 700; }
+
+  .side__card {
+    padding: var(--s-6);
+    background: var(--c-bg-2);
+  }
+
+  .side__t {
+    font-size: 1.0625rem;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin-block-end: var(--s-4);
+  }
+
+  .facts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .facts dt {
+    font-size: var(--t-xs);
+    color: var(--c-ink-3);
+  }
+
+  .facts dd {
+    margin: 0;
+    font-size: var(--t-small);
+    font-weight: 600;
+  }
+
+  .side__n {
+    margin-block-start: var(--s-4);
+    padding-block-start: var(--s-4);
+    border-block-start: 1px solid var(--c-line);
+    font-size: var(--t-xs);
+    line-height: 1.55;
+    color: var(--c-ink-3);
+  }
+
+  .no { max-width: 48rem; }
+  .no__lead { margin-block: var(--s-4) var(--s-6); }
+  .no .checks :global(li) { font-size: 0.96875rem; }
+</style>

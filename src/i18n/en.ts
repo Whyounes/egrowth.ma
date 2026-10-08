@@ -947,4 +947,457 @@ export const en: Copy = {
       },
     ],
   },
+
+  pricing: {
+    metaTitle: 'Pricing — ad accounts, management and builds in Morocco | eGrowth',
+    metaDescription:
+      'Prices published in dirhams: per-platform account fees, management retainers, build projects and UGC videos. No commission on your media budget.',
+    title: 'Our prices, published, in dirhams.',
+    lead:
+      'Management fees in Morocco run from 1,500 to 25,000 MAD a month depending on the source, and almost nobody says which. Here are ours. If you find cheaper, just ask what is included.',
+    mediaNote:
+      '**Media budget is never included in these figures.** It is paid directly to the platform, in your name, and we take no commission on it. Recommended starting media budget for an e-commerce test: 4,000–8,000 MAD a month.',
+
+    retainersTitle: 'Monthly retainers',
+    tierAccount: 'Account only',
+    tierAccountNote: 'You run the campaigns yourself',
+    tierAccountIncludes: [
+      'An agency account on the platform of your choice, live in under 24h',
+      'Partner access on your Business Manager',
+      'Moroccan invoice in dirhams, VAT handled correctly',
+      'A named account manager, reachable on WhatsApp',
+    ],
+    tierManaged: 'Account + management',
+    tierManagedNote: 'We run the campaigns, you approve',
+    tierManagedIncludes: [
+      'Everything above, on one platform',
+      'Campaign structure, daily management and creative testing',
+      'Pixel and Conversions API verified against real test orders',
+      'Weekly report on confirmed orders and margin',
+    ],
+    tierGrowth: 'Growth retainer',
+    tierGrowthNote: 'Ads, UGC, CRO and tech',
+    tierGrowthIncludes: [
+      'Up to three platforms run in parallel',
+      'Continuous UGC production with our creator network',
+      'CRO work on the landing page and the confirmation rate',
+      'Development time included for technical fixes',
+    ],
+
+    platformsTitle: 'Account fees by platform',
+    platformsLead:
+      'If you only take the account, here is the fee per platform, with the minimum media budget below which a test produces no usable data.',
+    colPlatform: 'Platform',
+
+    buildsTitle: 'Build projects',
+    buildsLead:
+      'Fixed price, after written scoping. The timelines are the ones we actually hit, not the most optimistic ones.',
+
+    ugcTitle: 'UGC videos',
+    ugcLead:
+      'Standalone if you only want the files, or included in the growth retainer with the in-account testing.',
+    ugcStandalone: 'Standalone',
+    ugcStandaloneNote: 'Paid usage rights included, source files handed over',
+    ugcIncluded: 'On the growth retainer',
+    ugcIncludedNote: 'Continuous production, tested in your account',
+    ugcIncludedPrice: 'Included',
+
+    neverTitle: 'What we never charge for',
+    neverItems: [
+      'No commission on your media budget, at any percentage',
+      'No setup fee on the monthly retainers',
+      'No minimum term: one month of notice is enough',
+      'No exit fee, and your assets are already with you',
+      'The audit call and the account review, which stay free even if you do not sign',
+    ],
+
+    faqTitle: 'Questions about pricing',
+    faq: [
+      {
+        q: 'Why do you charge less than some agencies and more than others?',
+        a: 'Because the price follows the scope, not the positioning. An offer at 2,000 MAD a month that produces no creative and never verifies tracking will cost you more in the end than a dearer one that does both. Compare the number of creatives included per month, who makes them, and which metric the report is built on.',
+      },
+      {
+        q: 'Is there a minimum term?',
+        a: 'No. One month of notice, and your assets — Business Manager, pixel, audiences, catalogue — are already in your portfolio, so there is nothing to retrieve. It is deliberately built that way: an agency that needs a twelve-month commitment to keep you has a results problem, not a contract problem.',
+      },
+      {
+        q: 'What if I want to add a platform partway through?',
+        a: 'The account fee for the added platform applies pro rata for the current month. We will tell you honestly whether adding it makes sense: in most cases, concentrating budget on one platform that works beats spreading it across three.',
+      },
+      {
+        q: 'Can the media budget go through you?',
+        a: 'No, and that is deliberate. The budget is paid directly to the platform, in your name. That is the only arrangement in which you can verify for yourself, in the platform interface, exactly what was spent.',
+      },
+    ],
+    ctaTitle: 'A real number, in twenty minutes.',
+    ctaLead:
+      'Tell us what you sell and your margin. You leave with a budget figure and the retainer that fits, whether or not you sign.',
+  },
+
+  contact: {
+    metaTitle: 'Contact — eGrowth, tech and marketing agency in Morocco',
+    metaDescription:
+      'Contact eGrowth: WhatsApp, phone, email and address. A reply within two business hours, from a named person.',
+    title: 'Let us talk.',
+    lead:
+      'WhatsApp is the fastest channel, and a named person answers it — not a ticket form and not a bot.',
+    whatsappTitle: 'WhatsApp',
+    whatsappNote: 'Reply within two business hours',
+    phoneTitle: 'Phone',
+    hours: 'Monday to Friday, 9:00 – 18:00',
+    emailTitle: 'Email',
+    emailNote: 'Reply within one business day',
+    addressTitle: 'Address',
+    entityTitle: 'Legal information',
+    legalName: 'Registered name',
+    taxId: 'Tax ID',
+  },
+
+  audit: {
+    metaTitle: 'Free Ad Account Audit in Morocco | eGrowth',
+    metaDescription:
+      'Twenty minutes on your account, your offer and your numbers. You leave with a budget figure and the two things to fix first. Free, no commitment.',
+    eyebrow: 'Free, no commitment',
+    title: 'Twenty minutes, and a real number.',
+    lead:
+      'This is not a sales call in disguise. We look at your account, your offer and your numbers, and tell you what your first hundred orders would cost — or why you should not be advertising yet.',
+    note: 'If we are not right for what you sell, we will say so on the call and point you elsewhere.',
+
+    lookTitle: 'What we look at',
+    lookItems: [
+      'Your account structure, and whether your ad sets ever leave the learning phase',
+      'Your current creative, and how many genuinely different angles have been tested',
+      'Your tracking: is the pixel double-counting, and does the Conversions API report the right orders',
+      'Your landing page on a cheap Android and a slow connection',
+      'Your COD confirmation rate, if it is measured — and if not, that is usually where it all turns',
+      'Your tax position on the account, since the 20% VAT arrived',
+    ],
+    getTitle: 'What you leave with',
+    getItems: [
+      'A target cost per order, calculated on your real margin',
+      'A realistic starting media budget, in dirhams',
+      'The two things to fix first, in order',
+      'A straight answer on whether to advertise at all right now',
+      'Nothing to sign, and no follow-up if you do not take it further',
+    ],
+
+    bringTitle: 'What to have to hand',
+    bringLead:
+      'None of it is required, but the call is far more useful with it. Read access to the account is enough; we never ask for a password.',
+    bringItems: [
+      'Your gross margin per product, even roughly',
+      'Your ad spend and orders for the last three months',
+      'Read access to your ad account, or just screenshots',
+      'Your confirmation rate and return rate, if you track them',
+    ],
+
+    faqTitle: 'Questions about the audit',
+    faq: [
+      {
+        q: 'Is it really free?',
+        a: 'Yes, with nothing attached. We do it because it is the fastest way to find out whether we can be useful, and because an advertiser who starts on the wrong footing costs everyone more time than a twenty-minute call.',
+      },
+      {
+        q: 'Do I have to give you access to my account?',
+        a: 'No. Read access makes the call more precise, but screenshots are enough, and we never ask for a password. No serious agency should.',
+      },
+      {
+        q: 'What if my account is currently restricted?',
+        a: 'That is exactly a good moment to call. We start by looking for the cause, because a restriction caused by creative or a landing page will follow you to any new account, agency account included.',
+      },
+    ],
+    ctaTitle: 'Book the twenty minutes.',
+    ctaLead: 'One slot, a named person, and a number at the end.',
+  },
+
+  work: {
+    metaTitle: 'Work — client results in Morocco | eGrowth',
+    metaDescription:
+      'Campaign results in Morocco with the method attached: cash-on-delivery e-commerce, B2B acquisition, and what we actually changed.',
+    title: 'Numbers, with the method attached.',
+    lead:
+      'A number without a method is worth nothing: it cannot be checked and it cannot be repeated. For every case below we say what we changed, not just what improved.',
+    cases: {
+      'cosmetics-cod':
+        'Moved off a personal account that had been restricted twice, rebuilt tracking server-side, then cut creative down to the only two angles that held.',
+      'home-goods-shopify':
+        'Store rebuilt for speed, a Darija WhatsApp confirmation flow added, and budget moved from TikTok reach to Meta conversions.',
+      'b2b-leadgen':
+        'Search and LinkedIn structured around one written definition of a qualified lead, with a CRM that tells the platform which ones were real.',
+    },
+    methodNote:
+      'These clients are under confidentiality agreements: we publish the numbers and the method, not the names. We can arrange a reference call with a client in the same sector if you need it to decide.',
+
+    howTitle: 'How we measure',
+    howLead: 'The rules we hold our own numbers to, so that they mean something.',
+    howItems: [
+      'We count confirmed orders, never placed orders',
+      'Comparison windows are the same length and the same season',
+      'ROAS is calculated on delivered revenue, not on platform attribution',
+      'We say what else changed at the same time: price, offer, store, courier',
+      'When a result comes from something other than the advertising, we write that down',
+    ],
+    industriesTitle: 'By industry',
+    ctaTitle: 'Is your sector in there?',
+    ctaLead:
+      'Tell us what you sell. If we have already run a comparable offer, we will tell you what worked and what did not.',
+  },
+
+  industries: {
+    cod: {
+      metaTitle: 'E-commerce and Cash on Delivery in Morocco — acquisition | eGrowth',
+      metaDescription:
+        'Acquisition for cash-on-delivery e-commerce in Morocco: confirmation rate, cost per delivered order, Darija creative and server-side tracking.',
+      title: 'E-commerce and cash on delivery',
+      lead:
+        'In Morocco the confirmation rate decides profitability more reliably than the conversion rate does. This is the sector we know best, and the one where mistakes cost fastest.',
+      sections: [
+        {
+          h: 'The real problem is not cost per click',
+          body: [
+            'A Moroccan cash-on-delivery store can show a ROAS of 3 on the platform and lose money. The reason is simple: between 20% and 40% of placed orders are never confirmed on the phone, and some of those that are get refused at the door or returned.',
+            'As long as your reporting stops at the placed order, you are optimising toward a number that does not exist. **The only metric that counts is cost per delivered and collected order**, and that is what we build our reports on.',
+          ],
+        },
+        {
+          h: 'What we change first',
+          body: [
+            'Almost always the same two things: the tracking, then the confirmation flow. We rebuild measurement server-side so the platform gets the right signal, then add a Darija WhatsApp confirmation flow that recovers hesitant orders before they become refusals.',
+            'Only then comes creative, and there the lever is the number of angles tested, not production quality. A store testing five angles a month consistently beats one relaunching three polished videos for a quarter.',
+          ],
+        },
+        {
+          h: 'What does not work, and what we decline',
+          body: [
+            'Fake urgency, invented reviews, prices that change at checkout, and results claims. These are not only causes of account restriction: they push up your refusal rate at delivery, because a customer who ordered under pressure changes their mind when the courier arrives.',
+            'A high refusal rate is almost always a symptom of the offer, not of the logistics.',
+          ],
+        },
+      ],
+      playbookTitle: 'The COD playbook',
+      playbook: [
+        'Server-side measurement before any budget increase',
+        'A Darija WhatsApp confirmation flow within two hours',
+        'One-page checkout, tested on a cheap Android',
+        'Five creative angles a month minimum, losers cut weekly',
+        'Reporting built on the delivered order, not the placed order',
+      ],
+      faqTitle: 'E-commerce and COD questions',
+      faq: [
+        {
+          q: 'What confirmation rate is normal in Morocco?',
+          a: 'We most often see 60% to 80%, depending on the product, the price and above all how fast the confirmation call happens. Below 60% the problem is almost always in the offer or the callback delay, not in the advertising.',
+        },
+        {
+          q: 'Should I offer online payment too?',
+          a: 'Yes, alongside, never instead. A share of Moroccan buyers will happily pay online and those orders do not get refused, which lifts your average margin. But removing cash on delivery collapses volume.',
+        },
+        {
+          q: 'How many products do I need to start?',
+          a: 'One, with a clear offer. Accounts that start with fifteen SKUs spread the budget and learn nothing about any of them. We prefer to prove one offer, then widen.',
+        },
+      ],
+      ctaTitle: 'Tell us your margin and we will tell you if it holds.',
+      ctaLead: 'Twenty minutes on your product, your confirmation rate and your logistics costs.',
+    },
+    b2b: {
+      metaTitle: 'B2B Acquisition and Lead Generation in Morocco | eGrowth',
+      metaDescription:
+        'B2B acquisition in Morocco: Google Search and LinkedIn structured around one definition of a qualified lead, with CRM feedback to the platform.',
+      title: 'B2B and services',
+      lead:
+        'In B2B, lead volume is the wrong goal. What counts is qualified meetings, and the only way to get there is to feed the qualification back to the platform.',
+      sections: [
+        {
+          h: 'Why most B2B campaigns fail',
+          body: [
+            'They optimise toward the completed form. The platform then does exactly what it was asked: it finds people who fill in forms, which is not the same population as people who buy.',
+            '**The fix is always the same: one written definition of a qualified lead, and a feed from the CRM back to the platform** saying which ones met it. From there the algorithm works for you instead of against you.',
+          ],
+        },
+        {
+          h: 'Search first, LinkedIn second',
+          body: [
+            'For a B2B service in Morocco, Google Search captures intent that already exists and costs far less per qualified meeting than any social platform. We almost always start by checking whether there is real search volume in your category.',
+            'LinkedIn comes next, to reach specific job functions and companies that no other platform can target. Its cost per click is the highest of the five platforms, and that does not matter if your customer value justifies it.',
+          ],
+        },
+        {
+          h: 'The sales cycle changes the reporting',
+          body: [
+            'With a three-to-six-month cycle, judging a campaign on the current month makes no sense. We track cohorts by the month the lead arrived and report pipeline progression, not just cost per lead.',
+            'That assumes a CRM that is actually kept up. When it is not, that is the first thing we build — often before touching the campaigns.',
+          ],
+        },
+      ],
+      playbookTitle: 'The B2B playbook',
+      playbook: [
+        'A written definition of a qualified lead, signed off by sales',
+        'A search-volume check before any Search budget',
+        'CRM feedback to the platform on actual qualification',
+        'Cohort tracking, aligned to the length of the sales cycle',
+        'LinkedIn only when customer value justifies it',
+      ],
+      faqTitle: 'B2B questions',
+      faq: [
+        {
+          q: 'What is the minimum B2B budget?',
+          a: 'Higher than e-commerce, because clicks cost more and volumes are lower: plan at least 8,000 MAD of media a month on LinkedIn, less on Search depending on your category. Below that, the time to reach a statistical read exceeds your patience.',
+        },
+        {
+          q: 'Does LinkedIn work in Morocco?',
+          a: 'For some audiences, yes: executives, finance, industry, business services, specialist recruitment. For micro-business or shopkeeper audiences, no — and we will say so rather than sell you the platform.',
+        },
+        {
+          q: 'What if we have no CRM?',
+          a: 'We set one up, or connect the one you have. It is rarely the work a client imagines when they call an advertising agency, but without it you are paying for leads nobody can qualify.',
+        },
+      ],
+      ctaTitle: 'What is a customer worth to you?',
+      ctaLead:
+        'With that number we can tell you in twenty minutes whether paid platforms make sense in your case.',
+    },
+  },
+
+  about: {
+    metaTitle: 'About — eGrowth, tech and marketing agency in Morocco',
+    metaDescription:
+      'eGrowth: agency ad accounts, paid media, builds and UGC for Moroccan brands and e-commerce sellers. Legal information and the positions we hold.',
+    title: 'What we are, and what we refuse to be.',
+    lead:
+      'eGrowth is a tech and marketing agency based in Morocco. We provide agency ad accounts, run the campaigns on them, build the stores and apps they point at, and produce the videos inside them.',
+    sections: [
+      {
+        h: 'Why all four together',
+        body: [
+          'A Moroccan advertiser who briefs one company on the ads, another on the store and a third on the videos pays for the coordination between the three, and nobody is accountable for the result. When the store is slow, the media agency says it is the store; when the ads do not convert, the developer says it is the ads.',
+          'We do all four because they are four faces of the same problem: **what it costs to get a delivered order**. That is the only number we accept being judged on.',
+        ],
+      },
+      {
+        h: 'On ad accounts, let us be precise',
+        body: [
+          'An ad account cannot be bought or sold: platform terms restrict transferring accounts. So we will never sell you one, and we will not pretend otherwise to close a deal.',
+          'What we provide is managed access to spend through our agency structure, covered by a contract that says what happens to your assets, your balance and your data if you leave. **Your Business Manager, your pixel, your audiences and your catalogue stay yours**, which means you can leave us without losing anything. That is deliberate.',
+        ],
+      },
+      {
+        h: 'What we publish, and why',
+        body: [
+          'Our prices are published in dirhams. Our guides cite their sources and date their numbers. The code for this site is public. And when we do not know something, we write that down — the VAT page says explicitly what the sources do not specify.',
+          'This is not transparency for show. In a market where the loudest offers promise "unlimited budget" and "zero suspensions", the most differentiating thing an agency can do is put its terms in writing and stick to them.',
+        ],
+      },
+    ],
+    entityTitle: 'The company',
+    legalName: 'Registered name',
+    taxId: 'Tax ID',
+    founded: 'Founded',
+    addressTitle: 'Registered office',
+    entityNote:
+      'eGrowth is an independent agency and is not endorsed by Meta, TikTok, Snap, Google or LinkedIn.',
+
+    refuseTitle: 'What we refuse',
+    refuseLead:
+      'A restricted account penalises every advertiser in our portfolio, and an unkeepable promise always gets paid for eventually. So we say no to:',
+    refuseItems: [
+      'Promising unlimited budget or immunity from suspensions — nobody controls either',
+      'Taking a commission on a media budget without saying so',
+      'Publishing a result without the method that lets anyone check it',
+      'Products that cannot be advertised, and offers built on fake urgency',
+      'Keeping a client who is not making money with us, just because a contract holds them',
+    ],
+    ctaTitle: 'The simplest thing is twenty minutes on a call.',
+    ctaLead: 'By the end of it you will know whether we are useful in your case.',
+  },
+
+  legal: {
+    updated: '2026-10-08',
+    tocLabel: 'Contents',
+    terms: {
+      metaTitle: 'Terms of Service | eGrowth',
+      metaDescription:
+        'eGrowth terms of service: ad account access, ownership of assets, spend caps, billing, termination and liabilities.',
+      title: 'Terms of service',
+      lead:
+        'These terms govern access to ad accounts and the delivery of services. They are the written counterpart of what we claim everywhere else on this site: if a clause below contradicts a commercial promise, the clause wins.',
+      clauses: [
+        {
+          h: 'Purpose and definitions',
+          body: '[[TODO: "Purpose and definitions" clause — to be drafted by your legal counsel]]',
+        },
+        {
+          h: 'Ad account access',
+          body: '[[TODO: "Ad account access" clause — must state explicitly that the account remains in eGrowth\'s agency portfolio and that no sale or transfer of an account takes place]]',
+        },
+        {
+          h: 'Ownership of client assets',
+          body: '[[TODO: "Ownership of client assets" clause — Business Manager, Page, pixel, datasets, audiences, catalogue and creative files]]',
+        },
+        {
+          h: 'Spend cap and prepayment',
+          body: '[[TODO: "Spend cap and prepayment" clause — how the cap is set, reviewed and notified]]',
+        },
+        {
+          h: 'Billing, VAT and balance refunds',
+          body: '[[TODO: "Billing, VAT and balance refunds" clause — including the timeframe for refunding unspent balance]]',
+        },
+        {
+          h: 'Compliance with platform policies',
+          body: '[[TODO: "Compliance with platform policies" clause — respective responsibilities and the consequences of a restriction]]',
+        },
+        {
+          h: 'Term, notice and termination',
+          body: '[[TODO: "Term, notice and termination" clause — including removal of access and handover of assets]]',
+        },
+        {
+          h: 'Liability and governing law',
+          body: '[[TODO: "Liability and governing law" clause — limitation of liability, Moroccan law and competent jurisdiction]]',
+        },
+      ],
+      contact:
+        '**A question about these terms?** Write to us before you sign, not after. We would rather have an awkward question now than a disagreement in six months.',
+    },
+    privacy: {
+      metaTitle: 'Privacy Policy and Data Protection | eGrowth',
+      metaDescription:
+        'eGrowth privacy policy: data collected, purposes, legal basis, retention, processors and your rights under Moroccan law 09-08.',
+      title: 'Privacy and data protection',
+      lead:
+        'How we handle the data you give us, and your customers\' data when we work on your measurement tools. Written with reference to Moroccan law 09-08 on the protection of individuals with regard to the processing of personal data.',
+      clauses: [
+        {
+          h: 'Data controller',
+          body: '[[TODO: "Data controller" clause — identity, contact details and, where applicable, CNDP declaration]]',
+        },
+        {
+          h: 'Data collected and purposes',
+          body: '[[TODO: "Data collected and purposes" clause — account request form, WhatsApp exchanges, measurement data]]',
+        },
+        {
+          h: 'Legal basis for processing',
+          body: '[[TODO: "Legal basis for processing" clause — consent, performance of contract, legitimate interest]]',
+        },
+        {
+          h: 'Retention periods',
+          body: '[[TODO: "Retention periods" clause — per category of data]]',
+        },
+        {
+          h: 'Processors and transfers outside Morocco',
+          body: '[[TODO: "Processors and transfers" clause — hosting, advertising platforms, measurement tools, and transfers outside Morocco]]',
+        },
+        {
+          h: 'Cookies and analytics',
+          body: '[[TODO: "Cookies and analytics" clause — this site sets no advertising cookies; describe precisely what measurement is used]]',
+        },
+        {
+          h: 'Your rights and how to exercise them',
+          body: '[[TODO: "Your rights" clause — access, rectification, objection, erasure, and the procedure to exercise them]]',
+        },
+      ],
+      contact:
+        '**To exercise your rights or ask a question about your data**, write to us. We reply within one business day.',
+    },
+  },
 };

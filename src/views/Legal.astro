@@ -1,0 +1,170 @@
+---
+/**
+ * Terms of service and privacy policy.
+ *
+ * This is a SCAFFOLD, deliberately. The headings and the structure are here,
+ * but every clause body is a TODO placeholder, because inventing contract or
+ * data-protection wording and letting it ship would be worse than shipping
+ * nothing: these pages create legal obligations, and the ad-account terms in
+ * particular are the thing the whole positioning rests on.
+ *
+ * `npm run check:content` fails while the placeholders remain, so neither page
+ * can reach production until a lawyer has filled them in.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { localeTags, type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema } from '../lib/schema';
+import { richText } from '../lib/text';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+
+const key: 'terms' | 'privacy' = routeKey === 'terms' ? 'terms' : 'privacy';
+const doc = c.legal[key];
+
+const trail = [{ label: doc.title, key: routeKey }];
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+];
+
+const updated = new Intl.DateTimeFormat(localeTags[lang], {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(new Date(c.legal.updated));
+---
+
+<Base lang={lang} routeKey={routeKey} title={doc.metaTitle} description={doc.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="section">
+      <div class="container doc">
+        <h1>{doc.title}</h1>
+        <p class="doc__meta">
+          <time datetime={c.legal.updated}>{c.guides.updatedLabel} {updated}</time>
+          <span aria-hidden="true">·</span>
+          <span>{site.legalName}</span>
+        </p>
+
+        <p class="lead doc__lead">{doc.lead}</p>
+
+        <nav class="toc" aria-label={c.legal.tocLabel}>
+          <h2 class="toc__t">{c.legal.tocLabel}</h2>
+          <ol>
+            {
+              doc.clauses.map((clause, i) => (
+                <li>
+                  <a href={`#clause-${i + 1}`}>{clause.h}</a>
+                </li>
+              ))
+            }
+          </ol>
+        </nav>
+
+        {
+          doc.clauses.map((clause, i) => (
+            <section class="clause" id={`clause-${i + 1}`}>
+              <h2>
+                <span class="clause__n num">{i + 1}.</span> {clause.h}
+              </h2>
+              <p set:html={richText(clause.body)} />
+            </section>
+          ))
+        }
+
+        <p class="doc__contact" set:html={richText(doc.contact)} />
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .doc { max-width: 46rem; }
+
+  .doc__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-block-start: var(--s-4);
+    font-size: var(--t-xs);
+    color: var(--c-ink-3);
+  }
+
+  .doc__lead { margin-block: var(--s-6) var(--s-8); }
+
+  .toc {
+    padding: var(--s-6);
+    background: var(--c-bg-2);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-panel);
+    margin-block-end: var(--s-12);
+  }
+
+  .toc__t {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-ink-4);
+    margin-block-end: var(--s-3);
+  }
+
+  :global(html[lang='ar']) .toc__t {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .toc ol {
+    padding-inline-start: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+  }
+
+  .toc a {
+    font-size: var(--t-small);
+    font-weight: 600;
+  }
+
+  .clause + .clause { margin-block-start: var(--s-8); }
+
+  .clause h2 {
+    font-size: 1.3125rem;
+    letter-spacing: -0.022em;
+    margin-block-end: var(--s-3);
+  }
+
+  .clause__n { color: var(--c-ink-4); }
+
+  .clause p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--c-ink-2);
+  }
+
+  :global(html[lang='ar']) .clause p { line-height: 1.95; }
+
+  .doc__contact {
+    margin-block-start: var(--s-12);
+    padding-block-start: var(--s-6);
+    border-block-start: 1px solid var(--c-line);
+    font-size: var(--t-small);
+    line-height: 1.65;
+    color: var(--c-ink-2);
+  }
+</style>

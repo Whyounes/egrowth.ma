@@ -124,29 +124,114 @@ and no autoplay**: only the first image is in the critical path
 (`fetchpriority="high"`, preloaded, ≤ 60 KB in AVIF); images 2–4 are
 `loading="lazy"` and never download unless the visitor clicks.
 
-## Deploying
+## Deploying to your own hosting
 
-Build output is plain static files in `dist/`. `trailingSlash: 'never'` with
-`build.format: 'file'`, so `/comptes-publicitaires` is served from
-`comptes-publicitaires.html` and the canonical in `<head>` always matches the
-request.
+`npm run build` produces plain static files in `dist/`. There is no server
+runtime, no database and no Node process to keep alive — copy `dist/` to a
+web root and you are done.
 
-`public/CNAME` carries the custom domain for GitHub Pages and is harmless
-elsewhere.
+**Run `npm run verify` first.** It type-checks, builds, and then fails if any
+unfilled placeholder reached the HTML.
 
-**Recommended: Cloudflare Pages** — build command `npm run build`, output
-directory `dist`. Cloudflare serves a Casablanca point of presence, which is
-what the ≤ 200 ms TTFB target rests on.
+### What the server has to do
 
-Whichever host: run `npm run verify` first. It will refuse to pass while a
-placeholder is unfilled.
+| Requirement | Why |
+| --- | --- |
+| Serve `/foo` from `foo.html` | `trailingSlash: 'never'` + `build.format: 'file'`, so the canonical in `<head>` always matches the request |
+| `Content-Type: font/woff2` on `/fonts/*.woff2` | A wrong type makes the browser refuse the font and fall back |
+| Long cache on `/_astro/*` and `/fonts/*`, short on `*.html` | Hashed asset names make them immutable; HTML must stay fresh |
+| Gzip or Brotli on HTML, CSS and SVG | The 43 KB page figure assumes it. Do **not** re-compress woff2 |
+| HTTPS, with HTTP redirected | Non-negotiable for a site collecting form data |
+| Percent-encoded Arabic paths passed through intact | The `/ar/` URLs are Arabic script; most servers handle this, but test one |
+| `404.html` served on a miss | Astro does not emit one yet — see Status |
+
+### nginx
+
+```nginx
+root /var/www/egrowth/dist;
+index index.html;
+
+# Serve /foo from foo.html
+location / {
+  try_files $uri $uri.html $uri/index.html =404;
+}
+
+location /_astro/ {
+  add_header Cache-Control "public, max-age=31536000, immutable";
+}
+
+location /fonts/ {
+  add_header Cache-Control "public, max-age=31536000, immutable";
+  types { font/woff2 woff2; }
+}
+
+location ~* \.html$ {
+  add_header Cache-Control "public, max-age=0, must-revalidate";
+}
+
+gzip on;
+gzip_types text/html text/css application/json image/svg+xml;
+```
+
+### Apache
+
+```apache
+DocumentRoot /var/www/egrowth/dist
+DirectoryIndex index.html
+Options -Indexes
+
+RewriteEngine On
+# Serve /foo from foo.html
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+AddType font/woff2 .woff2
+
+<LocationMatch "^/(_astro|fonts)/">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</LocationMatch>
+
+<FilesMatch "\.html$">
+  Header set Cache-Control "public, max-age=0, must-revalidate"
+</FilesMatch>
+```
+
+### One honest note on the 200 ms target
+
+The ≤ 200 ms TTFB budget assumes the bytes are served from an edge close to
+Morocco. A single origin server in Europe will land closer to 400–600 ms from
+Casablanca on a good connection, through no fault of the code. If you keep
+your own hosting, putting a CDN in front of it is the cheapest way to close
+that gap — the output is fully static, so any CDN works with no changes here.
+
+`public/CNAME` is a GitHub Pages artefact. It is harmless on any other host;
+delete it if you are not using GitHub Pages.
 
 ## Status
 
-Built: the home page and the ad-account hub, in all three locales, with the
-layout, tokens, routing, i18n, hreflang, Schema.org `Organization` + `WebSite`,
-`robots.txt`, `llms.txt` and the sitemap.
+**All 31 routes are built, in all three locales — 93 pages.** Zero JavaScript
+in the output.
 
-Not yet built (routes defined, `built: false`): the five per-platform
-ad-account pages, the services pages, work and industries, pricing, the free
-audit, contact, the resource guides, and the company and legal pages.
+Pages: home; the ad-account hub plus five per-platform pages; the services hub
+plus nine service pages; work and two industry pages; pricing; the free audit;
+contact; the resources hub, three guides and the glossary; about; and terms and
+privacy.
+
+Known gaps, in priority order:
+
+1. **The 56 content placeholders.** `npm run check:content` lists them. The
+   site cannot deploy until they are filled.
+2. **Terms and privacy are scaffolds.** Headings and structure are there; every
+   clause body is a `[[TODO]]` marker. These pages create legal obligations and
+   the ad-account terms are what the whole positioning rests on, so they need a
+   lawyer, not a generator.
+3. **No hero photographs yet.** The slider renders each slide's art-direction
+   brief as a labelled placeholder until files are dropped into
+   `src/assets/hero/` and wired to `heroSlides[].src` in `src/data/site.ts`.
+   Shot list and art direction: the "Hero image directions" artboard.
+4. **Platform logos are redrawn approximations** in
+   `src/components/PlatformIcon.astro`. Replace each with the official SVG from
+   the platform's own brand resource centre before launch.
+5. **No 404 page**, no Lighthouse CI step, and the account-request form has no
+   backend — `site.formEndpoint` needs a static form service or a small
+   function.

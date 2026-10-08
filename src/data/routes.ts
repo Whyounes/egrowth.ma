@@ -224,30 +224,30 @@ export const routes: Record<RouteKey, RouteDef> = {
   /* --- Proof ------------------------------------------------------------- */
   work: {
     path: { fr: 'realisations', en: 'work', ar: 'أعمالنا' },
-    built: false,
+    built: true,
   },
   industriesCod: {
     path: { fr: 'secteurs/e-commerce-cod', en: 'industries/ecommerce-cod', ar: 'القطاعات/الدفع-عند-الاستلام' },
-    built: false,
+    built: true,
   },
   industriesB2b: {
     path: { fr: 'secteurs/b2b', en: 'industries/b2b', ar: 'القطاعات/b2b' },
-    built: false,
+    built: true,
   },
 
   /* --- Conversion -------------------------------------------------------- */
   pricing: {
     path: { fr: 'tarifs', en: 'pricing', ar: 'الأسعار' },
-    built: false,
+    built: true,
     targets: { fr: 'tarif agence marketing digital maroc, prix publicité facebook maroc' },
   },
   audit: {
     path: { fr: 'audit-gratuit', en: 'free-audit', ar: 'تحليل-مجاني' },
-    built: false,
+    built: true,
   },
   contact: {
     path: { fr: 'contact', en: 'contact', ar: 'اتصل-بنا' },
-    built: false,
+    built: true,
   },
 
   /* --- Resources: the agentic-search engine ------------------------------ */
@@ -294,15 +294,15 @@ export const routes: Record<RouteKey, RouteDef> = {
   /* --- Company ----------------------------------------------------------- */
   about: {
     path: { fr: 'a-propos', en: 'about', ar: 'من-نحن' },
-    built: false,
+    built: true,
   },
   terms: {
     path: { fr: 'conditions-generales', en: 'terms', ar: 'الشروط-والأحكام' },
-    built: false,
+    built: true,
   },
   privacy: {
     path: { fr: 'confidentialite', en: 'privacy', ar: 'الخصوصية' },
-    built: false,
+    built: true,
   },
 };
 
