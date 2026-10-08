@@ -1,0 +1,157 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { guides } from '../data/guides';
+import { pathFor, isBuilt, localeTags, type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema } from '../lib/schema';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const r = c.resourcesHub;
+const g = c.guides;
+
+const trail = [{ label: c.nav.resources, key: routeKey }];
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+];
+
+const fmt = new Intl.DateTimeFormat(localeTags[lang], {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const live = guides.filter((x) => isBuilt(x.routeKey));
+---
+
+<Base lang={lang} routeKey={routeKey} title={r.metaTitle} description={r.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <h1>{r.title}</h1>
+        <p class="lead hero__lead">{r.lead}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="sr-h">{r.guidesTitle}</h2>
+        <div class="grid grid--3">
+          {
+            live.map((guide) => (
+              <a class="card g" href={pathFor(guide.routeKey, lang)} data-accent={guide.accentKey}>
+                <p class="g__updated">
+                  <time datetime={guide.updated}>
+                    {g.updatedLabel} {fmt.format(new Date(guide.updated))}
+                  </time>
+                </p>
+                <h3>{g[guide.key].title}</h3>
+                <p class="g__stand">{g[guide.key].standfirst}</p>
+                <span class="arrowLink g__more">{c.common.readMore}</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {
+      isBuilt('glossary') && (
+        <section class="section section--band">
+          <div class="container gl">
+            <h2>{r.glossaryTitle}</h2>
+            <p class="lead gl__lead">{r.glossaryLead}</p>
+            <a class="btn btn--secondary" href={pathFor('glossary', lang)}>{r.glossaryTitle}</a>
+          </div>
+        </section>
+      )
+    }
+
+    <CtaBand lang={lang} title={r.ctaTitle} lead={r.ctaLead} />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__inner {
+    max-width: 48rem;
+  }
+
+  .hero__lead {
+    margin-block-start: var(--s-6);
+  }
+
+  /* Present for structure and screen readers; the cards are the visible list. */
+  .sr-h {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .g {
+    padding: var(--s-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    color: var(--c-ink);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+
+  .g:hover {
+    color: var(--c-ink);
+    border-color: var(--c-line-2);
+    box-shadow: var(--e-raised);
+  }
+
+  .g__updated {
+    font-size: var(--t-xs);
+    font-weight: 700;
+  }
+
+  .g[data-accent='ochre'] .g__updated { color: var(--c-ochre); }
+  .g[data-accent='blue'] .g__updated { color: var(--c-blue); }
+  .g[data-accent='clay'] .g__updated { color: var(--c-clay); }
+  .g[data-accent='green'] .g__updated { color: var(--c-green); }
+
+  .g__stand {
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-ink-2);
+  }
+
+  .g__more {
+    margin-block-start: auto;
+    color: var(--c-green);
+  }
+
+  .gl {
+    max-width: 48rem;
+  }
+
+  .gl__lead {
+    margin-block: var(--s-4) var(--s-6);
+  }
+</style>

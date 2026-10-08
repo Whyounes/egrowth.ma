@@ -253,7 +253,7 @@ export const routes: Record<RouteKey, RouteDef> = {
   /* --- Resources: the agentic-search engine ------------------------------ */
   resources: {
     path: { fr: 'ressources', en: 'resources', ar: 'الموارد' },
-    built: false,
+    built: true,
   },
   resourcesVat: {
     path: {
@@ -261,7 +261,7 @@ export const routes: Record<RouteKey, RouteDef> = {
       en: 'resources/vat-on-meta-tiktok-ads-morocco',
       ar: 'الموارد/الضريبة-على-إعلانات-ميتا-وتيك-توك',
     },
-    built: false,
+    built: true,
     targets: {
       fr: 'tva meta ads maroc, tva tiktok ads maroc',
       en: 'vat on meta ads morocco',
@@ -274,7 +274,7 @@ export const routes: Record<RouteKey, RouteDef> = {
       en: 'resources/morocco-ad-cost-benchmarks',
       ar: 'الموارد/تكاليف-الإعلان-في-المغرب',
     },
-    built: false,
+    built: true,
     targets: { fr: 'prix publicité facebook instagram maroc, cpm cpc maroc' },
   },
   resourcesRestricted: {
@@ -283,12 +283,12 @@ export const routes: Record<RouteKey, RouteDef> = {
       en: 'resources/restricted-ad-account',
       ar: 'الموارد/حساب-إعلاني-مقيد',
     },
-    built: false,
+    built: true,
     targets: { fr: 'compte publicitaire restreint, compte facebook ads bloqué' },
   },
   glossary: {
     path: { fr: 'ressources/glossaire', en: 'resources/glossary', ar: 'الموارد/قاموس-المصطلحات' },
-    built: false,
+    built: true,
   },
 
   /* --- Company ----------------------------------------------------------- */

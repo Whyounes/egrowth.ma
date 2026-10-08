@@ -13,6 +13,9 @@ import AdAccounts from '../views/AdAccounts.astro';
 import AdAccountPlatform from '../views/AdAccountPlatform.astro';
 import ServicesHub from '../views/ServicesHub.astro';
 import Service from '../views/Service.astro';
+import ResourcesHub from '../views/ResourcesHub.astro';
+import Guide from '../views/Guide.astro';
+import Glossary from '../views/Glossary.astro';
 
 export function getStaticPaths() {
   const paths: { params: { slug: string | undefined }; props: { routeKey: RouteKey; lang: Locale } }[] = [];
@@ -56,6 +59,11 @@ const views = {
   servicesEcommerce: Service,
   servicesApps: Service,
   servicesWebsites: Service,
+  resources: ResourcesHub,
+  resourcesVat: Guide,
+  resourcesCosts: Guide,
+  resourcesRestricted: Guide,
+  glossary: Glossary,
 } as const;
 
 const View = views[routeKey as keyof typeof views];

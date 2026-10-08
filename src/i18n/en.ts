@@ -620,4 +620,331 @@ export const en: Copy = {
       ],
     },
   },
+
+  resourcesHub: {
+    metaTitle: 'Resources — VAT, ad costs and restricted accounts in Morocco | eGrowth',
+    metaDescription:
+      'Guides for Moroccan advertisers: the 20% VAT on Meta and TikTok ads, what acquisition actually costs in Morocco, and what to do when an ad account is restricted.',
+    title: 'The answers we give on the phone anyway.',
+    lead:
+      'Each guide answers its question in the first few lines, dates its numbers and cites its sources. If you leave with the answer and never call us, the guide did its job.',
+    guidesTitle: 'The guides',
+    glossaryTitle: 'Glossary',
+    glossaryLead: 'The terms that come up in every other call, defined in one sentence each.',
+    ctaTitle: 'A question that is not covered here?',
+    ctaLead: 'Write to us. If it comes up three times, it becomes a guide.',
+  },
+
+  guides: {
+    updatedLabel: 'Updated',
+    summaryLabel: 'The short version',
+    sourcesLabel: 'Sources',
+    moreLabel: 'Other guides',
+
+    vat: {
+      title: 'The 20% VAT on Meta and TikTok ads in Morocco',
+      metaTitle: '20% VAT on Meta and TikTok Ads in Morocco — 2026 guide | eGrowth',
+      metaDescription:
+        'TikTok has charged Moroccan advertisers 20% VAT since 1 August 2026, Meta since 1 October 2026. Who pays, how to file your tax ID, and what reverse charge actually changes.',
+      standfirst:
+        'Since 1 October 2026, Meta charges Moroccan advertisers 20% VAT. TikTok has done so since 1 August. Here is what triggers the charge, how to avoid it legally, and what it really does to your cost per order.',
+      summary: [
+        '**TikTok Ads: 20% VAT since 1 August 2026. Meta: since 1 October 2026.**',
+        "The charge applies where **Morocco is the account's sale country and no tax identification number is on file**.",
+        'Entering your tax ID in the payment settings puts the number on your receipts and, where the tax conditions are met, VAT is no longer added directly to ad purchases.',
+        '**That does not remove the VAT.** Reverse charge still applies: if you are VAT-registered, you calculate and declare the tax yourself in your periodic return.',
+        'All of this sits inside the Moroccan digital services tax regime that took effect on 11 June 2026.',
+      ],
+      sections: [
+        {
+          h: 'What changed, and when exactly?',
+          body: [
+            '**TikTok Ads has charged Moroccan advertisers 20% VAT since 1 August 2026.** **Meta followed on 1 October 2026.** If your ad invoice jumped by a fifth this month and you did not touch your budgets, that is the explanation.',
+            'Both platforms use the same trigger: the charge applies to ad accounts where Morocco is set as the sale country and no tax identification number is on file. In that configuration, VAT is added to the cost of your ad purchases.',
+            'This is not a platform initiative. It follows from the Moroccan digital services tax regime that took effect on 11 June 2026, which requires foreign companies with no Moroccan establishment to register with the tax authority in order to collect VAT on services sold to Moroccan customers.',
+          ],
+        },
+        {
+          h: 'Who pays, and in which case?',
+          body: [
+            'If no tax ID is on the account, the platform adds 20% to every ad purchase. That is the most expensive case, and it is the default for most accounts opened with a personal card.',
+            "If your tax ID is on file, the number appears on your receipts and the platform does not add VAT directly to your ad purchases where the stated tax conditions are met. **But the tax burden does not disappear.** Reverse charge is still in play: as a Moroccan VAT-registered business, it is on you to calculate 20% VAT on the foreign supplier's net invoice and declare it in your periodic return.",
+            'So the difference between the two situations is not "paying versus not paying". It is "paying immediately, out of cash flow, with no clean way to reclaim it" versus "declaring it and, if you are registered, reclaiming it". For a structured business the gap is substantial.',
+          ],
+        },
+        {
+          h: 'How to file your tax ID',
+          body: [
+            'The field is in the payment settings of your ad account, on Meta and on TikTok alike. You enter your Moroccan tax identification number — the one on your returns.',
+            "One important clarification, and it is where many advertisers go wrong: the platforms' own registration on the tax authority's digital services platform concerns **their** tax ID, not yours. Public communications do not always specify which number an advertiser should enter in the field. Have the number and the treatment confirmed by your accountant before you file it.",
+            'If you are not VAT-registered in Morocco — an auto-entrepreneur on a flat-rate regime, say — your situation is different and reverse charge does not apply the same way. That is exactly the kind of case where a generic answer on a blog costs you money.',
+          ],
+        },
+        {
+          h: 'What it does to your cost per order',
+          body: [
+            'Do the arithmetic before you relaunch anything. On a media budget of 10,000 MAD a month, 20% is 2,000 MAD. If your cost per confirmed order was 55 MAD, it mechanically becomes 66 MAD for as long as the tax is added and not reclaimed — 20% less margin on every sale, without a single campaign having changed.',
+            'For cash-on-delivery e-commerce, where margins are already squeezed by refusals and returns, that is frequently the difference between a profitable offer and one that is not. We have watched advertisers keep spending for weeks, wondering why their profitability collapsed.',
+            'The right reaction is not to cut budgets. It is to regularise the account, recalculate your target cost per order with the tax in it, and adjust your pricing or your offer accordingly.',
+          ],
+        },
+        {
+          h: 'What we handle for you',
+          body: [
+            'The ad accounts we provide carry a valid tax ID. You get a Moroccan invoice in dirhams with the VAT stated separately, which your accountant can process normally and reclaim if you are registered.',
+            'We are not tax advisers and we do not pretend to be. What we do is eliminate the most expensive case — an account with no tax ID being charged 20% with no usable paperwork — and give your accountant documents they can actually work with.',
+          ],
+        },
+      ],
+      faqTitle: 'Questions about ad VAT',
+      faq: [
+        {
+          q: 'Does the 20% VAT apply to Google Ads and Snapchat too?',
+          a: "Morocco's digital services tax regime covers digital services sold to Moroccan customers broadly, and several platforms have announced their compliance. As of this guide, the confirmed public announcements cover TikTok Ads from 1 August 2026 and Meta from 1 October 2026. Check the billing settings of every account you use: the tax ID field is usually already there.",
+        },
+        {
+          q: 'Can I reclaim VAT already paid on my ads?',
+          a: 'It depends on your regime and on the paperwork you hold. If you are VAT-registered in Morocco and have proper invoices, your accountant can normally handle the tax under reverse charge and deduct it. If you were spending from an account with no tax ID and receipts in an individual\'s name, it is far harder. Take your statements to your accountant.',
+        },
+        {
+          q: 'Should I pause campaigns while I sort this out?',
+          a: 'In most cases no — filing the tax ID does not require pausing delivery. What you should do immediately is recalculate your target cost per order with the tax included, so you are not scaling an offer that has quietly become unprofitable.',
+        },
+        {
+          q: 'Does an agency account avoid the VAT?',
+          a: 'No, and nobody should sell it to you that way. An agency account with a valid tax ID changes how the tax is charged and documented — you get a Moroccan invoice your accountant can use — but it does not make VAT disappear. Any offer promising to "escape" the tax should send you elsewhere.',
+        },
+      ],
+      disclaimer:
+        'This guide summarises public information as of the date shown, for advertisers. It is not tax advice. Your position depends on your regime, your registration status and your documentation: have your case confirmed by your accountant or tax adviser.',
+      ctaTitle: 'Our accounts carry a valid tax ID and invoice in dirhams.',
+      ctaLead:
+        'If your current account is being charged 20% with no usable paperwork, that is fixable. Twenty minutes is enough to work out where you stand.',
+    },
+
+    costs: {
+      title: 'What online advertising actually costs in Morocco',
+      metaTitle: 'Facebook, Instagram and TikTok Ad Costs in Morocco — 2026 figures | eGrowth',
+      metaDescription:
+        'CPM, CPC, agency fees, starting budgets and cost per order in Morocco. Figures dated October 2026, with sources, and the number agencies do not publish.',
+      standfirst:
+        'Dated figures with their sources, and the distinction almost nobody draws clearly: what you pay the platform, what you pay the agency, and what a delivered order actually costs you.',
+      summary: [
+        '**CPM in Morocco: roughly 25–60 MAD. CPC: roughly 1.0–3.5 MAD.** Measured October 2026.',
+        '**Agency management fees: 1,500 to 25,000 MAD a month** across public sources. The common range is 2,000 to 8,000 MAD.',
+        '**Recommended starting media budget for an e-commerce test: 4,000–8,000 MAD a month.** Below about 3,000 MAD you are paying to guess.',
+        '**Mobile app: 15,000 to 150,000 MAD** depending on scope. **UGC video: 300 to 1,200 MAD** each.',
+        'The number that actually decides everything is none of those: it is your **cost per confirmed order**, and almost nobody publishes it.',
+      ],
+      sections: [
+        {
+          h: 'What it costs to reach a Moroccan',
+          body: [
+            'Moroccan ad inventory currently runs at roughly **25 to 60 MAD per thousand impressions** and **1.0 to 3.5 MAD per click**, depending on the platform, the season and above all the quality of your creative. These figures were taken in October 2026; treat them as an order of magnitude, not a price list.',
+            'Where you land inside those ranges depends less on your "optimisation" than on your content. A hook that holds attention lowers your cost per thousand because the platform distributes it more willingly; weak creative is paid for twice, in more expensive delivery and a lower click rate.',
+            'TikTok generally offers the lowest cost per thousand on the market, Meta the best balance of volume and purchase intent, Snapchat the best access to under-25s, and Google the highest cost per click but the strongest intent.',
+          ],
+        },
+        {
+          h: 'What a Moroccan agency charges',
+          body: [
+            'Published management fees from Moroccan agencies run from **1,500 to 25,000 MAD a month**, excluding ad budget. The most commonly quoted range is **2,000 to 8,000 MAD a month** for campaign management, and SEO packages often sit around 3,900 to 5,900 MAD monthly.',
+            'That spread has almost nothing to do with quality. It mostly reflects how many platforms are managed, how much creative is produced, and whether real measurement work is included. A provider at 2,000 MAD who produces no creative and never verifies tracking will cost you more than one at 8,000 MAD who does both.',
+            '**The question is not the price, it is the scope:** how many creatives a month, who produces them, who verifies the tracking, and which metric the monthly report is built on.',
+          ],
+        },
+        {
+          h: 'The hidden commission on your media budget',
+          body: [
+            'This is the most expensive practice on the market and the hardest to spot. Some agencies take a 10–20% commission on your ad budget on top of their management fee, without making it clear.',
+            "The test is simple. **Ask that the media budget stay in your name and be paid directly to the platform, and ask to see the platform's own spend report rather than a table the agency rebuilt.** If either request causes friction, you have your answer.",
+            'We take no commission on media budget, and the weekly report you receive contains the platform\'s own figures.',
+          ],
+        },
+        {
+          h: 'What the thing your ads point at costs',
+          body: [
+            'A store, an app or a website has no legible market price in Morocco, because almost nobody publishes what moves the quote. Observed ranges: **15,000 to 150,000 MAD for a mobile app** depending on the number of screens, the back end to build and the native features used, plus roughly 2,000 to 5,000 MAD a month for maintenance.',
+            'For a UGC video, the Moroccan market runs from **300 MAD** for a beginner creator on a marketplace to **900–1,200 MAD** for agency studio production. Those prices buy a file, not a result.',
+          ],
+        },
+        {
+          h: 'The one number that decides everything',
+          body: [
+            'None of the figures above tells you whether your business is profitable. The only one that does is your **cost per confirmed and delivered order**, set against your margin on that order.',
+            'It is also the number almost no Moroccan agency puts in its reports, because it means connecting advertising to what happens afterwards: the phone confirmation rate, refusals at delivery, returns. Under cash on delivery, between 20% and 40% of placed orders are never confirmed. A platform-reported ROAS of 3 can correspond perfectly well to a loss.',
+            'If you take one thing from this guide: insist that your reporting is built on the confirmed order, and renegotiate any provider who cannot give it to you.',
+          ],
+        },
+      ],
+      faqTitle: 'Questions about costs',
+      faq: [
+        {
+          q: 'What is the minimum budget to start seriously?',
+          a: 'For a Moroccan e-commerce test, plan 4,000 to 8,000 MAD of media a month on top of management fees. At current costs that buys enough volume to tell a working creative from a failing one in about two weeks. Below 3,000 MAD a month the data is too thin to decide anything: you are paying to guess.',
+        },
+        {
+          q: 'Why is my CPM higher than these figures?',
+          a: 'Three causes, in order of frequency: creative that does not hold attention, so delivery costs more; an audience that is too narrow, pushing up the auction; and unfavourable seasonality (year end, Ramadan, sales) when the whole market bids at once. Account optimisation comes a distant fourth behind creative.',
+        },
+        {
+          q: 'Do agency fees include creative production?',
+          a: 'Rarely, and it is the first thing to check. Many low-priced offers cover account management but not content production, which leaves the advertiser relaunching the same three videos for a quarter. Ask explicitly how many creatives are included per month and who makes them.',
+        },
+        {
+          q: 'Are your prices published?',
+          a: 'Yes, in dirhams, on the Pricing page. Media budget is always shown separately and paid to the platform in your name.',
+        },
+      ],
+      disclaimer:
+        'The ranges in this guide come from our own accounts and from prices published by Moroccan providers, taken on the date shown. They are neither audited nor representative of the whole market, and they move. Always get several itemised quotes.',
+      ctaTitle: 'We publish our fees, and we take nothing from your media budget.',
+      ctaLead:
+        'Tell us what you sell and your margin. You leave with a number, whether or not you sign.',
+    },
+
+    restricted: {
+      title: 'Restricted ad account: what to do, in what order',
+      metaTitle: 'Restricted or Banned Ad Account in Morocco — what to do | eGrowth',
+      metaDescription:
+        'Meta or TikTok account restricted? Diagnose the cause before migrating, what not to do, and when an agency account genuinely solves the problem.',
+      standfirst:
+        'A restricted account is fixed by diagnosing the cause, not by opening a fresh one. If the cause is your creative or your landing page it will follow you anywhere — and the most common escape manoeuvre is also the one that makes the penalty permanent.',
+      summary: [
+        '**Do not immediately create a new account or Business Manager.** Spinning up accounts to get round a restriction is treated as circumventing systems, and the penalty becomes much harder to lift.',
+        '**Start by reading the exact policy cited in the notification.** It almost always points to something concrete: a claim in the creative, a landing page, a prohibited product, or incomplete business verification.',
+        'A restriction caused by the offer itself **will follow you to any account**, including an agency account.',
+        '**Appeal once, documented and specific.** Repeated generic appeals reduce your chances.',
+        'An agency account solves a cap, billing or history problem. It does not solve a compliance problem.',
+      ],
+      sections: [
+        {
+          h: 'First: what exactly was restricted?',
+          body: [
+            'Platform notifications are vague, but the scope of the penalty is not, and it changes everything. A restricted **ad account** can be replaced. A restricted **Business Manager** blocks every asset inside it. A restricted **personal account** stops that person managing anything, which bites hard when one person administers everything.',
+            "Meta's advertising standards are explicit on one point: when a business account or one of its assets — ad account, Page, user account — is restricted, that asset can no longer be used to advertise. The restriction propagates by asset, not by intention.",
+            'Establish the level before you act. It determines whether you have a two-day fix or a rebuild to plan.',
+          ],
+        },
+        {
+          h: 'The real causes, by frequency',
+          body: [
+            '**Creative and landing page are far and away first.** Health or results claims ("lose 10kg", "cures"), before-and-after body imagery, fake countdowns, invented reviews, a price that changes at checkout, a landing page that does not match the ad. These are root causes: they do not go away by changing account.',
+            '**Then payment and verification problems.** A card declined repeatedly, a mismatch between the business name and the payment method, business verification never completed. These are the easiest to fix.',
+            '**Finally, circumventing systems.** Several Business Managers created after a penalty, accounts in relatives\' names, content edited after approval. This is the most serious category, and it is most often triggered by a panic reaction to the first restriction.',
+          ],
+        },
+        {
+          h: 'The sequence to follow',
+          body: [
+            '**One.** Read the policy cited and find the exact element that triggers it. If the notification does not say, run your last five ads and your landing page against the advertising standards line by line.',
+            '**Two.** Fix the cause before you appeal. An appeal filed while the offending ad is still live almost always fails.',
+            '**Three.** Appeal once, citing what you fixed and where. No generic message, no daily follow-ups.',
+            '**Four.** Meanwhile, secure what has value: your pixel, your audiences, your catalogue. If those assets sit in a Business Manager in your name, you can change ad account without losing your conversion history — which is exactly why we insist those assets stay with you.',
+          ],
+        },
+        {
+          h: 'When an agency account fixes it, and when it fixes nothing',
+          body: [
+            'An agency account genuinely solves three situations: a spend cap too low for your level of activity, billing that is impossible from Morocco with your payment methods, and a brand-new account with no history that cannot get out of the learning phase.',
+            'It solves nothing at all if your offer, your creative or your landing page break the rules. In that case the agency account gets restricted in turn — and you have lost time and money on top.',
+            'That is why we review the offer and the landing pages before opening an account, and why we decline some work. A restricted account in our portfolio penalises every other advertiser in it.',
+          ],
+        },
+      ],
+      faqTitle: 'Questions about restricted accounts',
+      faq: [
+        {
+          q: 'How long does an appeal take?',
+          a: 'It varies, and no platform commits to a timeframe. Expect a few days in simple cases and considerably longer for business verification or a Business Manager-level penalty. Spend that time on the underlying fix rather than on follow-ups.',
+        },
+        {
+          q: 'Can I run from someone else\'s account meanwhile?',
+          a: 'That is exactly the manoeuvre that turns a temporary restriction into a permanent one. Running the same offer from a relative\'s account after a restriction is treated as circumventing systems. Do not do it.',
+        },
+        {
+          q: 'Is my pixel lost?',
+          a: 'Not if your Business Manager is in your name and only the ad account was restricted. The pixel, audiences and catalogue belong to the portfolio, not to the ad account — so you can resume elsewhere with your conversion history intact. If the Business Manager itself is restricted, that is a different matter.',
+        },
+        {
+          q: 'Do you take on restricted accounts?',
+          a: 'We always start by looking for the cause, free, during the audit call. If the cause is structural — cap, billing, history — we can get you running quickly. If the cause is your offer or your creative, we will tell you what to fix, and we will not open an account until it is done.',
+        },
+      ],
+      disclaimer:
+        'This guide describes observed practice and draws on the platforms\' public policies as of the date shown. Those policies and their appeal processes change regularly: always check the current version in the relevant platform\'s help centre.',
+      ctaTitle: 'Let us find out why first, before talking about accounts.',
+      ctaLead:
+        'Twenty minutes on your offer, your creative and your landing page. If it is fixable without changing account, we will tell you.',
+    },
+  },
+
+  glossary: {
+    metaTitle: 'Online Advertising Glossary for Morocco | eGrowth',
+    metaDescription:
+      'Online advertising terms defined plainly: agency ad account, Business Manager, pixel, Conversions API, ROAS, CPM, reverse charge, confirmation rate.',
+    title: 'Glossary',
+    lead:
+      'The terms that come up in every other call. One sentence each, no jargon, and with the distinction that actually matters in Morocco.',
+    ctaTitle: 'Still a term that does not land?',
+    ctaLead: 'Ask during the audit call. Nobody is keeping score.',
+    terms: [
+      {
+        term: 'Agency ad account',
+        def: "An ad account that sits in an agency's portfolio, which an advertiser is given access to spend through. **It cannot be bought or transferred** — platform terms restrict selling accounts. What an agency can legitimately provide is managed access to spend, covered by a service agreement.",
+      },
+      {
+        term: 'Business Manager (business portfolio)',
+        def: 'The container that holds your Meta assets: Pages, pixels, catalogues, audiences and people\'s access. **It is the one thing that absolutely must be in your name.** As long as it is, changing ad account or changing agency costs you nothing.',
+      },
+      {
+        term: 'Pixel',
+        def: 'A piece of code on your site that reports what visitors do: page view, add to cart, order. It belongs to the Business Manager, not to the ad account — which is why a restricted account does not destroy your history if the portfolio is yours.',
+      },
+      {
+        term: 'Conversions API (CAPI)',
+        def: "Sending conversions from your server rather than from the visitor's browser. More reliable than the pixel alone, since neither an ad blocker nor a dropped connection stops it. Both run in parallel, deduplicated by event ID.",
+      },
+      {
+        term: 'ROAS',
+        def: 'Attributed revenue divided by ad spend. **Careful: platform-reported ROAS counts orders placed, not orders delivered.** Under cash on delivery, a ROAS of 3 can correspond perfectly well to a loss.',
+      },
+      {
+        term: 'CPM',
+        def: 'Cost per thousand impressions. In Morocco it currently sits around 25–60 MAD depending on the platform and the quality of the creative. A good hook lowers CPM, because platforms distribute what holds attention more willingly.',
+      },
+      {
+        term: 'CPC',
+        def: 'Cost per click, currently around 1.0–3.5 MAD in Morocco. Useful for diagnosing creative, useless as a goal: a cheap click that never orders costs more than an expensive click that converts.',
+      },
+      {
+        term: 'Cash on delivery (COD)',
+        def: 'The customer pays the courier, not online. The dominant payment method in Morocco, and the reason a placed order is not a sale: it still has to be confirmed on the phone, then accepted at the door.',
+      },
+      {
+        term: 'Confirmation rate',
+        def: 'The share of placed orders that are confirmed by phone. **Between 20% and 40% never are.** It is the most profitable metric to work on in Morocco, and almost no provider charges for it or reports it.',
+      },
+      {
+        term: 'Cost per confirmed order',
+        def: 'Ad spend divided by the number of orders actually confirmed. **The only figure that tells you whether your business is profitable**, and the one our weekly reports are built on.',
+      },
+      {
+        term: 'Spend cap',
+        def: 'The limit a platform places on an account over a period. It rises with spend and payment history. Nobody can give you an account with no cap: an "unlimited budget" offer describes something that does not exist.',
+      },
+      {
+        term: 'Learning phase',
+        def: 'The period while the platform works out who to show your ads to, before performance stabilises. An account split across too many ad sets never leaves it, because none of them gets enough conversions. It is the most common cause of quiet waste.',
+      },
+      {
+        term: 'Reverse charge',
+        def: 'The mechanism where you, rather than the foreign supplier, calculate and declare VAT on a service bought outside Morocco. It still applies even when the platform does not add VAT to your ad purchases.',
+      },
+      {
+        term: 'UGC',
+        def: 'Creator-format content: vertical, phone-shot, closer to a recommendation than to an advert. On Meta and TikTok the creative now determines who sees your ad at all — which makes it a targeting lever, not decoration.',
+      },
+    ],
+  },
 };

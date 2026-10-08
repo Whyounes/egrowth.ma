@@ -627,4 +627,332 @@ export const fr = {
       ],
     },
   },
+
+  resourcesHub: {
+    metaTitle: 'Ressources — TVA, coûts publicitaires et comptes restreints au Maroc | eGrowth',
+    metaDescription:
+      "Guides pour les annonceurs marocains : la TVA de 20 % sur les publicités Meta et TikTok, les coûts réels d'acquisition au Maroc, et quoi faire quand un compte est restreint.",
+    title: 'Les réponses que nous donnons de toute façon au téléphone.',
+    lead:
+      "Chaque guide répond à sa question dès les premières lignes, date ses chiffres et cite ses sources. Si vous repartez avec la réponse sans nous appeler, le guide a fait son travail.",
+    guidesTitle: 'Les guides',
+    glossaryTitle: 'Glossaire',
+    glossaryLead:
+      'Les termes qui reviennent dans un appel sur deux, définis en une phrase chacun.',
+    ctaTitle: 'Une question qui n’est pas traitée ici ?',
+    ctaLead: 'Écrivez-nous. Si la question revient trois fois, elle devient un guide.',
+  },
+
+  guides: {
+    updatedLabel: 'Mis à jour le',
+    summaryLabel: 'L’essentiel',
+    sourcesLabel: 'Sources',
+    moreLabel: 'Autres guides',
+
+    vat: {
+      title: 'La TVA de 20 % sur les publicités Meta et TikTok au Maroc',
+      metaTitle: 'TVA 20 % sur les publicités Meta et TikTok au Maroc — guide 2026 | eGrowth',
+      metaDescription:
+        'TikTok applique une TVA de 20 % aux annonceurs marocains depuis le 1er août 2026, Meta depuis le 1er octobre 2026. Qui paie, comment renseigner son identifiant fiscal, et ce que change l’autoliquidation.',
+      standfirst:
+        "Depuis le 1er octobre 2026, Meta facture 20 % de TVA aux annonceurs marocains. TikTok le fait depuis le 1er août. Voici ce qui déclenche la taxe, comment l'éviter légalement, et ce que cela change réellement à votre coût par commande.",
+      summary: [
+        '**TikTok Ads : TVA de 20 % depuis le 1er août 2026. Meta : depuis le 1er octobre 2026.**',
+        "La taxe s'applique lorsque **le Maroc est le pays de vente du compte et qu'aucun numéro d'identification fiscale n'est renseigné**.",
+        "Renseigner votre identifiant fiscal dans les paramètres de paiement fait apparaître le numéro sur les reçus et, lorsque les conditions fiscales sont remplies, la TVA n'est plus ajoutée directement aux achats publicitaires.",
+        "**Cela ne supprime pas la TVA.** Le mécanisme d'autoliquidation reste applicable : si vous êtes assujetti, vous calculez et déclarez la TVA vous-même dans votre déclaration périodique.",
+        "Le dispositif s'inscrit dans le régime de taxation des services numériques entré en vigueur le 11 juin 2026.",
+      ],
+      sections: [
+        {
+          h: 'Qu’est-ce qui a changé exactement, et depuis quand ?',
+          body: [
+            "Deux dates comptent. **TikTok Ads applique une TVA de 20 % aux annonceurs marocains depuis le 1er août 2026.** **Meta a suivi le 1er octobre 2026.** Si vous avez vu votre facture publicitaire augmenter d'un cinquième ce mois-ci sans avoir touché à vos budgets, c'est l'explication.",
+            "Les deux plateformes appliquent le même déclencheur : la taxe concerne les comptes publicitaires pour lesquels le Maroc est indiqué comme pays de vente et dont le numéro d'identification fiscale n'est pas renseigné. Dans cette configuration, la TVA est ajoutée au coût de vos achats publicitaires.",
+            "Ce n'est pas une initiative des plateformes. Le changement découle du régime marocain de taxation des services numériques entré en vigueur le 11 juin 2026, qui oblige les entreprises étrangères sans établissement au Maroc à s'immatriculer auprès de la DGI pour collecter la TVA sur les services vendus à des clients marocains.",
+          ],
+        },
+        {
+          h: 'Qui paie, et dans quel cas ?',
+          body: [
+            "Si votre identifiant fiscal n'est pas renseigné sur le compte, la plateforme ajoute 20 % à chaque achat publicitaire. C'est le cas le plus coûteux, et c'est le cas par défaut pour la plupart des comptes ouverts avec une carte personnelle.",
+            "Si votre identifiant fiscal est renseigné, le numéro apparaît sur les reçus et la plateforme n'ajoute pas directement la TVA à vos achats publicitaires lorsque les conditions fiscales prévues sont remplies. **Mais la charge fiscale ne disparaît pas pour autant.** Le mécanisme d'autoliquidation reste en jeu : en tant qu'assujetti marocain, c'est à vous de calculer la TVA à 20 % sur la facture hors taxe du prestataire étranger et de la déclarer dans votre déclaration périodique.",
+            "La différence entre les deux situations n'est donc pas « payer ou ne pas payer ». C'est « payer immédiatement, en trésorerie, sans possibilité de récupération propre » contre « déclarer et, si vous êtes assujetti, récupérer ». Pour une entreprise structurée, l'écart est considérable.",
+          ],
+        },
+        {
+          h: 'Comment renseigner votre identifiant fiscal',
+          body: [
+            "Le champ se trouve dans les paramètres de paiement de votre compte publicitaire, chez Meta comme chez TikTok. Vous y saisissez votre identifiant fiscal marocain, celui qui figure sur vos déclarations.",
+            "Une précision importante, et c'est là que beaucoup d'annonceurs se trompent : l'immatriculation des plateformes sur la plateforme « Taxation on Digital Services » de la DGI concerne **leur** identifiant fiscal, pas le vôtre. Les communications publiques ne précisent pas toujours quel numéro un annonceur doit saisir dans le champ prévu. Faites valider le numéro et le traitement par votre comptable avant de le renseigner.",
+            "Si vous n'êtes pas assujetti à la TVA au Maroc — un auto-entrepreneur sous le régime forfaitaire, par exemple — votre situation est différente et l'autoliquidation ne s'applique pas de la même manière. C'est précisément le genre de cas où une réponse générique sur un blog vous coûte de l'argent.",
+          ],
+        },
+        {
+          h: 'Ce que ça change pour votre coût par commande',
+          body: [
+            "Faites le calcul avant de relancer vos campagnes. Sur un budget média de 10 000 MAD par mois, 20 % représentent 2 000 MAD. Si votre coût par commande confirmée était de 55 MAD, il passe mécaniquement à 66 MAD tant que la taxe s'ajoute sans être récupérée — soit 20 % de marge en moins sur chaque vente, sans qu'aucune de vos campagnes n'ait changé.",
+            "Pour un e-commerce en paiement à la livraison, avec des marges déjà serrées par les retours et les refus, c'est souvent la différence entre une offre rentable et une offre qui ne l'est plus. Nous avons vu des annonceurs continuer à diffuser pendant des semaines en se demandant pourquoi leur rentabilité s'était effondrée.",
+            "La bonne réaction n'est pas de couper les budgets. C'est de régulariser la situation fiscale du compte, puis de recalculer votre coût par commande cible avec la taxe intégrée, et d'ajuster vos prix ou votre offre en conséquence.",
+          ],
+        },
+        {
+          h: 'Ce que nous faisons à votre place',
+          body: [
+            "Les comptes publicitaires que nous mettons à disposition disposent d'un identifiant fiscal valide. Vous recevez une facture marocaine en dirhams, avec la TVA indiquée séparément, que votre comptable peut traiter normalement et récupérer si vous êtes assujetti.",
+            "Nous ne sommes pas conseillers fiscaux et nous ne prétendons pas l'être. Ce que nous faisons, c'est éliminer la situation la plus coûteuse — un compte sans identifiant fiscal qui se fait taxer 20 % sans justificatif exploitable — et fournir à votre comptable des documents qu'il peut utiliser.",
+          ],
+        },
+      ],
+      faqTitle: 'Questions sur la TVA publicitaire',
+      faq: [
+        {
+          q: 'La TVA de 20 % s’applique-t-elle aussi à Google Ads et Snapchat ?',
+          a: "Le régime de taxation des services numériques marocain couvre les services numériques vendus à des clients marocains de façon générale, et plusieurs plateformes ont déjà annoncé leur mise en conformité. À la date de ce guide, les annonces publiques confirmées concernent TikTok Ads depuis le 1er août 2026 et Meta depuis le 1er octobre 2026. Vérifiez les paramètres de facturation de chaque compte que vous utilisez : le champ d'identifiant fiscal y est généralement déjà présent.",
+        },
+        {
+          q: 'Puis-je récupérer la TVA déjà payée sur mes publicités ?',
+          a: "Cela dépend de votre régime et de la nature des justificatifs dont vous disposez. Si vous êtes assujetti à la TVA au Maroc et que vous détenez des factures en règle, votre comptable peut normalement traiter la taxe en autoliquidation et la déduire. Si vous avez diffusé depuis un compte sans identifiant fiscal, avec des reçus au nom d'un particulier, c'est beaucoup plus difficile. Parlez-en à votre comptable avec vos relevés en main.",
+        },
+        {
+          q: 'Faut-il arrêter les campagnes le temps de régulariser ?',
+          a: "Non, dans la plupart des cas. Renseigner l'identifiant fiscal ne nécessite pas d'interrompre la diffusion. Ce qu'il faut faire en revanche, c'est recalculer immédiatement votre coût par commande cible en intégrant la taxe, pour ne pas continuer à scaler une offre devenue non rentable.",
+        },
+        {
+          q: 'Un compte agence évite-t-il la TVA ?',
+          a: "Non, et personne ne devrait vous le vendre comme tel. Un compte agence avec identifiant fiscal valide change la façon dont la taxe est facturée et justifiée — vous recevez une facture marocaine exploitable comptablement — mais il ne fait pas disparaître la TVA. Toute offre qui promet d'« échapper » à la taxe devrait vous faire fuir.",
+        },
+      ],
+      disclaimer:
+        "Ce guide est une synthèse d'informations publiques à la date indiquée, destinée aux annonceurs. Il ne constitue pas un conseil fiscal. La situation dépend de votre régime, de votre statut d'assujetti et de votre documentation : faites valider votre cas par votre comptable ou votre conseil fiscal.",
+      ctaTitle: 'Nos comptes ont un identifiant fiscal valide et facturent en dirhams.',
+      ctaLead:
+        'Si votre compte actuel se fait taxer 20 % sans justificatif exploitable, c’est réparable. Vingt minutes suffisent pour faire le point.',
+    },
+
+    costs: {
+      title: 'Ce que coûte réellement la publicité en ligne au Maroc',
+      metaTitle: 'Prix de la publicité Facebook, Instagram et TikTok au Maroc — chiffres 2026 | eGrowth',
+      metaDescription:
+        'CPM, CPC, frais d’agence, budgets de départ et coût par commande au Maroc. Chiffres datés d’octobre 2026, avec les sources, et ce que les agences ne publient pas.',
+      standfirst:
+        "Des chiffres datés, avec leurs sources, et la distinction que presque personne ne fait clairement : ce que vous payez à la plateforme, ce que vous payez à l'agence, et ce que vous coûte réellement une commande livrée.",
+      summary: [
+        '**CPM au Maroc : environ 25 à 60 MAD. CPC : environ 1,0 à 3,5 MAD.** Mesuré en octobre 2026.',
+        '**Frais de gestion d’agence : de 1 500 à 25 000 MAD par mois** selon les sources publiques. La fourchette la plus courante se situe entre 2 000 et 8 000 MAD.',
+        '**Budget média de départ recommandé pour un test e-commerce : 4 000 à 8 000 MAD par mois.** En dessous d’environ 3 000 MAD, vous payez pour deviner.',
+        '**Application mobile : de 15 000 à 150 000 MAD** selon le périmètre. **Vidéo UGC : de 300 à 1 200 MAD** l’unité.',
+        'Le chiffre qui compte vraiment n’est aucun de ceux-là : c’est votre **coût par commande confirmée**, et presque personne ne le publie.',
+      ],
+      sections: [
+        {
+          h: 'Ce que coûte atteindre un Marocain',
+          body: [
+            "Au Maroc, les coûts d'inventaire publicitaire se situent actuellement autour de **25 à 60 MAD pour mille impressions** et **1,0 à 3,5 MAD par clic**, selon la plateforme, la saison et surtout la qualité de votre créa. Ces chiffres ont été relevés en octobre 2026 ; traitez-les comme un ordre de grandeur, pas comme un tarif.",
+            "La variation à l'intérieur de ces fourchettes dépend moins de votre « optimisation » que de votre contenu. Une accroche qui retient l'attention fait baisser le coût pour mille parce que la plateforme la distribue plus volontiers ; une créa faible se paie deux fois, en diffusion plus chère et en taux de clic plus bas.",
+            "TikTok offre en général le coût pour mille le plus bas du marché, Meta le meilleur équilibre entre volume et intention d'achat, Snapchat le meilleur accès aux moins de 25 ans, et Google le coût par clic le plus élevé mais la meilleure intention.",
+          ],
+        },
+        {
+          h: 'Ce que facture une agence marocaine',
+          body: [
+            "Les frais de gestion publiés par les agences marocaines vont de **1 500 à 25 000 MAD par mois**, hors budget publicitaire. La fourchette la plus fréquemment annoncée se situe entre **2 000 et 8 000 MAD par mois** pour la gestion de campagnes, et les packs SEO tournent souvent autour de 3 900 à 5 900 MAD mensuels.",
+            "Cette dispersion n'a presque aucun rapport avec la qualité. Elle reflète surtout le nombre de plateformes gérées, le volume de créa produit, et la présence ou non d'un vrai travail de mesure. Un prestataire à 2 000 MAD qui ne produit pas de créa et ne vérifie pas le tracking vous coûtera plus cher qu'un prestataire à 8 000 MAD qui fait les deux.",
+            "**La question à poser n'est pas le prix, c'est le périmètre :** combien de créas par mois, qui les produit, qui vérifie le tracking, et sur quel indicateur le rapport mensuel est construit.",
+          ],
+        },
+        {
+          h: 'La commission cachée sur le budget média',
+          body: [
+            "C'est la pratique la plus coûteuse du marché et la plus difficile à repérer. Certaines agences prélèvent une commission de 10 à 20 % sur votre budget publicitaire, en plus de leurs frais de gestion, sans que cela apparaisse clairement.",
+            "Le test est simple. **Demandez que le budget média reste à votre nom et soit payé directement à la plateforme, et demandez à voir le rapport de dépenses de la plateforme elle-même, pas un tableau reconstitué par l'agence.** Si l'une des deux demandes pose problème, vous avez votre réponse.",
+            "Nous ne prenons aucune commission sur le budget média, et le rapport hebdomadaire que vous recevez contient les chiffres de la plateforme.",
+          ],
+        },
+        {
+          h: 'Ce que coûte ce vers quoi pointent vos publicités',
+          body: [
+            "Une boutique e-commerce, une application ou un site n'ont pas de prix de marché lisible au Maroc, parce que presque personne ne publie ce qui fait varier le devis. Les fourchettes observées : **de 15 000 à 150 000 MAD pour une application mobile** selon le nombre d'écrans, le back end à développer et les fonctions natives utilisées, et de l'ordre de 2 000 à 5 000 MAD par mois pour la maintenance.",
+            "Pour une vidéo UGC, le marché marocain va de **300 MAD** pour un créateur débutant sur une place de marché à **900 à 1 200 MAD** pour une production d'agence en studio. Ces prix achètent un fichier, pas un résultat.",
+          ],
+        },
+        {
+          h: 'Le seul chiffre qui décide de tout',
+          body: [
+            "Aucun des chiffres ci-dessus ne vous dit si votre activité est rentable. Le seul qui le fasse est votre **coût par commande confirmée et livrée**, comparé à votre marge sur cette commande.",
+            "C'est aussi le chiffre que presque aucune agence marocaine ne met dans ses rapports, parce qu'il suppose de connecter la publicité à ce qui se passe après : le taux de confirmation au téléphone, les refus à la livraison, les retours. Sur un modèle en paiement à la livraison, entre 20 et 40 % des commandes passées ne se confirment jamais. Un ROAS de 3 affiché par la plateforme peut parfaitement correspondre à une perte.",
+            "Si vous ne retenez qu'une chose de ce guide : exigez que votre reporting soit construit sur la commande confirmée, et renégociez tout prestataire qui ne sait pas vous la donner.",
+          ],
+        },
+      ],
+      faqTitle: 'Questions sur les coûts',
+      faq: [
+        {
+          q: 'Quel budget minimum pour commencer sérieusement ?',
+          a: "Pour un test e-commerce au Maroc, comptez 4 000 à 8 000 MAD de budget média par mois, en plus des frais de gestion. Aux coûts actuels, cela achète assez de volume pour distinguer une créa qui fonctionne d'une créa qui échoue en deux semaines environ. En dessous de 3 000 MAD par mois, les données sont trop faibles pour décider quoi que ce soit : vous payez pour deviner.",
+        },
+        {
+          q: 'Pourquoi mon CPM est-il plus élevé que ces chiffres ?',
+          a: "Trois causes, dans cet ordre de fréquence : une créa qui ne retient pas l'attention, donc une distribution plus chère ; une audience trop étroite, qui fait monter l'enchère ; et une saisonnalité défavorable (fin d'année, Ramadan, soldes) où tout le marché enchérit en même temps. L'optimisation du compte arrive loin derrière la créa dans les causes réelles.",
+        },
+        {
+          q: 'Les frais d’agence incluent-ils la production des créas ?',
+          a: "Rarement, et c'est la première chose à vérifier. Beaucoup d'offres à bas prix couvrent le pilotage du compte mais pas la production de contenu, ce qui laisse l'annonceur relancer les mêmes trois vidéos pendant un trimestre. Demandez explicitement combien de créas sont incluses par mois et qui les produit.",
+        },
+        {
+          q: 'Vos tarifs sont-ils publiés ?',
+          a: 'Oui, en dirhams, sur la page Tarifs. Le budget média y est toujours présenté séparément et payé à la plateforme en votre nom.',
+        },
+      ],
+      disclaimer:
+        "Les fourchettes de ce guide proviennent de nos propres comptes et de tarifs publiés par des prestataires marocains, relevés à la date indiquée. Elles ne sont ni auditées ni représentatives de l'ensemble du marché, et évoluent. Demandez toujours plusieurs devis détaillés.",
+      ctaTitle: 'Nous publions nos tarifs, et nous ne prenons rien sur votre budget média.',
+      ctaLead:
+        'Dites-nous ce que vous vendez et votre marge. Vous repartez avec un chiffre, que vous signiez ou non.',
+    },
+
+    restricted: {
+      title: 'Compte publicitaire restreint : quoi faire, dans quel ordre',
+      metaTitle: 'Compte publicitaire restreint ou bloqué au Maroc — que faire | eGrowth',
+      metaDescription:
+        'Votre compte Meta ou TikTok est restreint ? Diagnostiquer la cause avant de migrer, ce qu’il ne faut surtout pas faire, et quand un compte agence règle réellement le problème.',
+      standfirst:
+        "Un compte restreint se répare en diagnostiquant la cause, pas en ouvrant un compte neuf. Si la cause est votre créa ou votre page de destination, elle vous suivra partout — et la manœuvre la plus courante pour s'en sortir est aussi celle qui rend la sanction définitive.",
+      summary: [
+        "**Ne créez pas immédiatement un nouveau compte ou un nouveau Business Manager.** Multiplier les comptes pour contourner une restriction est traité comme un contournement du système, et la sanction devient beaucoup plus difficile à lever.",
+        "**Commencez par lire la politique précise citée dans la notification.** Elle désigne presque toujours un élément concret : une allégation dans la créa, une page de destination, un produit interdit, ou une vérification d'entreprise incomplète.",
+        "Une restriction causée par l'offre elle-même **vous suivra sur n'importe quel compte**, y compris un compte agence.",
+        '**Faites un seul appel, documenté et précis.** Les appels répétés et génériques réduisent vos chances.',
+        "Un compte agence règle un problème de plafond, de facturation ou d'historique. Il ne règle pas un problème de conformité.",
+      ],
+      sections: [
+        {
+          h: 'D’abord : qu’est-ce qui a été restreint, exactement ?',
+          body: [
+            "Les notifications des plateformes sont vagues, mais la portée de la sanction ne l'est pas, et elle change tout. Un **compte publicitaire** restreint se remplace. Un **Business Manager** restreint bloque tous les actifs qu'il contient. Un **compte personnel** restreint empêche la personne de gérer quoi que ce soit, et c'est fréquent quand une seule personne administre tout.",
+            "Chez Meta, les standards publicitaires sont explicites sur un point : lorsqu'un compte professionnel ou l'un de ses actifs — compte publicitaire, Page, compte utilisateur — est restreint, cet actif ne peut plus servir à diffuser. La restriction se propage donc selon l'actif touché, pas selon vos intentions.",
+            "Identifiez le niveau avant d'agir. C'est ce qui détermine si vous avez un problème réparable en deux jours ou une reconstruction à planifier.",
+          ],
+        },
+        {
+          h: 'Les causes réelles, par fréquence',
+          body: [
+            "**La créa et la page de destination arrivent largement en tête.** Allégations de santé ou de résultats (« perdez 10 kg », « guérit »), avant/après sur le corps, faux comptes à rebours, faux avis, prix qui change au checkout, page de destination qui ne correspond pas à la publicité. Ce sont des causes de fond : elles ne disparaissent pas en changeant de compte.",
+            "**Ensuite, les problèmes de paiement et de vérification.** Carte refusée à répétition, incohérence entre le nom de l'entreprise et le moyen de paiement, vérification d'entreprise jamais terminée. Ce sont les plus faciles à corriger.",
+            "**Enfin, le contournement du système.** Plusieurs Business Managers créés après une sanction, comptes au nom de proches, contenu modifié après approbation. C'est la catégorie la plus grave, et la plus souvent déclenchée par une réaction de panique après la première restriction.",
+          ],
+        },
+        {
+          h: 'La séquence à suivre',
+          body: [
+            "**Un.** Lisez la politique citée et trouvez l'élément exact qui la déclenche. Si la notification ne le dit pas, passez vos cinq dernières publicités et votre page de destination au crible des standards publicitaires, ligne par ligne.",
+            "**Deux.** Corrigez la cause avant de faire appel. Un appel déposé alors que la publicité fautive est toujours en ligne échoue presque systématiquement.",
+            "**Trois.** Faites appel une fois, en citant ce que vous avez corrigé et où. Pas de message générique, pas de relance quotidienne.",
+            "**Quatre.** Pendant ce temps, mettez à l'abri ce qui a de la valeur : votre pixel, vos audiences, votre catalogue. Si ces actifs sont dans un Business Manager à votre nom, vous pouvez changer de compte publicitaire sans perdre votre historique de conversions — c'est précisément pour cette raison que nous insistons pour que ces actifs restent chez vous.",
+          ],
+        },
+        {
+          h: 'Quand un compte agence règle le problème, et quand il ne règle rien',
+          body: [
+            "Un compte agence résout réellement trois situations : un plafond de dépenses trop bas pour votre niveau d'activité, une facturation impossible depuis le Maroc avec vos moyens de paiement, et un compte neuf sans historique qui n'arrive pas à sortir de la phase d'apprentissage.",
+            "Il ne résout rien du tout si votre offre, votre créa ou votre page de destination enfreignent les règles. Dans ce cas, le compte agence sera restreint à son tour — et vous aurez perdu du temps et de l'argent en plus.",
+            "C'est la raison pour laquelle nous examinons l'offre et les pages de destination avant d'ouvrir un compte, et pourquoi nous refusons certains dossiers. Un compte restreint dans notre portefeuille pénalise tous les autres annonceurs qui s'y trouvent.",
+          ],
+        },
+      ],
+      faqTitle: 'Questions sur les comptes restreints',
+      faq: [
+        {
+          q: 'Combien de temps prend un appel ?',
+          a: "C'est variable et aucune plateforme ne s'engage sur un délai. Comptez quelques jours dans les cas simples, bien plus pour une vérification d'entreprise ou une sanction au niveau du Business Manager. Pendant ce temps, travaillez sur la correction de fond plutôt que sur des relances.",
+        },
+        {
+          q: 'Puis-je diffuser depuis le compte de quelqu’un d’autre en attendant ?',
+          a: "C'est exactement la manœuvre qui transforme une restriction temporaire en sanction définitive. Diffuser la même offre depuis le compte d'un proche après une restriction est traité comme un contournement du système. Ne le faites pas.",
+        },
+        {
+          q: 'Mon pixel est-il perdu ?',
+          a: "Pas si votre Business Manager est à votre nom et que la restriction porte sur le compte publicitaire seulement. Le pixel, les audiences et le catalogue appartiennent au portefeuille, pas au compte publicitaire — vous pouvez donc reprendre la diffusion ailleurs avec votre historique de conversions intact. Si c'est le Business Manager lui-même qui est restreint, c'est une autre affaire.",
+        },
+        {
+          q: 'Vous reprenez les comptes restreints ?',
+          a: "Nous commençons toujours par chercher la cause, gratuitement, pendant l'appel de cadrage. Si la cause est structurelle — plafond, facturation, historique — nous pouvons vous installer rapidement. Si la cause est votre offre ou votre créa, nous vous dirons quoi corriger, et nous n'ouvrirons pas de compte avant que ce soit fait.",
+        },
+      ],
+      disclaimer:
+        "Ce guide décrit des pratiques observées et s'appuie sur les politiques publiques des plateformes à la date indiquée. Ces politiques et leurs procédures d'appel changent régulièrement : vérifiez toujours la version en vigueur dans le centre d'aide de la plateforme concernée.",
+      ctaTitle: 'Commençons par trouver pourquoi, avant de parler de compte.',
+      ctaLead:
+        'Vingt minutes sur votre offre, votre créa et votre page de destination. Si le problème est réparable sans changer de compte, nous vous le dirons.',
+    },
+  },
+
+  glossary: {
+    metaTitle: 'Glossaire de la publicité en ligne au Maroc | eGrowth',
+    metaDescription:
+      'Les termes de la publicité en ligne définis simplement : compte agence, Business Manager, pixel, Conversions API, ROAS, CPM, autoliquidation, taux de confirmation.',
+    title: 'Glossaire',
+    lead:
+      "Les termes qui reviennent dans un appel sur deux. Une phrase chacun, sans jargon, et avec la précision qui compte réellement au Maroc.",
+    ctaTitle: 'Un terme vous échappe encore ?',
+    ctaLead: 'Posez la question pendant l’appel de cadrage. Personne ne vous jugera.',
+    terms: [
+      {
+        term: 'Compte publicitaire agence',
+        def: "Un compte publicitaire qui se trouve dans le portefeuille d'une agence, et auquel un annonceur a accès pour diffuser. **Il ne s'achète pas et ne se transfère pas** : les conditions des plateformes encadrent la vente de comptes. Ce qu'une agence peut fournir légitimement, c'est un accès géré à la diffusion, encadré par un contrat de service.",
+      },
+      {
+        term: 'Business Manager (portefeuille professionnel)',
+        def: "Le conteneur qui détient vos actifs Meta : Pages, pixels, catalogues, audiences et accès des personnes. **C'est le seul élément qui doit absolument être à votre nom.** Tant qu'il l'est, changer de compte publicitaire ou d'agence ne vous fait rien perdre.",
+      },
+      {
+        term: 'Pixel',
+        def: "Un bout de code sur votre site qui signale à la plateforme ce que font les visiteurs : page vue, ajout au panier, commande. Il appartient au Business Manager, pas au compte publicitaire — c'est pourquoi un compte restreint ne détruit pas votre historique si le portefeuille est à vous.",
+      },
+      {
+        term: 'Conversions API (CAPI)',
+        def: "L'envoi des conversions depuis votre serveur plutôt que depuis le navigateur du visiteur. Plus fiable que le pixel seul, puisque ni un bloqueur de publicités ni une coupure de réseau ne l'empêchent. Les deux fonctionnent en parallèle, avec une déduplication par identifiant d'événement.",
+      },
+      {
+        term: 'ROAS',
+        def: "Le chiffre d'affaires attribué divisé par la dépense publicitaire. **Attention : le ROAS affiché par la plateforme compte les commandes passées, pas les commandes livrées.** En paiement à la livraison, un ROAS de 3 peut parfaitement correspondre à une perte.",
+      },
+      {
+        term: 'CPM',
+        def: 'Le coût pour mille impressions. Au Maroc, il se situe actuellement autour de 25 à 60 MAD selon la plateforme et la qualité de la créa. Une bonne accroche fait baisser le CPM, parce que la plateforme distribue plus volontiers ce qui retient l’attention.',
+      },
+      {
+        term: 'CPC',
+        def: 'Le coût par clic, actuellement autour de 1,0 à 3,5 MAD au Maroc. Utile pour diagnostiquer une créa, inutile comme objectif : un clic bon marché qui ne commande jamais coûte plus cher qu’un clic cher qui convertit.',
+      },
+      {
+        term: 'Paiement à la livraison (COD)',
+        def: "Le client paie au livreur, pas en ligne. Mode de paiement dominant au Maroc, et la raison pour laquelle une commande passée n'est pas une vente : il reste à la confirmer au téléphone, puis à la faire accepter à la porte.",
+      },
+      {
+        term: 'Taux de confirmation',
+        def: "La part des commandes passées qui sont confirmées au téléphone. **Entre 20 et 40 % ne le sont jamais.** C'est l'indicateur le plus rentable à travailler au Maroc, et presque aucun prestataire ne le facture ni ne le rapporte.",
+      },
+      {
+        term: 'Coût par commande confirmée',
+        def: "La dépense publicitaire divisée par le nombre de commandes réellement confirmées. **Le seul chiffre qui dit si votre activité est rentable**, et celui sur lequel nos rapports hebdomadaires sont construits.",
+      },
+      {
+        term: 'Plafond de dépenses',
+        def: "La limite que la plateforme impose à un compte sur une période. Elle augmente avec l'historique de dépenses et de paiements. Personne ne peut vous fournir un compte sans plafond : une offre « budget illimité » décrit une chose qui n'existe pas.",
+      },
+      {
+        term: 'Phase d’apprentissage',
+        def: "La période pendant laquelle la plateforme cherche à qui montrer vos publicités, avant que les performances se stabilisent. Un compte découpé en trop d'ad sets n'en sort jamais, parce qu'aucun ne reçoit assez de conversions. C'est la cause la plus courante de gaspillage silencieux.",
+      },
+      {
+        term: 'Autoliquidation (reverse charge)',
+        def: "Le mécanisme par lequel c'est vous, et non le fournisseur étranger, qui calculez et déclarez la TVA sur un service acheté hors du Maroc. Il reste applicable même lorsque la plateforme n'ajoute pas la TVA à vos achats publicitaires.",
+      },
+      {
+        term: 'UGC',
+        def: "Du contenu au format « créateur » : vertical, filmé au téléphone, qui ressemble à une recommandation plutôt qu'à une publicité. Sur Meta et TikTok, la créa détermine aujourd'hui qui voit votre annonce — c'est donc devenu un levier de ciblage, pas de décoration.",
+      },
+    ],
+  },
 };
