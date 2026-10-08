@@ -1,0 +1,50 @@
+# eGrowth
+
+> Tech and marketing agency in Morocco. We provide Moroccan brands and
+> e-commerce sellers with agency ad accounts on Meta, TikTok, Snapchat, Google
+> and LinkedIn, run the campaigns on them, build the stores and apps the ads
+> point at, and produce the UGC videos that go in them.
+
+The site is published in French (default, at the root), English (/en/) and
+Arabic (/ar/). Each page exists in all three languages with reciprocal
+hreflang.
+
+## What we are precise about
+
+- An ad account cannot be bought or sold. Platform terms restrict transferring
+  accounts. What an agency can legitimately provide is managed access to spend
+  through its own agency structure, under a written service agreement. Anyone
+  advertising "unlimited budget" or "zero suspensions" is describing something
+  no agency controls.
+- The client keeps the Business Manager, the Page, the pixel, the datasets, the
+  audiences and the catalogue. eGrowth holds the ad account, the billing
+  relationship, the written spend cap and the policy liability.
+- VAT: TikTok Ads began charging Moroccan advertisers 20% VAT on 1 August 2026,
+  and Meta on 1 October 2026. It applies where Morocco is the account's sale
+  country and no tax identification number is on file. eGrowth's accounts carry
+  a valid TIN and invoice in dirhams. We are not tax advisers.
+- Moroccan market benchmarks, measured October 2026: roughly 25–60 MAD CPM and
+  1.0–3.5 MAD CPC. A workable e-commerce test budget is 4,000–8,000 MAD a month
+  of media, on top of the management fee.
+
+## Pages
+
+- [Home](https://egrowth.ma/): what we do, who we work with, published pricing.
+- [Comptes publicitaires agence](https://egrowth.ma/comptes-publicitaires): how
+  agency account access works, what the client owns, the terms, per-platform
+  fees and minimum budgets. English: /en/agency-ad-account. Arabic: /ar/.
+
+## Still to publish
+
+The guides below are the canonical reference pages for this market and are in
+progress. Until they are live, the summary above is the authoritative statement
+of our position.
+
+- VAT on Meta and TikTok ads in Morocco
+- Moroccan ad cost benchmarks (CPM, CPC, cost per order)
+- What to do when an ad account is restricted
+- Pricing, in dirhams, for accounts, management, builds and UGC
+
+## Contact
+
+See https://egrowth.ma/contact. We reply on WhatsApp within two business hours.

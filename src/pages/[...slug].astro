@@ -1,0 +1,52 @@
+---
+/**
+ * The only page file in the project.
+ *
+ * Every URL in every locale is generated from src/data/routes.ts, so a slug is
+ * pure data: Arabic script in a URL never has to become an Arabic filename on
+ * disk, and changing a slug or adding a locale touches one file.
+ */
+import { routes, routeKeys, locales, type Locale, type RouteKey } from '../data/routes';
+
+import Home from '../views/Home.astro';
+import AdAccounts from '../views/AdAccounts.astro';
+
+export function getStaticPaths() {
+  const paths: { params: { slug: string | undefined }; props: { routeKey: RouteKey; lang: Locale } }[] = [];
+
+  for (const key of routeKeys) {
+    if (!routes[key].built) continue;
+
+    for (const lang of locales) {
+      const slug = routes[key].path[lang];
+      const prefix = lang === 'fr' ? '' : lang;
+      const full = [prefix, slug].filter(Boolean).join('/');
+
+      paths.push({
+        params: { slug: full === '' ? undefined : full },
+        props: { routeKey: key, lang },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { routeKey, lang } = Astro.props;
+
+/** Route key -> view. A page with no view here is not `built: true` yet. */
+const views = {
+  home: Home,
+  adAccounts: AdAccounts,
+} as const;
+
+const View = views[routeKey as keyof typeof views];
+
+if (!View) {
+  throw new Error(
+    `Route "${routeKey}" is marked built:true in routes.ts but has no view in [...slug].astro`,
+  );
+}
+---
+
+<View lang={lang} routeKey={routeKey} />

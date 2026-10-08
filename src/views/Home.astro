@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { t } from '../i18n';
+import type { Locale, RouteKey } from '../data/routes';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+---
+
+<Base lang={lang} routeKey={routeKey} title={c.home.metaTitle} description={c.home.metaDescription}>
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <h1>{c.home.heroTitle}</h1>
+        <p class="lead">{c.home.heroLead}</p>
+      </div>
+    </section>
+  </main>
+</Base>
