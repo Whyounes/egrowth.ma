@@ -457,4 +457,167 @@ export const en: Copy = {
         'Setup takes 24 to 48 hours. You need a LinkedIn company Page and, ideally, a CRM we can push lead qualification back into.',
     },
   },
+
+  servicesHub: {
+    metaTitle: 'Services — paid media, builds and UGC in Morocco | eGrowth',
+    metaDescription:
+      'Meta Ads, Google Ads and TikTok Ads management, CRO, server-side tracking, e-commerce stores, mobile apps, websites and UGC video production for Moroccan advertisers.',
+    title: 'Everything between a budget and an order.',
+    lead:
+      'We sell three things and they hold together: the media buying that brings the traffic, the digital product it lands on, and the creative that makes it click. Most advertisers buy all three separately and pay the difference in lost orders.',
+    groupTitle: {
+      media: 'Acquisition and measurement',
+      build: 'What we build',
+      creative: 'Creative and content',
+    },
+    groupLead: {
+      media: 'The campaigns, and the plumbing that tells you which of them actually worked.',
+      build:
+        'The destination your ads point at, built by the people who buy the media — so it is fast and measured from day one.',
+      creative: 'The video and the visuals that now decide who sees your ad at all.',
+    },
+    ctaTitle: 'Tell us where it is leaking, and we will tell you where to start.',
+    ctaLead:
+      'You do not need all nine. Twenty minutes is usually enough to find the two that matter for you.',
+  },
+
+  servicePages: {
+    groupLabel: {
+      media: 'Paid media',
+      build: 'Build',
+      creative: 'Creative',
+    },
+    whyTitle: 'Why it matters',
+    getTitle: 'What you get',
+    howTitle: 'How we start',
+    relatedTitle: 'See also',
+    allServices: 'All services',
+
+    metaAds: {
+      title: 'Meta Ads management',
+      metaTitle: 'Meta Ads Agency Morocco — Facebook & Instagram management | eGrowth',
+      metaDescription:
+        'Meta Ads agency in Morocco: campaign structure, Darija creative, server-side tracking and reporting against confirmed orders. Fees published in dirhams.',
+      tagline: 'Facebook and Instagram, run against one question: what does a confirmed order cost?',
+      why: 'Meta is where most Moroccan e-commerce makes its revenue, and also where most of it is wasted. The two usual causes are an over-fragmented account — fifteen ad sets competing for the same budget and never leaving the learning phase — and tracking that reports "purchases" nobody confirmed on the phone. We rebuild the structure around the offer rather than around the dashboard, and wire measurement to the order that actually gets delivered.',
+      whatYouGet: [
+        'A deliberately simple campaign structure, with enough budget per ad set to leave the learning phase',
+        'Three to five creative angles tested per cycle, written in Darija or French to match the audience',
+        'Pixel and Conversions API verified against real test orders, with deduplication',
+        'A weekly report on confirmed orders and margin, not on platform-reported ROAS',
+      ],
+    },
+    googleAds: {
+      title: 'Google Ads management',
+      metaTitle: 'Google Ads Agency Morocco — Search, Shopping and YouTube | eGrowth',
+      metaDescription:
+        'Google Ads agency in Morocco: Search, Shopping, Performance Max and YouTube. We check the real search volume before recommending the platform at all.',
+      tagline: 'Capturing demand that already exists, instead of creating it.',
+      why: 'Google is the most profitable platform when there is search volume in your category, and the most disappointing when there is not. Plenty of Moroccan advertisers pay for Search campaigns on keywords nobody types, or let Performance Max spend most of the budget on remarketing dressed up as acquisition. We start by measuring the real volume, then split brand from non-brand so you can see what you are paying for.',
+      whatYouGet: [
+        'A real search-volume check before any budget is committed',
+        'Brand and non-brand campaigns kept separate, so you are not paying for customers you already had',
+        'Shopping with the product feed actually fixed: titles, GTINs, availability, price',
+        'Search terms and negatives reviewed weekly, not quarterly',
+      ],
+    },
+    tiktokAds: {
+      title: 'TikTok Ads management',
+      metaTitle: 'TikTok Ads Agency Morocco — campaign and creative management | eGrowth',
+      metaDescription:
+        'TikTok Ads agency in Morocco: continuous creative production, Spark Ads, catalogue and measurement against confirmed orders. The 20% VAT is handled correctly.',
+      tagline: 'The cheapest reach on the market, provided you produce enough creative.',
+      why: 'TikTok currently delivers the lowest cost per thousand in Morocco, but the platform does not forgive weak creative: without a hook that holds the first three seconds, the budget goes out with nothing to show. So it is not a platform you optimise, it is a platform you feed. We always pair it with UGC production, because running TikTok without a creative pipeline is running a campaign without a budget.',
+      whatYouGet: [
+        'A steady creative pipeline rather than three videos relaunched for a quarter',
+        'Spark Ads from your own brand account, so the social proof accumulates',
+        'Catalogue and web events configured and verified',
+        'Winning hooks re-cut into variants and losing ones killed, weekly',
+      ],
+    },
+    ugc: {
+      title: 'UGC video production',
+      metaTitle: 'UGC Morocco — creator videos for TikTok, Reels and Snapchat | eGrowth',
+      metaDescription:
+        'UGC videos in Morocco with local creators in Darija, French and Arabic. Paid usage rights included, and every video is tested in your account on cost per order.',
+      tagline: 'Moroccan creators — and, more to the point, what happens next in your account.',
+      why: 'The Moroccan UGC market sells files: roughly 300 to 1,200 MAD a video depending on the marketplace or agency. The problem is that a video has no value on its own — the hook that lowers your cost per order does, and you only find it by running fifteen variants against each other in a live account. That is precisely what a video shop cannot do for you, and the whole reason to buy it from the same place as the media.',
+      whatYouGet: [
+        'Moroccan creators cast to match your buyer, in Darija, French or Arabic',
+        'Shot in our studio or in the creator’s own home, whichever the angle needs',
+        'Every hook cut three ways, captions burned in, vertical formats',
+        'Paid usage rights in writing, and the source files handed over',
+      ],
+    },
+    cro: {
+      title: 'CRO & landing pages',
+      metaTitle: 'CRO and landing pages in Morocco — cash on delivery | eGrowth',
+      metaDescription:
+        'Conversion rate optimisation for Moroccan e-commerce: one-page checkout, Darija copy, and work on the COD order confirmation rate.',
+      tagline: 'In Morocco, conversion does not stop at the "order" button.',
+      why: 'Under cash on delivery, a placed order is not a sale: somewhere between 20% and 40% are never confirmed on the phone, and that rate costs far more than the page conversion rate does. So we work both ends — the page that gets the order, and the process that turns the order into an accepted delivery. Almost nobody in Morocco charges for the second part, and it is frequently the one that makes a campaign profitable.',
+      whatYouGet: [
+        'One-page checkout, tested on a cheap Android and a slow connection',
+        'Copy and objections handled in Darija, not translated from French',
+        'A WhatsApp confirmation flow to recover hesitant orders',
+        'Tests measured on confirmed orders, never on clicks',
+      ],
+    },
+    tracking: {
+      title: 'Tracking & Conversions API',
+      metaTitle: 'Ad tracking and Conversions API setup in Morocco | eGrowth',
+      metaDescription:
+        'Pixel, Conversions API and server-side tracking setup, verified against real test orders. You keep ownership of the pixel and the data.',
+      tagline: 'If the measurement is wrong, everything downstream of it is wrong.',
+      why: 'Most of the ad accounts we take over are reporting false numbers: events counted twice, purchases firing on the thank-you page even when payment failed, or nothing at all reported about what happened after the order. The algorithm then optimises toward the wrong signal and you pay for volume that never gets delivered. We rebuild measurement server-side and verify it against real orders before letting a campaign run.',
+      whatYouGet: [
+        'Pixel and Conversions API in parallel, deduplicated by event ID',
+        'Every event verified one by one against real test orders',
+        'Offline conversions fed back: order confirmed, delivered, returned',
+        'All of it inside your Business Manager, documented, and portable without us',
+      ],
+    },
+    ecommerce: {
+      title: 'E-commerce store',
+      metaTitle: 'Shopify & WooCommerce Agency Morocco — COD stores | eGrowth',
+      metaDescription:
+        'Shopify and WooCommerce stores built for the Moroccan market: cash on delivery, fast checkout, courier integration and verified tracking.',
+      tagline: 'A store built to be advertised, not just to be delivered.',
+      why: 'A Moroccan e-commerce store has constraints that generic themes ignore: cash on delivery as the main payment method, modest Android phones, slow connections, and buyers who read Darija. Every extra second of load time is paid for in orders lost from traffic you already bought. We build the store knowing what that traffic costs, because we are the ones buying it.',
+      whatYouGet: [
+        'Shopify or WooCommerce, with a lean theme rather than one loaded with apps',
+        'One-page COD checkout, fields cut to the minimum',
+        'Courier integration and order export',
+        'Pixel, Conversions API and catalogue verified before launch',
+      ],
+    },
+    apps: {
+      title: 'Mobile app development',
+      metaTitle: 'Mobile App Development Morocco — iOS and Android | eGrowth',
+      metaDescription:
+        'iOS and Android app development in Morocco from one Flutter or React Native codebase. Written scoping, back office, store submission and mobile measurement.',
+      tagline: 'iOS and Android from one codebase, with measurement in the first build.',
+      why: 'App quotes in Morocco run from 15,000 to 150,000 MAD and almost nobody explains what drives the difference: the number of screens, the back end to build, the native features used, and the maintenance. We scope all of that in writing before giving a number. And because we also buy media, we install mobile measurement in the first build — without it you have an app you cannot promote.',
+      whatYouGet: [
+        'A single Flutter or React Native codebase for iOS and Android',
+        'Back office, push notifications and submission to both stores',
+        'Mobile measurement and attribution wired in from the first build',
+        'Written scoping before the quote, and the code handed over documented',
+      ],
+    },
+    websites: {
+      title: 'Website & landing pages',
+      metaTitle: 'Multilingual Website Development Morocco — FR, AR, EN | eGrowth',
+      metaDescription:
+        'Multilingual websites and landing pages in Morocco: French, Arabic and English, static, edge-cached, scoring in the green on Core Web Vitals.',
+      tagline: 'Static, trilingual, green on Core Web Vitals. This site is the proof.',
+      why: 'A Moroccan company site usually has to live in three languages, load on a mediocre mobile connection, and be found by Google as much as by an AI assistant. All three push toward the same technical answer: static, pre-rendered pages with no JavaScript on first paint, correct hreflang, and markup a machine can read. That is exactly how this site is built, and the code is public.',
+      whatYouGet: [
+        'French, Arabic and English, with real RTL and reciprocal hreflang',
+        'Static, edge-cached pages with no JavaScript on first paint',
+        'Campaign landing pages your team can clone without us',
+        'A written performance budget, checked on every deploy',
+      ],
+    },
+  },
 };

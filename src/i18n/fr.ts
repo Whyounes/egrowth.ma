@@ -460,4 +460,171 @@ export const fr = {
         'Mise en place en 24 à 48 heures. Il faut une Page entreprise LinkedIn et, idéalement, un CRM dans lequel nous pouvons renvoyer la qualification des leads.',
     },
   },
+
+  servicesHub: {
+    metaTitle: 'Services — acquisition payante, développement et UGC au Maroc | eGrowth',
+    metaDescription:
+      "Gestion Meta Ads, Google Ads et TikTok Ads, CRO, tracking côté serveur, boutiques e-commerce, applications mobiles, sites web et production vidéo UGC pour les annonceurs marocains.",
+    title: 'Tout ce qui se trouve entre un budget et une commande.',
+    lead:
+      "Nous vendons trois choses, et elles se tiennent : l'achat média qui amène le trafic, le produit numérique vers lequel il arrive, et la créa qui le fait cliquer. La plupart des annonceurs achètent les trois séparément et paient la différence en commandes perdues.",
+    groupTitle: {
+      media: 'Acquisition et mesure',
+      build: 'Ce que nous construisons',
+      creative: 'Créa et contenu',
+    },
+    groupLead: {
+      media:
+        "Les campagnes, et l'infrastructure qui permet de savoir lesquelles ont réellement fonctionné.",
+      build:
+        'La destination de vos publicités, construite par ceux qui achètent le média — donc rapide et mesurée dès le premier jour.',
+      creative:
+        "Les vidéos et les visuels qui décident aujourd'hui de qui voit votre publicité.",
+    },
+    ctaTitle: 'Dites-nous où ça coince, et nous vous dirons par quoi commencer.',
+    ctaLead:
+      "Vous n'avez pas besoin des neuf. Vingt minutes suffisent généralement pour identifier les deux qui comptent pour vous.",
+  },
+
+  servicePages: {
+    groupLabel: {
+      media: 'Acquisition payante',
+      build: 'Développement',
+      creative: 'Créa',
+    },
+    whyTitle: 'Pourquoi ça compte',
+    getTitle: 'Ce que vous obtenez',
+    howTitle: 'Comment on démarre',
+    relatedTitle: 'Voir aussi',
+    allServices: 'Tous les services',
+
+    metaAds: {
+      title: 'Gestion Meta Ads',
+      metaTitle: 'Agence Meta Ads Maroc — gestion Facebook et Instagram | eGrowth',
+      metaDescription:
+        'Agence Meta Ads au Maroc : structure de campagnes, créas en darija, tracking côté serveur et reporting sur les commandes confirmées. Tarifs publiés en dirhams.',
+      tagline:
+        'Facebook et Instagram gérés sur une seule question : combien coûte une commande confirmée ?',
+      why: "Meta est la plateforme où la majorité des e-commerces marocains font leur chiffre, et aussi celle où l'on gaspille le plus. Les deux causes habituelles sont un compte trop fragmenté — quinze ad sets qui se disputent le même budget sans jamais sortir de la phase d'apprentissage — et un tracking qui remonte des « achats » que personne n'a confirmés au téléphone. Nous reconstruisons la structure autour de l'offre, pas autour du tableau de bord, et nous câblons la mesure sur la commande réellement livrée.",
+      whatYouGet: [
+        'Une structure de campagnes volontairement simple, avec un budget par ad set suffisant pour sortir de la phase d’apprentissage',
+        'Trois à cinq angles créatifs testés par cycle, écrits en darija ou en français selon l’audience',
+        'Pixel et Conversions API vérifiés sur de vraies commandes test, avec déduplication',
+        'Un rapport hebdomadaire sur les commandes confirmées et la marge, pas sur le ROAS déclaré par la plateforme',
+      ],
+    },
+    googleAds: {
+      title: 'Gestion Google Ads',
+      metaTitle: 'Agence Google Ads Maroc — Search, Shopping et YouTube | eGrowth',
+      metaDescription:
+        'Agence Google Ads au Maroc : Search, Shopping, Performance Max et YouTube. Nous vérifions le volume de recherche réel avant de vous recommander la plateforme.',
+      tagline: 'Capter une demande qui existe déjà, au lieu de la créer.',
+      why: "Google est la plateforme la plus rentable quand il y a du volume de recherche sur votre catégorie, et la plus décevante quand il n'y en a pas. Beaucoup d'annonceurs marocains paient pour des campagnes Search sur des mots-clés que personne ne tape, ou laissent Performance Max dépenser l'essentiel du budget sur du remarketing déguisé en acquisition. Nous commençons par mesurer le volume réel, puis nous séparons marque et hors-marque pour que vous sachiez ce que vous payez.",
+      whatYouGet: [
+        'Une vérification du volume de recherche réel avant tout engagement budgétaire',
+        'Campagnes marque et hors-marque séparées, pour ne pas payer pour des clients déjà acquis',
+        'Shopping avec un flux produits corrigé : titres, GTIN, disponibilité, prix',
+        'Exclusions et termes de recherche revus chaque semaine, pas chaque trimestre',
+      ],
+    },
+    tiktokAds: {
+      title: 'Gestion TikTok Ads',
+      metaTitle: 'Agence TikTok Ads Maroc — gestion de campagnes et créas | eGrowth',
+      metaDescription:
+        'Agence TikTok Ads au Maroc : production créative en continu, Spark Ads, catalogue et mesure sur la commande confirmée. La TVA de 20 % est traitée correctement.',
+      tagline: 'La portée la moins chère du marché, à condition de produire assez de créas.',
+      why: "TikTok offre aujourd'hui le coût pour mille le plus bas au Maroc, mais la plateforme ne pardonne pas une créa faible : sans accroche qui tient les trois premières secondes, le budget part sans rien produire. Ce n'est donc pas une plateforme qu'on « optimise », c'est une plateforme qu'on alimente. Nous la couplons systématiquement à la production UGC, parce que gérer TikTok sans flux créatif revient à gérer une campagne sans budget.",
+      whatYouGet: [
+        'Un flux créatif régulier plutôt que trois vidéos relancées pendant un trimestre',
+        'Spark Ads depuis votre compte de marque, pour conserver les preuves sociales',
+        'Catalogue et événements web configurés et vérifiés',
+        'Les accroches gagnantes remontées en variantes, les perdantes coupées chaque semaine',
+      ],
+    },
+    ugc: {
+      title: 'Production vidéo UGC',
+      metaTitle: 'UGC Maroc — créateurs vidéo pour TikTok, Reels et Snapchat | eGrowth',
+      metaDescription:
+        "Vidéos UGC au Maroc avec des créateurs locaux en darija, français et arabe. Droits publicitaires inclus, et chaque vidéo est testée dans votre compte au coût par commande.",
+      tagline:
+        'Des créateurs marocains, et surtout ce qui se passe après : le test dans votre compte.',
+      why: "Le marché marocain de l'UGC vend des fichiers : entre 300 et 1 200 MAD la vidéo selon la plateforme ou l'agence. Le problème est qu'une vidéo n'a pas de valeur en soi — c'est l'accroche qui baisse votre coût par commande qui en a, et on ne la trouve qu'en faisant tourner une quinzaine de variantes les unes contre les autres dans un compte actif. C'est exactement ce qu'un studio vidéo ne peut pas faire pour vous, et c'est tout l'intérêt de l'acheter au même endroit que l'achat média.",
+      whatYouGet: [
+        'Casting de créateurs marocains correspondant à votre acheteur, en darija, français ou arabe',
+        'Tournage en studio ou chez le créateur, selon ce qu’exige l’angle',
+        'Chaque accroche montée en trois versions, sous-titres incrustés, formats verticaux',
+        'Droits d’utilisation publicitaire écrits, et les fichiers sources livrés',
+      ],
+    },
+    cro: {
+      title: 'CRO et landing pages',
+      metaTitle: 'CRO et landing pages au Maroc — paiement à la livraison | eGrowth',
+      metaDescription:
+        "Optimisation du taux de conversion pour le e-commerce marocain : checkout en une page, copie en darija, et travail sur le taux de confirmation des commandes COD.",
+      tagline: 'Au Maroc, la conversion ne s’arrête pas au clic sur « commander ».',
+      why: "Dans un modèle de paiement à la livraison, une commande passée n'est pas une vente : entre 20 et 40 % ne sont jamais confirmées au téléphone, et ce taux-là coûte bien plus cher que le taux de conversion de la page. Nous travaillons donc les deux bouts — la page qui fait commander, et le processus qui transforme la commande en livraison acceptée. C'est le travail que presque personne ne facture au Maroc, et c'est souvent celui qui rend une campagne rentable.",
+      whatYouGet: [
+        'Checkout en une page, testé sur un Android d’entrée de gamme et une connexion lente',
+        'Copie et objections traitées en darija, pas une traduction du français',
+        'Flux de confirmation WhatsApp pour récupérer les commandes hésitantes',
+        'Tests mesurés sur la commande confirmée, jamais sur le clic',
+      ],
+    },
+    tracking: {
+      title: 'Tracking et Conversions API',
+      metaTitle: 'Tracking publicitaire et Conversions API au Maroc | eGrowth',
+      metaDescription:
+        'Mise en place du pixel, de la Conversions API et du tracking côté serveur, vérifiée sur de vraies commandes test. Vous gardez la propriété du pixel et des données.',
+      tagline: 'Si la mesure est fausse, tout ce qui en découle est faux.',
+      why: "La majorité des comptes publicitaires que nous reprenons remontent des chiffres faux : événements comptés deux fois, achats déclenchés au chargement de la page de remerciement même quand le paiement a échoué, ou aucune remontée de ce qui s'est passé après la commande. L'algorithme optimise alors vers le mauvais signal, et vous payez pour du volume qui ne se livre pas. Nous reconstruisons la mesure côté serveur et nous la vérifions sur de vraies commandes avant de laisser une campagne tourner.",
+      whatYouGet: [
+        'Pixel et Conversions API en parallèle, avec déduplication par identifiant d’événement',
+        'Événements vérifiés un par un sur de vraies commandes test',
+        'Remontée des conversions hors ligne : commande confirmée, livrée, retournée',
+        'Tout dans votre Business Manager, documenté, et transférable sans nous',
+      ],
+    },
+    ecommerce: {
+      title: 'Boutique e-commerce',
+      metaTitle: 'Agence Shopify et WooCommerce au Maroc — boutiques COD | eGrowth',
+      metaDescription:
+        "Création de boutiques Shopify et WooCommerce pour le marché marocain : paiement à la livraison, checkout rapide, intégration transporteur et tracking vérifié.",
+      tagline: 'Une boutique construite pour être annoncée, pas seulement pour être livrée.',
+      why: "Une boutique e-commerce marocaine a des contraintes que les thèmes génériques ignorent : le paiement à la livraison comme mode principal, des téléphones Android modestes, des connexions lentes, et des acheteurs qui lisent la darija. Chaque seconde de chargement supplémentaire se paie en commandes perdues sur du trafic que vous avez acheté. Nous construisons la boutique en sachant ce que coûte ce trafic, parce que c'est nous qui l'achetons.",
+      whatYouGet: [
+        'Shopify ou WooCommerce, avec un thème allégé plutôt qu’un thème surchargé de modules',
+        'Checkout COD en une page, champs réduits au strict nécessaire',
+        'Intégration du transporteur et export des commandes',
+        'Pixel, Conversions API et catalogue vérifiés avant le lancement',
+      ],
+    },
+    apps: {
+      title: 'Développement d’application mobile',
+      metaTitle: 'Développement d’application mobile au Maroc — iOS et Android | eGrowth',
+      metaDescription:
+        'Développement d’applications iOS et Android au Maroc depuis une base de code Flutter ou React Native. Cadrage écrit, back-office, publication sur les stores et mesure mobile.',
+      tagline: 'iOS et Android depuis une seule base de code, avec la mesure dès la première version.',
+      why: "Les devis d'application au Maroc vont de 15 000 à 150 000 MAD et presque personne n'explique ce qui fait la différence : le nombre d'écrans, le back end à développer, les fonctions natives utilisées, et la maintenance. Nous cadrons tout cela par écrit avant de donner un chiffre. Et parce que nous achetons aussi du média, nous installons la mesure mobile dans la première version — sans quoi vous aurez une application que vous ne pouvez pas promouvoir.",
+      whatYouGet: [
+        'Une seule base de code Flutter ou React Native pour iOS et Android',
+        'Back-office, notifications push et publication sur les deux stores',
+        'Mesure mobile et attribution câblées dès la première version',
+        'Un cadrage écrit avant le devis, et le code livré avec sa documentation',
+      ],
+    },
+    websites: {
+      title: 'Site web et landing pages',
+      metaTitle: 'Création de site web multilingue au Maroc — français, arabe, anglais | eGrowth',
+      metaDescription:
+        'Sites vitrines et landing pages multilingues au Maroc : français, arabe et anglais, statiques, mis en cache à la périphérie, au vert sur les Core Web Vitals.',
+      tagline: 'Statique, trilingue, et au vert sur les Core Web Vitals. Ce site en est la preuve.',
+      why: "Un site d'entreprise marocain doit généralement vivre en trois langues, se charger sur une connexion mobile médiocre, et être trouvé par Google autant que par un assistant IA. Les trois exigences poussent vers la même réponse technique : des pages statiques, pré-rendues, sans JavaScript au premier affichage, avec un hreflang correct et un balisage lisible par une machine. C'est exactement la façon dont ce site est construit, et le code est public.",
+      whatYouGet: [
+        'Français, arabe et anglais, avec un vrai RTL et un hreflang réciproque',
+        'Pages statiques mises en cache à la périphérie, sans JavaScript au premier affichage',
+        'Des landing pages de campagne que votre équipe peut dupliquer seule',
+        'Un budget de performance écrit, vérifié à chaque mise en production',
+      ],
+    },
+  },
 };

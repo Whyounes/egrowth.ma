@@ -176,49 +176,49 @@ export const routes: Record<RouteKey, RouteDef> = {
   /* --- Services ---------------------------------------------------------- */
   services: {
     path: { fr: 'services', en: 'services', ar: 'الخدمات' },
-    built: false,
+    built: true,
   },
   servicesMetaAds: {
     path: { fr: 'services/meta-ads', en: 'services/meta-ads', ar: 'الخدمات/إعلانات-ميتا' },
-    built: false,
+    built: true,
     targets: { fr: 'agence meta ads maroc', en: 'meta ads agency morocco' },
   },
   servicesGoogleAds: {
     path: { fr: 'services/google-ads', en: 'services/google-ads', ar: 'الخدمات/إعلانات-جوجل' },
-    built: false,
+    built: true,
     targets: { fr: 'agence google ads maroc' },
   },
   servicesTiktokAds: {
     path: { fr: 'services/tiktok-ads', en: 'services/tiktok-ads', ar: 'الخدمات/إعلانات-تيك-توك' },
-    built: false,
+    built: true,
     targets: { fr: 'agence tiktok ads maroc' },
   },
   servicesUgc: {
     path: { fr: 'services/ugc', en: 'services/ugc', ar: 'الخدمات/فيديوهات-ugc' },
-    built: false,
+    built: true,
     targets: { fr: 'ugc maroc, créateur ugc maroc' },
   },
   servicesCro: {
     path: { fr: 'services/cro', en: 'services/cro', ar: 'الخدمات/تحسين-التحويل' },
-    built: false,
+    built: true,
   },
   servicesTracking: {
     path: { fr: 'services/tracking', en: 'services/tracking', ar: 'الخدمات/التتبع' },
-    built: false,
+    built: true,
   },
   servicesEcommerce: {
     path: { fr: 'services/e-commerce', en: 'services/e-commerce', ar: 'الخدمات/التجارة-الإلكترونية' },
-    built: false,
+    built: true,
     targets: { fr: 'agence shopify maroc' },
   },
   servicesApps: {
     path: { fr: 'services/applications', en: 'services/mobile-apps', ar: 'الخدمات/تطبيقات-الجوال' },
-    built: false,
+    built: true,
     targets: { fr: 'développement application mobile maroc' },
   },
   servicesWebsites: {
     path: { fr: 'services/sites-web', en: 'services/websites', ar: 'الخدمات/المواقع' },
-    built: false,
+    built: true,
   },
 
   /* --- Proof ------------------------------------------------------------- */
