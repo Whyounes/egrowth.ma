@@ -1,0 +1,138 @@
+---
+/**
+ * The 404.
+ *
+ * One static page has to serve all three locales, because a static host has a
+ * single `error_page 404` directive and no way to know which prefix the miss
+ * came from. So the heading is in French — the default locale — and the two
+ * other languages get their own block underneath rather than being hidden
+ * behind a language switcher nobody will find from an error page.
+ *
+ * Not a route, so it carries no canonical and no hreflang, and it is noindex.
+ *
+ * The Arabic line renders in the reader's system Arabic font, not Plex — see
+ * the `html:not([lang='ar']) [lang='ar']` rule in base.css. Pulling 87 KB of
+ * webfont to set one sentence on an error page is not a trade worth making,
+ * and it is why this page transfers 30 KB.
+ */
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { locales, pathFor, defaultLocale } from '../data/routes';
+
+const fr = t(defaultLocale);
+---
+
+<Base lang={defaultLocale} title={fr.notFound.metaTitle} description={fr.notFound.lead} noindex>
+  <main id="main" class="nf">
+    <div class="container nf__inner">
+      <a class="nf__brand" href={pathFor('home', defaultLocale)}>
+        <Logo size={26} />
+        <span>{site.brandName}</span>
+      </a>
+
+      <p class="nf__code num">404</p>
+      <h1>{fr.notFound.title}</h1>
+      <p class="lead nf__lead">{fr.notFound.lead}</p>
+
+      <nav class="nf__links" aria-label={fr.notFound.popular}>
+        <a class="btn btn--primary" href={pathFor('adAccounts', defaultLocale)}>
+          {fr.nav.adAccounts}
+        </a>
+        <a class="btn btn--secondary" href={pathFor('home', defaultLocale)}>{fr.nav.home}</a>
+        <a class="btn btn--secondary" href={pathFor('contact', defaultLocale)}>
+          {fr.footerLinks.contact}
+        </a>
+      </nav>
+
+      <div class="nf__others">
+        {
+          locales
+            .filter((l) => l !== defaultLocale)
+            .map((l) => {
+              const c = t(l);
+              return (
+                <p class="nf__other" lang={l} dir={l === 'ar' ? 'rtl' : 'ltr'}>
+                  <span class="nf__otherT">{c.notFound.title}</span>
+                  <a href={pathFor('home', l)}>{c.notFound.backHome}</a>
+                </p>
+              );
+            })
+        }
+      </div>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .nf {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .nf__inner {
+    max-width: 40rem;
+  }
+
+  .nf__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-block-end: var(--s-12);
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: -0.022em;
+    color: var(--c-ink);
+  }
+
+  .nf__code {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--c-green);
+    margin-block-end: var(--s-3);
+  }
+
+  .nf__lead {
+    margin-block: var(--s-6) var(--s-8);
+  }
+
+  .nf__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+
+  .nf__others {
+    margin-block-start: var(--s-12);
+    padding-block-start: var(--s-6);
+    border-block-start: 1px solid var(--c-line);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .nf__other {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+    align-items: baseline;
+    font-size: var(--t-small);
+  }
+
+  .nf__otherT {
+    color: var(--c-ink-2);
+  }
+
+  .nf__other a {
+    font-weight: 700;
+  }
+
+  .nf__other[lang='ar'] {
+    font-size: 0.9375rem;
+  }
+</style>

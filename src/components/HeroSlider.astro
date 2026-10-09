@@ -1,0 +1,216 @@
+---
+/**
+ * The hero image slider — Direction A from the design canvas.
+ *
+ * Zero JavaScript. A flex rail with `scroll-snap-type: x mandatory` gives
+ * swipe, keyboard and the numbered controls natively; the controls are plain
+ * anchors to each slide, so they work before any script could have run and
+ * each slide is deep-linkable.
+ *
+ * No autoplay, ever. And the headline and call to action live OUTSIDE this
+ * component: only the picture changes. A headline that moves while someone is
+ * reading it is how a hero stops converting.
+ *
+ * Only slide 1 is in the critical path — eager, high priority, preloaded by the
+ * layout. Slides 2+ are lazy and never download unless the visitor asks.
+ */
+import { heroSlides } from '../data/site';
+import type { Locale } from '../data/routes';
+
+export interface Props {
+  lang: Locale;
+  label: string;
+}
+
+const { lang, label } = Astro.props;
+---
+
+<div class="hs">
+  <div class="hs__rail" role="group" aria-label={label}>
+    {
+      heroSlides.map((slide, i) => (
+        <figure class="hs__slide" id={`hero-${i + 1}`} data-accent={slide.accentKey}>
+          {slide.src ? (
+            <img
+              src={slide.src}
+              alt={slide.alt[lang]}
+              width="1600"
+              height="1067"
+              loading={i === 0 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : 'auto'}
+              decoding={i === 0 ? 'sync' : 'async'}
+            />
+          ) : (
+            /* No photograph yet: show the brief instead. The page still builds
+               and still passes the budget. Shot list: the "Hero image
+               directions" artboard. */
+            <div class="hs__todo">
+              <span class="hs__todoKey">{slide.key}</span>
+              <span class="hs__todoAlt">{slide.alt[lang]}</span>
+            </div>
+          )}
+          <figcaption class="hs__cap">
+            <span>{slide.caption[lang]}</span>
+            <span class="hs__count num">{i + 1} / {heroSlides.length}</span>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+
+  <ol class="hs__dots">
+    {
+      heroSlides.map((slide, i) => (
+        <li>
+          {/* The dot carries no text: its only name is the aria-label. An
+              earlier version put the slide number inside and hid it with
+              text-indent, which left the visible text ("2") disagreeing with
+              the accessible name — a WCAG 2.5.3 failure that Lighthouse
+              catches as label-content-name-mismatch. */}
+          <a href={`#hero-${i + 1}`} aria-label={slide.alt[lang]}>
+            <span class="hs__dot" />
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .hs {
+    min-width: 0;
+  }
+
+  .hs__rail {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    border-radius: var(--r-hero);
+    border: 1px solid var(--c-line);
+    box-shadow: var(--e-hero);
+    /* No visible scrollbar, but the rail stays scrollable and focusable. */
+    scrollbar-width: none;
+  }
+
+  .hs__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hs__rail {
+      scroll-behavior: auto;
+    }
+  }
+
+  .hs__slide {
+    margin: 0;
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    background: var(--c-bg);
+  }
+
+  .hs__slide img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  /* Placeholder grounds, one per accent, so the slides read as distinct. */
+  .hs__todo {
+    aspect-ratio: 3 / 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-3);
+    padding: var(--s-8);
+    text-align: center;
+  }
+
+  .hs__slide[data-accent='green'] .hs__todo {
+    background: var(--c-green-tint);
+    color: var(--c-green-on-tint);
+  }
+  .hs__slide[data-accent='ochre'] .hs__todo {
+    background: var(--c-ochre-tint);
+    color: var(--c-ochre-on-tint);
+  }
+  .hs__slide[data-accent='blue'] .hs__todo {
+    background: var(--c-blue-tint);
+    color: var(--c-blue-on-tint);
+  }
+  .hs__slide[data-accent='clay'] .hs__todo {
+    background: var(--c-clay-tint);
+    color: var(--c-clay-on-tint);
+  }
+
+  .hs__todoKey {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .hs__todoAlt {
+    font-size: var(--t-small);
+    line-height: 1.55;
+    max-width: 26rem;
+  }
+
+  /* Each slide carries a sentence. A picture with nothing attached is
+     decoration, and decoration is what the performance budget cuts. */
+  .hs__cap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding: var(--s-4) var(--s-6);
+    border-block-start: 1px solid #eef0f2;
+    font-size: var(--t-small);
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .hs__count {
+    flex-shrink: 0;
+    font-size: var(--t-xs);
+    font-weight: 700;
+    color: var(--c-ink-3);
+  }
+
+  .hs__dots {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: var(--s-2);
+    margin-block-start: var(--s-4);
+  }
+
+  .hs__dots a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 44px hit target around a 10px dot. */
+    width: 44px;
+    height: 44px;
+  }
+
+  .hs__dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: var(--c-line-2);
+    border-radius: 5px;
+    transition: background-color var(--dur) var(--ease);
+  }
+
+  .hs__dots a:hover .hs__dot {
+    background: var(--c-ink-faint);
+  }
+
+  /* :target styles the slide that the anchors scrolled to. */
+  .hs__slide:target .hs__cap {
+    color: var(--c-green);
+  }
+</style>

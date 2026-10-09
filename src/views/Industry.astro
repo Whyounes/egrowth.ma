@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Check from '../components/Check.astro';
+import Faq from '../components/Faq.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { pathFor, isBuilt, type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema, faqSchema } from '../lib/schema';
+import { richText } from '../lib/text';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+
+const key: 'cod' | 'b2b' = routeKey === 'industriesCod' ? 'cod' : 'b2b';
+const ind = c.industries[key];
+
+const trail = [
+  ...(isBuilt('work') ? [{ label: c.nav.work, key: 'work' as RouteKey }] : []),
+  { label: ind.title, key: routeKey },
+];
+
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+  faqSchema(ind.faq),
+];
+---
+
+<Base lang={lang} routeKey={routeKey} title={ind.metaTitle} description={ind.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <h1>{ind.title}</h1>
+        <p class="lead hero__lead">{ind.lead}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container body">
+        <div class="body__main">
+          {
+            ind.sections.map((section) => (
+              <section class="chunk">
+                <h2>{section.h}</h2>
+                {section.body.map((para) => <p set:html={richText(para)} />)}
+              </section>
+            ))
+          }
+        </div>
+        <aside class="side">
+          <div class="card side__card">
+            <h2 class="side__t">{ind.playbookTitle}</h2>
+            <ul class="checks">
+              {ind.playbook.map((item) => <Check>{item}</Check>)}
+            </ul>
+          </div>
+          {
+            isBuilt('work') && (
+              <a class="arrowLink" href={pathFor('work', lang)}>{c.nav.work}</a>
+            )
+          }
+        </aside>
+      </div>
+    </section>
+
+    <Faq title={ind.faqTitle} items={ind.faq} />
+    <CtaBand lang={lang} title={ind.ctaTitle} lead={ind.ctaLead} dark />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__inner { max-width: 46rem; }
+  .hero__lead { margin-block-start: var(--s-6); }
+
+  .body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(21.875rem, 100%), 1fr));
+    gap: var(--s-12);
+    align-items: start;
+  }
+
+  .body__main { max-width: 40rem; }
+
+  .chunk + .chunk { margin-block-start: var(--s-12); }
+
+  .chunk h2 {
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 1.875rem);
+    margin-block-end: var(--s-4);
+  }
+
+  .chunk p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--c-ink-2);
+  }
+
+  :global(html[lang='ar']) .chunk p { line-height: 1.95; }
+
+  .chunk p + p { margin-block-start: var(--s-4); }
+
+  .chunk :global(strong) { color: var(--c-ink); font-weight: 700; }
+
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6);
+    align-items: flex-start;
+  }
+
+  .side__card {
+    width: 100%;
+    padding: var(--s-6);
+    background: var(--c-bg-2);
+  }
+
+  .side__t {
+    font-size: 1.0625rem;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin-block-end: var(--s-4);
+  }
+</style>

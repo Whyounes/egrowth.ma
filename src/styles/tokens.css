@@ -1,0 +1,139 @@
+/* ---------------------------------------------------------------------------
+   eGrowth design tokens
+   The single source of truth for colour, type, space, radius and elevation.
+   Nothing in a component should hard-code a hex value.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* --- Accents: one per service line. -------------------------------------
+     Green is the ONLY action colour. Every button on the site is green,
+     whatever section it sits in. The other three tint icons, eyebrows, stat
+     figures and section grounds. That rule is what keeps four accents from
+     becoming noise. Contrast against #FFFFFF noted per value. */
+  --c-green: #0a6b4d;        /* 6.6:1 — ad accounts + all primary actions */
+  --c-green-tint: #e6f2ec;
+  --c-green-line: #cfe3d9;
+  --c-green-on-dark: #6fd8af;
+  --c-green-on-tint: #3f6b5a; /* 5.3:1 on its own tint */
+
+  --c-blue: #3b4fa8;         /* 7.2:1 — paid media, data, reporting */
+  --c-blue-tint: #e8eaf7;
+  --c-blue-line: #d3d8f0;
+  --c-blue-on-dark: #9db0ff;
+  --c-blue-on-tint: #47528a; /* 6.2:1 on its own tint */
+
+  --c-clay: #af4f2b;         /* 5.3:1 — store, app and website builds */
+  --c-clay-tint: #faebe4;
+  --c-clay-line: #ebd2c6;
+  --c-clay-on-dark: #f0a383;
+  --c-clay-on-tint: #7f5747; /* 5.4:1 on its own tint */
+
+  --c-ochre: #8f6010;        /* 5.6:1 — UGC and creative production */
+  --c-ochre-tint: #f8f0de;
+  --c-ochre-line: #eadcc0;
+  --c-ochre-on-dark: #e3be6e;
+  --c-ochre-on-tint: #6b5520; /* 6.3:1 on its own tint */
+
+  /* --- Neutrals ------------------------------------------------------------
+     Every grey below that carries TEXT clears 4.5:1 not just on white but on
+     the four pale tints above — the blue tint is the darkest ground at 0.83
+     luminance, so it sets the floor. Lighthouse CI asserts zero contrast
+     findings, which is what keeps this honest: #6b7178 looked fine on white
+     at 4.9:1 and failed at 4.1:1 the moment it sat on a tinted card. */
+  --c-ink: #0e1116;          /* body text, dark bands, footer */
+  --c-ink-2: #585f67;        /* 5.4:1 on tint — the only grey allowed for prose */
+  --c-ink-3: #636a72;        /* 4.6:1 on tint — captions, metadata, eyebrows */
+  --c-ink-faint: #8a9096;    /* 3.2:1 — DECORATION ONLY: dots, marks, rules.
+                                Never text at any size. */
+
+  --c-bg: #ffffff;
+  --c-bg-2: #f7f8f9;         /* the alternating section band */
+  --c-line: #e3e5e9;         /* hairline */
+  --c-line-2: #d7dae0;       /* control border */
+
+  /* --- Dark surfaces ------------------------------------------------------ */
+  --c-dark: #0e1116;
+  --c-dark-2: #181c22;
+  --c-dark-line: #2a2f37;
+  --c-dark-ink: #b6bcc3;     /* 9.9:1 on --c-dark */
+  --c-dark-ink-2: #9ba2aa;   /* 7.3:1 */
+  --c-dark-ink-3: #8d949c;   /* 6.2:1 — the dimmest ink the footer may use */
+
+  /* --- Caution block. Amber, bordered, never red. ------------------------- */
+  --c-warn-bg: #fff8ec;
+  --c-warn-line: #e8d9bc;
+  --c-warn-ink: #6b5214;
+  --c-warn-ink-strong: #4a3a0e;
+
+  /* --- Type ---------------------------------------------------------------
+     One stack for every locale. The two families are split by unicode-range
+     in fonts.css, so Plex serves the Arabic glyphs, Manrope the Latin ones,
+     and neither file downloads for a page that has no characters in its
+     range. See src/styles/fonts.css. */
+  --font-body: 'IBM Plex Sans Arabic', 'Manrope', system-ui, 'Segoe UI',
+    'Helvetica Neue', sans-serif;
+
+  --t-display: clamp(2.25rem, 1.25rem + 3.6vw, 3.875rem);  /* 36 -> 62 */
+  --t-h2: clamp(1.875rem, 1.35rem + 1.9vw, 2.75rem);       /* 30 -> 44 */
+  --t-h3: clamp(1.1875rem, 1.1rem + 0.35vw, 1.4375rem);    /* 19 -> 23 */
+  --t-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.21875rem);    /* 17 -> 19.5 */
+  --t-body: 0.96875rem;                                     /* 15.5 */
+  --t-small: 0.875rem;                                      /* 14 */
+  --t-xs: 0.78125rem;                                       /* 12.5 */
+
+  --lh-display: 1.04;
+  --lh-heading: 1.12;
+  --lh-body: 1.6;
+
+  --ls-display: -0.038em;
+  --ls-h2: -0.034em;
+  --ls-h3: -0.026em;
+
+  /* --- Space: 4px base --------------------------------------------------- */
+  --s-2: 0.5rem;    /* 8  */
+  --s-3: 0.75rem;   /* 12 */
+  --s-4: 1rem;      /* 16 */
+  --s-6: 1.5rem;    /* 24 */
+  --s-8: 2rem;      /* 32 */
+  --s-12: 3rem;     /* 48 */
+  --s-16: 4rem;     /* 64 */
+  --s-22: 5.5rem;   /* 88 — desktop section padding */
+
+  --section-y: clamp(3.5rem, 2rem + 5vw, 5.5rem);
+  --gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
+  --container: 75rem; /* 1200px */
+
+  /* --- Radius ------------------------------------------------------------ */
+  --r-badge: 8px;
+  --r-control: 11px;
+  --r-panel: 16px;
+  --r-card: 20px;
+  --r-hero: 22px;
+
+  /* --- Elevation: two levels only. ---------------------------------------
+     Flat with a hairline for content. One soft shadow, reserved for the
+     thing we want clicked. */
+  --e-raised: 0 1px 2px rgba(14, 17, 22, 0.04), 0 14px 34px -14px rgba(14, 17, 22, 0.12);
+  --e-hero: 0 1px 2px rgba(14, 17, 22, 0.04), 0 18px 48px -12px rgba(14, 17, 22, 0.12);
+
+  /* --- Motion ------------------------------------------------------------ */
+  --dur: 180ms;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Arabic runs looser and never at weight 800: the letterforms close up.
+   Tracking is always zero. */
+html[lang='ar'] {
+  --lh-display: 1.26;
+  --lh-heading: 1.3;
+  --lh-body: 1.78;
+  --ls-display: 0;
+  --ls-h2: 0;
+  --ls-h3: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur: 0ms;
+  }
+}

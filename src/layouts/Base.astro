@@ -1,0 +1,136 @@
+---
+import { site } from '../data/site';
+import { alternatesFor, localeTags, defaultLocale, urlFor, type Locale, type RouteKey } from '../data/routes';
+import { LOCALE_DIR } from '../data/locales.mjs';
+
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+export interface Props {
+  lang: Locale;
+  /**
+   * Omitted only by pages that are not a route — the 404. Without it there is
+   * no canonical and no hreflang set, which is correct: an error page must not
+   * claim to be the canonical version of anything.
+   */
+  routeKey?: RouteKey;
+  title: string;
+  description: string;
+  /** Extra JSON-LD nodes for this page (Service, FAQPage, BreadcrumbList…). */
+  schema?: Record<string, unknown>[];
+  /** Keeps the page out of the index. The sitemap excludes it separately. */
+  noindex?: boolean;
+}
+
+const { lang, routeKey, title, description, schema = [], noindex = false } = Astro.props;
+
+const dir = (LOCALE_DIR as Record<string, string>)[lang] ?? 'ltr';
+const canonical = routeKey ? urlFor(routeKey, lang, site.url) : null;
+const alternates = routeKey ? alternatesFor(routeKey, site.url) : [];
+const xDefault = alternates.find((a) => a.lang === defaultLocale);
+
+/* Organization is emitted once on every page: it is the entity signal that
+   both Google's local pack and the AI crawlers resolve the brand against. */
+const organization = {
+  '@type': 'Organization',
+  '@id': `${site.url}/#organization`,
+  name: site.brandName,
+  legalName: site.legalName,
+  url: site.url,
+  email: site.email,
+  telephone: site.phone,
+  taxID: site.taxId,
+  foundingDate: site.foundingYear,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.addressLine,
+    addressLocality: site.city,
+    postalCode: site.postalCode,
+    addressCountry: 'MA',
+  },
+  areaServed: { '@type': 'Country', name: 'Morocco' },
+  sameAs: Object.values(site.social),
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${site.url}/#website`,
+  url: site.url,
+  name: site.brandName,
+  inLanguage: localeTags[lang],
+  publisher: { '@id': `${site.url}/#organization` },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [organization, website, ...schema],
+};
+---
+
+<!doctype html>
+<html lang={localeTags[lang]} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    {/* Reciprocal hreflang on all three locales, plus x-default on French. */}
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault.href} />}
+
+    {/* Self-hosted subsets, same origin. Preload only what this locale paints
+        above the fold: Latin everywhere, plus the two Arabic weights on /ar. */}
+    <link
+      rel="preload"
+      href="/fonts/manrope-latin-400-800.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    {
+      lang === 'ar' && (
+        <>
+          <link
+            rel="preload"
+            href="/fonts/plexar-arabic-400.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+          />
+          <link
+            rel="preload"
+            href="/fonts/plexar-arabic-700.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+          />
+        </>
+      )
+    }
+
+    <meta name="theme-color" content="#0a6b4d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.brandName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:locale" content={localeTags[lang].replace('-', '_')} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <a class="skip" href="#main">
+      {lang === 'fr' ? 'Aller au contenu' : lang === 'ar' ? 'انتقل إلى المحتوى' : 'Skip to content'}
+    </a>
+    <slot />
+  </body>
+</html>

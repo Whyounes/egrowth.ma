@@ -1,0 +1,26 @@
+---
+export interface Props {
+  size?: number;
+  /** On a dark ground the baseline switches to a mid grey. */
+  onDark?: boolean;
+}
+
+const { size = 22, onDark = false } = Astro.props;
+const mark = onDark ? '#6fd8af' : '#0a6b4d';
+const base = onDark ? '#4a5058' : '#c6cad1';
+---
+
+<svg width={size} height={size} viewBox="0 0 22 22" fill="none" aria-hidden="true">
+  <path
+    d="M3 15.5C6.5 15.5 8.5 12 10.5 8.5C12.5 5 15 3 19 3"
+    stroke={mark}
+    stroke-width="2.2"
+    stroke-linecap="round"></path>
+  <path
+    d="M13.5 3H19V8.5"
+    stroke={mark}
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+  <path d="M3 19H19" stroke={base} stroke-width="2.2" stroke-linecap="round"></path>
+</svg>

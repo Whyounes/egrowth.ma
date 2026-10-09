@@ -1,0 +1,234 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PlatformIcon from '../components/PlatformIcon.astro';
+import RequestForm from '../components/RequestForm.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema } from '../lib/schema';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const ct = c.contact;
+
+const trail = [{ label: ct.title, key: routeKey }];
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+  {
+    '@type': 'ContactPage',
+    name: ct.title,
+    description: ct.metaDescription,
+  },
+];
+---
+
+<Base lang={lang} routeKey={routeKey} title={ct.metaTitle} description={ct.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="section">
+      <div class="container grid--2 grid">
+        <div>
+          <h1>{ct.title}</h1>
+          <p class="lead intro">{ct.lead}</p>
+
+          <ul class="ways">
+            <li>
+              <a class="way way--wa" href={site.whatsappLink}>
+                <PlatformIcon name="whatsapp" size={28} />
+                <span>
+                  <span class="way__t">{ct.whatsappTitle}</span>
+                  <span class="way__v num">{site.whatsapp}</span>
+                  <span class="way__n">{ct.whatsappNote}</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="way" href={`tel:${site.phone}`}>
+                <span class="way__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M7.2 3.5h3l1.5 4-2 1.3a12 12 0 0 0 5.5 5.5l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 5.2 5.7 2 2 0 0 1 7.2 3.5Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <span>
+                  <span class="way__t">{ct.phoneTitle}</span>
+                  <span class="way__v num">{site.phone}</span>
+                  <span class="way__n">{ct.hours}</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="way" href={`mailto:${site.email}`}>
+                <span class="way__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="2.8" y="5" width="18.4" height="14" rx="2.4" stroke="currentColor" stroke-width="1.8"></rect>
+                    <path d="m3.5 6.5 8.5 6 8.5-6" stroke="currentColor" stroke-width="1.8"></path>
+                  </svg>
+                </span>
+                <span>
+                  <span class="way__t">{ct.emailTitle}</span>
+                  <span class="way__v">{site.email}</span>
+                  <span class="way__n">{ct.emailNote}</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <div class="way way--static">
+                <span class="way__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linejoin="round"></path>
+                    <circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="1.8"></circle>
+                  </svg>
+                </span>
+                <span>
+                  <span class="way__t">{ct.addressTitle}</span>
+                  <span class="way__v">{site.addressLine}</span>
+                  <span class="way__n">{site.postalCode} {site.city}, {c.footer.morocco}</span>
+                </span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="entity">
+            <h2 class="entity__t">{ct.entityTitle}</h2>
+            <dl>
+              <div><dt>{ct.legalName}</dt><dd>{site.legalName}</dd></div>
+              <div><dt>RC</dt><dd class="num">{site.rcNumber}</dd></div>
+              <div><dt>ICE</dt><dd class="num">{site.iceNumber}</dd></div>
+              <div><dt>{ct.taxId}</dt><dd class="num">{site.taxId}</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <RequestForm lang={lang} />
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .intro { margin-block: var(--s-6) var(--s-8); }
+
+  .ways {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+
+  .way {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s-4);
+    padding: var(--s-4) var(--s-6);
+    background: var(--c-bg);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-panel);
+    color: var(--c-ink);
+    transition: border-color var(--dur) var(--ease);
+  }
+
+  a.way:hover {
+    color: var(--c-ink);
+    border-color: var(--c-line-2);
+  }
+
+  .way--wa {
+    background: #f1fbf5;
+    border-color: #cdebd9;
+  }
+
+  .way--static {
+    background: var(--c-bg-2);
+  }
+
+  .way__icon {
+    display: flex;
+    color: var(--c-green);
+  }
+
+  .way__t {
+    display: block;
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-ink-3);
+    margin-block-end: 3px;
+  }
+
+  :global(html[lang='ar']) .way__t {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .way__v {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .way__n {
+    display: block;
+    margin-block-start: 2px;
+    font-size: var(--t-xs);
+    color: var(--c-ink-3);
+  }
+
+  .entity {
+    margin-block-start: var(--s-8);
+    padding-block-start: var(--s-6);
+    border-block-start: 1px solid var(--c-line);
+  }
+
+  .entity__t {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-ink-3);
+    margin-block-end: var(--s-4);
+  }
+
+  :global(html[lang='ar']) .entity__t {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .entity dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
+    gap: var(--s-3) var(--s-6);
+  }
+
+  .entity dt {
+    font-size: var(--t-xs);
+    color: var(--c-ink-3);
+  }
+
+  .entity dd {
+    margin: 0;
+    font-size: var(--t-small);
+    font-weight: 600;
+  }
+</style>

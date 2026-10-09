@@ -1,0 +1,261 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PlatformIcon from '../components/PlatformIcon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Check from '../components/Check.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { serviceByRoute, services } from '../data/services';
+import { pathFor, isBuilt, type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema, serviceSchema } from '../lib/schema';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const sp = c.servicePages;
+
+const service = serviceByRoute[routeKey];
+if (!service) throw new Error(`No service mapped to route "${routeKey}"`);
+
+const copy = sp[service.key];
+
+/** Siblings in the same column of the services panel. */
+const related = services.filter(
+  (s) => s.group === service.group && s.key !== service.key && isBuilt(s.routeKey),
+);
+
+const trail = [
+  { label: c.nav.services, key: 'services' as RouteKey },
+  { label: copy.title, key: routeKey },
+];
+
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+  serviceSchema({ name: copy.title, description: copy.tagline, lang, siteUrl: site.url }),
+];
+---
+
+<Base
+  lang={lang}
+  routeKey={routeKey}
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  schema={schema}
+>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        {
+          service.icons && (
+            <div class="hero__brand">
+              {service.icons.map((icon) => <PlatformIcon name={icon} size={36} />)}
+            </div>
+          )
+        }
+        <p class="eyebrow" data-eyebrow={service.accentKey}>{sp.groupLabel[service.group]}</p>
+        <h1>{copy.title}</h1>
+        <p class="lead hero__lead">{copy.tagline}</p>
+        <div class="hero__btns">
+          <a class="btn btn--primary" href={site.bookingUrl}>{c.common.bookAudit}</a>
+          {
+            isBuilt('adAccounts') && (
+              <a class="btn btn--secondary" href={pathFor('adAccounts', lang)}>
+                {c.common.requestAccount}
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container body">
+        <div class="body__main">
+          <h2>{sp.whyTitle}</h2>
+          <p class="body__p">{copy.why}</p>
+
+          <h2 class="body__h2">{sp.getTitle}</h2>
+          <ul class="checks body__checks">
+            {copy.whatYouGet.map((item) => <Check accent={service.accentKey}>{item}</Check>)}
+          </ul>
+        </div>
+
+        <aside class="body__side">
+          <div class="card side__card">
+            <h2 class="side__title">{sp.howTitle}</h2>
+            <ol class="side__steps">
+              <li><b>{c.home.step1}</b><span>{c.home.step1Body}</span></li>
+              <li><b>{c.home.step2}</b><span>{c.home.step2Body}</span></li>
+              <li><b>{c.home.step3}</b><span>{c.home.step3Body}</span></li>
+              <li><b>{c.home.step4}</b><span>{c.home.step4Body}</span></li>
+            </ol>
+          </div>
+
+          {
+            related.length > 0 && (
+              <nav class="side__related" aria-label={sp.relatedTitle}>
+                <h2 class="side__title">{sp.relatedTitle}</h2>
+                <ul>
+                  {related.map((s) => (
+                    <li>
+                      <a href={pathFor(s.routeKey, lang)}>{sp[s.key].title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )
+          }
+
+          {
+            isBuilt('services') && (
+              <a class="arrowLink" href={pathFor('services', lang)}>{sp.allServices}</a>
+            )
+          }
+        </aside>
+      </div>
+    </section>
+
+    <CtaBand lang={lang} title={c.home.ctaTitle} lead={c.home.ctaLead} dark />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__inner {
+    max-width: 50rem;
+  }
+
+  .hero__brand {
+    display: flex;
+    gap: var(--s-3);
+    margin-block-end: var(--s-6);
+  }
+
+  [data-eyebrow='blue'] { color: var(--c-blue); }
+  [data-eyebrow='clay'] { color: var(--c-clay); }
+  [data-eyebrow='ochre'] { color: var(--c-ochre); }
+  [data-eyebrow='green'] { color: var(--c-green); }
+
+  .hero__inner .eyebrow {
+    margin-block-end: var(--s-3);
+  }
+
+  .hero__lead {
+    margin-block: var(--s-5, 1.25rem) var(--s-8);
+    max-width: 42rem;
+  }
+
+  .hero__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(21.875rem, 100%), 1fr));
+    gap: var(--s-12);
+    align-items: start;
+  }
+
+  .body__main {
+    max-width: 40rem;
+  }
+
+  .body__p {
+    margin-block-start: var(--s-4);
+    font-size: 1.03125rem;
+    line-height: 1.7;
+    color: var(--c-ink-2);
+  }
+
+  .body__h2 {
+    margin-block-start: var(--s-12);
+  }
+
+  .body__checks {
+    margin-block-start: var(--s-6);
+  }
+
+  .body__checks :global(li) {
+    font-size: 0.96875rem;
+  }
+
+  .body__side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6);
+    align-items: flex-start;
+  }
+
+  .side__card {
+    width: 100%;
+    padding: var(--s-6);
+    background: var(--c-bg-2);
+  }
+
+  .side__title {
+    font-size: 1.0625rem;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin-block-end: var(--s-4);
+  }
+
+  .side__steps {
+    list-style: none;
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .side__steps li {
+    counter-increment: step;
+    display: grid;
+    gap: 2px;
+  }
+
+  .side__steps b {
+    font-size: var(--t-small);
+  }
+
+  .side__steps b::before {
+    content: counter(step, decimal-leading-zero) ' · ';
+    color: var(--c-green);
+  }
+
+  .side__steps span {
+    font-size: var(--t-xs);
+    line-height: 1.55;
+    color: var(--c-ink-2);
+  }
+
+  .side__related ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+  }
+
+  .side__related a {
+    font-size: var(--t-small);
+    font-weight: 600;
+  }
+</style>

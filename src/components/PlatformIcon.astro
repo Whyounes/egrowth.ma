@@ -1,0 +1,206 @@
+---
+/**
+ * Platform brand marks.
+ *
+ * These are redrawn approximations, good enough to read at 16–32px. Before
+ * launch, replace each `d` with the official SVG from the platform's own brand
+ * resource centre — referential use is fine, but a redrawn or recoloured mark
+ * is not, and every platform publishes the real file plus its clearspace
+ * rules. The disclaimer in the footer covers the referential use.
+ */
+export type PlatformName =
+  | 'facebook'
+  | 'instagram'
+  | 'tiktok'
+  | 'snapchat'
+  | 'google'
+  | 'linkedin'
+  | 'whatsapp';
+
+export interface Props {
+  name: PlatformName;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 24, class: className } = Astro.props;
+
+/* The Instagram gradient needs an id that is unique per document. */
+let counter = 0;
+const gradientId = `ig-${name}-${(counter += 1)}-${Math.random().toString(36).slice(2, 7)}`;
+---
+
+{
+  name === 'facebook' && (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      class={className}
+      role="img"
+      aria-label="Facebook"
+    >
+      <circle cx="12" cy="12" r="11" fill="#1877F2" />
+      <path
+        d="M15.1 12.3h-2.3v7.5a11 11 0 0 1-1.7 0v-7.5H8.9V9.8h2.2V8.1c0-2.1 1-3.3 3.3-3.3.7 0 1.4.1 1.4.1v2.2h-1c-.9 0-1.1.4-1.1 1.1v1.6h2.1l-.3 2.5Z"
+        fill="#fff"
+      />
+    </svg>
+  )
+}
+
+{
+  name === 'instagram' && (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      class={className}
+      role="img"
+      aria-label="Instagram"
+    >
+      <defs>
+        <linearGradient id={gradientId} x1="2" y1="22" x2="22" y2="2">
+          <stop offset="0" stop-color="#FFC93C" />
+          <stop offset=".35" stop-color="#F4312F" />
+          <stop offset=".7" stop-color="#C32AA3" />
+          <stop offset="1" stop-color="#4C5FD7" />
+        </linearGradient>
+      </defs>
+      <rect width="24" height="24" rx="7" fill={`url(#${gradientId})`} />
+      <rect
+        x="5.3"
+        y="5.3"
+        width="13.4"
+        height="13.4"
+        rx="4.3"
+        fill="none"
+        stroke="#fff"
+        stroke-width="1.9"
+      />
+      <circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.9" />
+      <circle cx="16.7" cy="7.4" r="1.15" fill="#fff" />
+    </svg>
+  )
+}
+
+{
+  name === 'tiktok' && (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      class={className}
+      role="img"
+      aria-label="TikTok"
+    >
+      <rect width="24" height="24" rx="6" fill="#010101" />
+      <g transform="translate(-0.7,-0.7)">
+        <path
+          d="M13.3 4.6h2.4c.3 1.8 1.3 3 3.1 3.2v2.5c-1.1 0-2.1-.3-3-.9v5c0 2.9-2.3 5.2-5.2 5.2s-5.2-2.3-5.2-5.2 2.3-5.2 5.2-5.2c.3 0 .5 0 .8.1v2.5c-.2-.1-.5-.1-.8-.1-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7V4.6Z"
+          fill="#25F4EE"
+        />
+      </g>
+      <g transform="translate(0.7,0.7)">
+        <path
+          d="M13.3 4.6h2.4c.3 1.8 1.3 3 3.1 3.2v2.5c-1.1 0-2.1-.3-3-.9v5c0 2.9-2.3 5.2-5.2 5.2s-5.2-2.3-5.2-5.2 2.3-5.2 5.2-5.2c.3 0 .5 0 .8.1v2.5c-.2-.1-.5-.1-.8-.1-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7V4.6Z"
+          fill="#FE2C55"
+        />
+      </g>
+      <path
+        d="M13.3 4.6h2.4c.3 1.8 1.3 3 3.1 3.2v2.5c-1.1 0-2.1-.3-3-.9v5c0 2.9-2.3 5.2-5.2 5.2s-5.2-2.3-5.2-5.2 2.3-5.2 5.2-5.2c.3 0 .5 0 .8.1v2.5c-.2-.1-.5-.1-.8-.1-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7V4.6Z"
+        fill="#fff"
+      />
+    </svg>
+  )
+}
+
+{
+  name === 'snapchat' && (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      class={className}
+      role="img"
+      aria-label="Snapchat"
+    >
+      <rect width="24" height="24" rx="6" fill="#FFFC00" />
+      <path
+        d="M12 4.3c2.5 0 3.9 1.9 3.9 4.2 0 .8-.1 1.4-.1 1.9.2.1.5.1.8 0 .4-.1.8.1.9.5.1.4-.1.7-.6.9-.6.3-1.4.5-1.4 1 0 .5 1.3 2.3 2.9 2.9.3.1.4.4.2.7-.4.6-1.5.7-2.1.8-.2.3-.2.8-.5.9-.3.1-1-.2-1.7-.2-.9 0-1.4.9-2.3.9s-1.4-.9-2.3-.9c-.7 0-1.4.3-1.7.2-.3-.1-.3-.6-.5-.9-.6-.1-1.7-.2-2.1-.8-.2-.3-.1-.6.2-.7 1.6-.6 2.9-2.4 2.9-2.9 0-.5-.8-.7-1.4-1-.5-.2-.7-.5-.6-.9.1-.4.5-.6.9-.5.3.1.6.1.8 0 0-.5-.1-1.1-.1-1.9 0-2.3 1.4-4.2 3.9-4.2Z"
+        fill="#fff"
+      />
+    </svg>
+  )
+}
+
+{
+  name === 'google' && (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      class={className}
+      role="img"
+      aria-label="Google"
+    >
+      <path
+        d="M23.5 12.3c0-.8-.1-1.6-.2-2.4H12v4.6h6.4c-.3 1.5-1.1 2.7-2.3 3.5l3.8 3c2.2-2.1 3.6-5.1 3.6-8.7Z"
+        fill="#4285F4"
+      />
+      <path
+        d="M12 23.5c3.2 0 5.9-1.1 7.9-2.9l-3.8-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-4.9l-3.8 3C3.4 20.8 7.4 23.5 12 23.5Z"
+        fill="#34A853"
+      />
+      <path
+        d="M5.3 14c-.2-.7-.4-1.4-.4-2.1s.1-1.5.4-2.1l-3.8-3C.7 8.5.2 10.2.2 12s.5 3.5 1.3 5l3.8-3Z"
+        fill="#FBBC05"
+      />
+      <path
+        d="M12 4.9c1.8 0 3.3.6 4.6 1.8l3.3-3.3C17.9 1.5 15.2.5 12 .5 7.4.5 3.4 3.2 1.5 7.1l3.8 2.8C6.2 7.1 8.9 4.9 12 4.9Z"
+        fill="#EA4335"
+      />
+    </svg>
+  )
+}
+
+{
+  name === 'linkedin' && (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      class={className}
+      role="img"
+      aria-label="LinkedIn"
+    >
+      <rect width="24" height="24" rx="4" fill="#0A66C2" />
+      <path
+        d="M7 9.6H4.3V20H7V9.6ZM5.6 4.4a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2ZM19.9 14.2c0-3-1.6-4.8-3.9-4.8-1.3 0-2.2.6-2.7 1.4V9.6h-2.7V20h2.7v-5.3c0-1.4.5-2.3 1.7-2.3s1.6.9 1.6 2.3V20h2.7v-5.8Z"
+        fill="#fff"
+      />
+    </svg>
+  )
+}
+
+{
+  name === 'whatsapp' && (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      class={className}
+      role="img"
+      aria-label="WhatsApp"
+    >
+      <path
+        d="M12 .9C5.9.9 1 5.8 1 11.9c0 2 .5 3.8 1.5 5.4L1 23.1l6-1.6c1.5.8 3.2 1.3 5 1.3 6.1 0 11-4.9 11-11S18.1.9 12 .9Z"
+        fill="#25D366"
+      />
+      <path
+        d="M16.9 14.3c-.3-.2-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.6-1-1.2-1.3-1.9-.1-.2 0-.4.1-.5.2-.2.5-.5.6-.8.1-.2.1-.4 0-.6-.1-.3-.7-1.6-.9-2-.2-.4-.4-.4-.6-.4h-.6c-.2 0-.5.1-.7.4-.3.3-.9 1-.9 2.3 0 1.4.9 2.7 1.1 2.9.1.2 1.7 2.8 4.2 3.8 2.1.8 2.5.7 3 .6.5-.1 1.5-.6 1.7-1.3.2-.6.2-1.1.2-1.2-.1-.2-.2-.3-.3-.3Z"
+        fill="#fff"
+      />
+    </svg>
+  )
+}

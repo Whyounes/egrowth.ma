@@ -1,0 +1,94 @@
+---
+/**
+ * The only page file in the project.
+ *
+ * Every URL in every locale is generated from src/data/routes.ts, so a slug is
+ * pure data: Arabic script in a URL never has to become an Arabic filename on
+ * disk, and changing a slug or adding a locale touches one file.
+ */
+import { routes, routeKeys, locales, type Locale, type RouteKey } from '../data/routes';
+
+import Home from '../views/Home.astro';
+import AdAccounts from '../views/AdAccounts.astro';
+import AdAccountPlatform from '../views/AdAccountPlatform.astro';
+import ServicesHub from '../views/ServicesHub.astro';
+import Service from '../views/Service.astro';
+import ResourcesHub from '../views/ResourcesHub.astro';
+import Guide from '../views/Guide.astro';
+import Glossary from '../views/Glossary.astro';
+import Pricing from '../views/Pricing.astro';
+import Contact from '../views/Contact.astro';
+import Audit from '../views/Audit.astro';
+import Work from '../views/Work.astro';
+import Industry from '../views/Industry.astro';
+import About from '../views/About.astro';
+import Legal from '../views/Legal.astro';
+
+export function getStaticPaths() {
+  const paths: { params: { slug: string | undefined }; props: { routeKey: RouteKey; lang: Locale } }[] = [];
+
+  for (const key of routeKeys) {
+    if (!routes[key].built) continue;
+
+    for (const lang of locales) {
+      const slug = routes[key].path[lang];
+      const prefix = lang === 'fr' ? '' : lang;
+      const full = [prefix, slug].filter(Boolean).join('/');
+
+      paths.push({
+        params: { slug: full === '' ? undefined : full },
+        props: { routeKey: key, lang },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { routeKey, lang } = Astro.props;
+
+/** Route key -> view. A page with no view here is not `built: true` yet. */
+const views = {
+  home: Home,
+  adAccounts: AdAccounts,
+  adAccountsMeta: AdAccountPlatform,
+  adAccountsTiktok: AdAccountPlatform,
+  adAccountsSnapchat: AdAccountPlatform,
+  adAccountsGoogle: AdAccountPlatform,
+  adAccountsLinkedin: AdAccountPlatform,
+  services: ServicesHub,
+  servicesMetaAds: Service,
+  servicesGoogleAds: Service,
+  servicesTiktokAds: Service,
+  servicesUgc: Service,
+  servicesCro: Service,
+  servicesTracking: Service,
+  servicesEcommerce: Service,
+  servicesApps: Service,
+  servicesWebsites: Service,
+  resources: ResourcesHub,
+  resourcesVat: Guide,
+  resourcesCosts: Guide,
+  resourcesRestricted: Guide,
+  glossary: Glossary,
+  pricing: Pricing,
+  contact: Contact,
+  audit: Audit,
+  work: Work,
+  industriesCod: Industry,
+  industriesB2b: Industry,
+  about: About,
+  terms: Legal,
+  privacy: Legal,
+} as const;
+
+const View = views[routeKey as keyof typeof views];
+
+if (!View) {
+  throw new Error(
+    `Route "${routeKey}" is marked built:true in routes.ts but has no view in [...slug].astro`,
+  );
+}
+---
+
+<View lang={lang} routeKey={routeKey} />

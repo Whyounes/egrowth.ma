@@ -1,0 +1,65 @@
+/* ---------------------------------------------------------------------------
+   Self-hosted, subset fonts. No request ever leaves our own origin.
+
+   The two families are split by unicode-range, so one stack works for every
+   locale and the browser downloads only what the page actually renders:
+
+     · Manrope (variable, 400-800) covers Latin. One 24.8 KB file.
+     · IBM Plex Sans Arabic covers the Arabic block, at 400 and 700 only.
+
+   Because Plex declares no Latin coverage here, Latin runs inside an Arabic
+   page (the brand name, "MAD", any figure) fall through to Manrope. That is
+   deliberate: it saves 39 KB on every Arabic page and the pairing is sound.
+   Weight 600 on an Arabic page resolves to 700, which is what we want anyway —
+   Manrope's 800 closes up the Arabic letterforms.
+
+   Re-generating these files: see README, "Fonts".
+   --------------------------------------------------------------------------- */
+
+/* --- Manrope: Latin ----------------------------------------------------- */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/manrope-latin-400-800.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --- Manrope: Latin Extended (loads only if a page needs it) ------------ */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/manrope-latin-ext-400-800.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* --- IBM Plex Sans Arabic: Arabic block, 400 ---------------------------- */
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/plexar-arabic-400.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1,
+    U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF,
+    U+FE70-FE74, U+FE76-FEFC;
+}
+
+/* --- IBM Plex Sans Arabic: Arabic block, 700 ---------------------------- */
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/plexar-arabic-700.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1,
+    U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF,
+    U+FE70-FE74, U+FE76-FEFC;
+}

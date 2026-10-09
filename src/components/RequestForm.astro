@@ -1,0 +1,142 @@
+---
+import { t } from '../i18n';
+import { site } from '../data/site';
+import type { Locale } from '../data/routes';
+import type { PlatformKey } from '../data/platforms';
+import { platforms } from '../data/platforms';
+
+export interface Props {
+  lang: Locale;
+  /** Preselects the platform on a per-platform page. */
+  platform?: PlatformKey;
+}
+
+const { lang, platform } = Astro.props;
+const c = t(lang);
+const f = c.form;
+---
+
+<div class="rf" id="request">
+  <h2 class="rf__title">{f.title}</h2>
+  <p class="rf__lead">{f.lead}</p>
+
+  <form class="rf__form" method="post" action={site.formEndpoint}>
+    <div class="rf__field">
+      <label for="rf-product">{f.product}</label>
+      <input id="rf-product" name="product" type="text" required placeholder={f.productPh} />
+    </div>
+
+    <div class="rf__field">
+      <label for="rf-budget">{f.budget}</label>
+      <select id="rf-budget" name="budget">
+        {f.budgetOptions.map((opt) => <option value={opt}>{opt}</option>)}
+      </select>
+    </div>
+
+    <div class="rf__field">
+      <label for="rf-whatsapp">{f.whatsapp}</label>
+      <input
+        id="rf-whatsapp"
+        name="whatsapp"
+        type="tel"
+        required
+        inputmode="tel"
+        autocomplete="tel"
+        placeholder="+212 6 00 00 00 00"
+      />
+    </div>
+
+    <div class="rf__field">
+      <label for="rf-platform">
+        {f.platform} <span class="rf__optional">{f.optional}</span>
+      </label>
+      <select id="rf-platform" name="platform">
+        {
+          platforms.map((p) => (
+            <option value={p.key} selected={platform === p.key}>
+              {p.label}
+            </option>
+          ))
+        }
+        <option value="unsure" selected={!platform}>{f.platformNotSure}</option>
+      </select>
+    </div>
+
+    <button class="btn btn--primary rf__submit" type="submit">{f.submit}</button>
+  </form>
+
+  <p class="rf__note">{f.note}</p>
+</div>
+
+<style>
+  .rf {
+    padding: var(--s-8);
+    background: var(--c-bg);
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-hero);
+    box-shadow: var(--e-hero);
+  }
+
+  .rf__title {
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+
+  .rf__lead {
+    margin-block: var(--s-2) var(--s-6);
+    font-size: var(--t-small);
+    line-height: 1.55;
+    color: var(--c-ink-2);
+  }
+
+  .rf__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .rf__field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  /* A visible label on every field, never a placeholder standing in for one. */
+  .rf__field label {
+    font-size: var(--t-xs);
+    font-weight: 700;
+  }
+
+  .rf__optional {
+    font-weight: 500;
+    color: var(--c-ink-3);
+  }
+
+  .rf__field input,
+  .rf__field select {
+    min-height: 48px;
+    padding-inline: var(--s-3);
+    font-size: 0.9375rem;
+    background: var(--c-bg);
+    border: 1px solid var(--c-line-2);
+    border-radius: var(--r-control);
+  }
+
+  .rf__field input:hover,
+  .rf__field select:hover {
+    border-color: #b9bec6;
+  }
+
+  .rf__submit {
+    margin-block-start: var(--s-2);
+    width: 100%;
+  }
+
+  .rf__note {
+    margin-block-start: var(--s-4);
+    font-size: var(--t-xs);
+    line-height: 1.5;
+    color: var(--c-ink-3);
+  }
+</style>

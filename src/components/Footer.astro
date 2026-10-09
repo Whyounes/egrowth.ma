@@ -1,0 +1,264 @@
+---
+import Logo from './Logo.astro';
+import PlatformIcon from './PlatformIcon.astro';
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { platforms } from '../data/platforms';
+import { pathFor, isBuilt, locales, type Locale, type RouteKey } from '../data/routes';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+
+type Col = { title: string; links: { key: RouteKey; label: string }[] };
+
+const allColumns: Col[] = [
+  {
+    title: c.footer.adAccounts,
+    links: [
+      { key: 'adAccounts', label: c.nav.adAccounts },
+      ...platforms.map((p) => ({ key: p.routeKey, label: p.label })),
+    ],
+  },
+  {
+    title: c.footer.services,
+    links: [
+      { key: 'servicesMetaAds', label: c.footerLinks.metaAds },
+      { key: 'servicesGoogleAds', label: c.footerLinks.googleAds },
+      { key: 'servicesTiktokAds', label: c.footerLinks.tiktokAds },
+      { key: 'servicesUgc', label: c.footerLinks.ugc },
+      { key: 'servicesCro', label: c.footerLinks.cro },
+      { key: 'servicesTracking', label: c.footerLinks.tracking },
+    ],
+  },
+  {
+    title: c.footer.build,
+    links: [
+      { key: 'servicesEcommerce', label: c.footerLinks.ecommerce },
+      { key: 'servicesApps', label: c.footerLinks.apps },
+      { key: 'servicesWebsites', label: c.footerLinks.websites },
+    ],
+  },
+  {
+    title: c.footer.resources,
+    links: [
+      { key: 'resourcesVat', label: c.footerLinks.vat },
+      { key: 'resourcesCosts', label: c.footerLinks.costs },
+      { key: 'resourcesRestricted', label: c.footerLinks.restricted },
+      { key: 'glossary', label: c.footerLinks.glossary },
+      { key: 'work', label: c.nav.work },
+    ],
+  },
+  {
+    title: c.footer.company,
+    links: [
+      { key: 'about', label: c.nav.about },
+      { key: 'pricing', label: c.nav.pricing },
+      { key: 'contact', label: c.footerLinks.contact },
+      { key: 'terms', label: c.footerLinks.terms },
+      { key: 'privacy', label: c.footerLinks.privacy },
+    ],
+  },
+];
+
+const columns = allColumns
+  .map((col) => ({ ...col, links: col.links.filter((l) => isBuilt(l.key)) }))
+  .filter((col) => col.links.length > 0);
+
+const socials = [
+  { name: 'facebook' as const, href: site.social.facebook, label: 'Facebook' },
+  { name: 'instagram' as const, href: site.social.instagram, label: 'Instagram' },
+  { name: 'tiktok' as const, href: site.social.tiktok, label: 'TikTok' },
+  { name: 'linkedin' as const, href: site.social.linkedin, label: 'LinkedIn' },
+];
+---
+
+<footer class="ftr">
+  <div class="container">
+    <div class="ftr__top">
+      <div class="ftr__brandCol">
+        <div class="ftr__brand">
+          <Logo size={22} onDark />
+          <span class="ftr__name">{site.brandName}</span>
+        </div>
+        <p class="ftr__tagline">{c.footer.tagline} {site.city}, {c.footer.morocco}.</p>
+
+        <ul class="ftr__social">
+          {
+            socials.map((s) => (
+              <li>
+                <a href={s.href} aria-label={`${site.brandName} — ${s.label}`} rel="me noopener">
+                  <PlatformIcon name={s.name} size={26} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <ul class="ftr__langs" aria-label={c.nav.language}>
+          {
+            locales.map((l) => (
+              <li>
+                <a
+                  href={pathFor(routeKey, l)}
+                  hreflang={l}
+                  lang={l}
+                  class:list={['ftr__lang', { 'ftr__lang--on': l === lang }]}
+                >
+                  {t(l).localeName}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {
+        columns.map((col) => (
+          <nav class="ftr__col" aria-label={col.title}>
+            <h2 class="ftr__colTitle">{col.title}</h2>
+            <ul>
+              {col.links.map((l) => (
+                <li>
+                  <a href={pathFor(l.key, lang)}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div class="ftr__legal">
+      <p>
+        &copy; {new Date().getFullYear()} {site.brandName} &middot; {site.legalName}, RC {site.rcNumber},
+        {' '}{site.city}
+      </p>
+      <p>{c.footer.disclaimer}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr {
+    padding-block: var(--s-16) var(--s-8);
+    background: var(--c-dark);
+    color: #fff;
+  }
+
+  .ftr__top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(12.5rem, 100%), 1fr));
+    gap: var(--s-12) var(--s-8);
+    padding-block-end: var(--s-12);
+    border-block-end: 1px solid var(--c-dark-line);
+  }
+
+  .ftr__brandCol {
+    min-width: 0;
+  }
+
+  .ftr__brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-block-end: var(--s-4);
+  }
+
+  .ftr__name {
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: -0.022em;
+  }
+
+  .ftr__tagline {
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-dark-ink-2);
+    margin-block-end: var(--s-4);
+  }
+
+  .ftr__social {
+    list-style: none;
+    display: flex;
+    gap: var(--s-3);
+    margin-block-end: var(--s-6);
+  }
+
+  .ftr__social a {
+    display: block;
+    border-radius: 7px;
+  }
+
+  .ftr__langs {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+
+  .ftr__lang {
+    display: block;
+    padding: 7px 12px;
+    font-size: var(--t-xs);
+    font-weight: 600;
+    color: var(--c-dark-ink-2);
+    border: 1px solid var(--c-dark-line);
+    border-radius: var(--r-badge);
+  }
+
+  .ftr__lang--on {
+    color: #fff;
+    font-weight: 700;
+    background: var(--c-dark-2);
+  }
+
+  .ftr__col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .ftr__colTitle {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-dark-ink-3);
+    margin-block-end: var(--s-4);
+  }
+
+  :global(html[lang='ar']) .ftr__colTitle {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .ftr__col a {
+    font-size: var(--t-small);
+    color: #d4d8dc;
+  }
+
+  .ftr__col a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .ftr__legal {
+    padding-block-start: var(--s-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-8);
+    justify-content: space-between;
+  }
+
+  .ftr__legal p {
+    font-size: var(--t-xs);
+    color: var(--c-dark-ink-3);
+    max-width: 44rem;
+  }
+</style>

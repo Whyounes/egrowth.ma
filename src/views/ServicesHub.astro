@@ -1,0 +1,147 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PlatformIcon from '../components/PlatformIcon.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { services, serviceGroups } from '../data/services';
+import { pathFor, isBuilt, type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema } from '../lib/schema';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const sp = c.servicePages;
+const hub = c.servicesHub;
+
+const trail = [{ label: c.nav.services, key: routeKey }];
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+];
+---
+
+<Base lang={lang} routeKey={routeKey} title={hub.metaTitle} description={hub.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <h1>{hub.title}</h1>
+        <p class="lead hero__lead">{hub.lead}</p>
+      </div>
+    </section>
+
+    {
+      serviceGroups.map((group) => {
+        const inGroup = services.filter((s) => s.group === group && isBuilt(s.routeKey));
+        if (inGroup.length === 0) return null;
+        return (
+          <section class="section group">
+            <div class="container">
+              <div class="group__head">
+                <p class="eyebrow" data-eyebrow={inGroup[0].accentKey}>{sp.groupLabel[group]}</p>
+                <h2>{hub.groupTitle[group]}</h2>
+                <p class="lead">{hub.groupLead[group]}</p>
+              </div>
+              <div class="grid grid--3">
+                {inGroup.map((s) => (
+                  <a class="card svc" href={pathFor(s.routeKey, lang)}>
+                    {s.icons && (
+                      <span class="svc__icons">
+                        {s.icons.map((icon) => <PlatformIcon name={icon} size={24} />)}
+                      </span>
+                    )}
+                    <h3>{sp[s.key].title}</h3>
+                    <p>{sp[s.key].tagline}</p>
+                    <span class="arrowLink svc__more">{c.common.readMore}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })
+    }
+
+    <CtaBand lang={lang} title={hub.ctaTitle} lead={hub.ctaLead} />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__inner {
+    max-width: 48rem;
+  }
+
+  .hero__lead {
+    margin-block-start: var(--s-6);
+  }
+
+  .group:nth-of-type(even) {
+    background: var(--c-bg-2);
+    border-block: 1px solid var(--c-line);
+  }
+
+  .group__head {
+    max-width: 43.75rem;
+    margin-block-end: var(--s-12);
+  }
+
+  .group__head .eyebrow {
+    margin-block-end: var(--s-3);
+  }
+
+  .group__head .lead {
+    margin-block-start: var(--s-4);
+  }
+
+  [data-eyebrow='blue'] { color: var(--c-blue); }
+  [data-eyebrow='clay'] { color: var(--c-clay); }
+  [data-eyebrow='ochre'] { color: var(--c-ochre); }
+
+  .svc {
+    padding: var(--s-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    color: var(--c-ink);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+
+  .svc:hover {
+    color: var(--c-ink);
+    border-color: var(--c-line-2);
+    box-shadow: var(--e-raised);
+  }
+
+  .svc__icons {
+    display: flex;
+    gap: var(--s-2);
+  }
+
+  .svc p {
+    font-size: var(--t-small);
+    line-height: 1.6;
+    color: var(--c-ink-2);
+  }
+
+  .svc__more {
+    margin-block-start: auto;
+    color: var(--c-green);
+  }
+</style>

@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { type Locale, type RouteKey, localeTags } from '../data/routes';
+import { breadcrumbSchema } from '../lib/schema';
+import { richText } from '../lib/text';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const gl = c.glossary;
+
+const trail = [
+  { label: c.nav.resources, key: 'resources' as RouteKey },
+  { label: gl.title, key: routeKey },
+];
+
+/* DefinedTermSet is the one schema type that maps exactly onto a glossary, and
+   it gives an assistant a clean one-sentence definition to lift per term. */
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+  {
+    '@type': 'DefinedTermSet',
+    name: gl.title,
+    inLanguage: localeTags[lang],
+    hasDefinedTerm: gl.terms.map((item) => ({
+      '@type': 'DefinedTerm',
+      name: item.term,
+      description: item.def.replace(/\*\*/g, ''),
+    })),
+  },
+];
+---
+
+<Base lang={lang} routeKey={routeKey} title={gl.metaTitle} description={gl.metaDescription} schema={schema}>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <h1>{gl.title}</h1>
+        <p class="lead hero__lead">{gl.lead}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <dl class="terms">
+          {
+            gl.terms.map((item) => (
+              <div class="term">
+                <dt>{item.term}</dt>
+                <dd set:html={richText(item.def)} />
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    <CtaBand lang={lang} title={gl.ctaTitle} lead={gl.ctaLead} />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--section-y);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .hero__inner {
+    max-width: 44rem;
+  }
+
+  .hero__lead {
+    margin-block-start: var(--s-6);
+  }
+
+  .terms {
+    max-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6);
+  }
+
+  .term {
+    padding-block-end: var(--s-6);
+    border-block-end: 1px solid var(--c-line);
+  }
+
+  .term:last-child {
+    border-block-end: 0;
+    padding-block-end: 0;
+  }
+
+  .term dt {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    margin-block-end: var(--s-2);
+  }
+
+  .term dd {
+    margin: 0;
+    font-size: 0.96875rem;
+    line-height: 1.7;
+    color: var(--c-ink-2);
+  }
+
+  :global(html[lang='ar']) .term dd {
+    line-height: 1.9;
+  }
+
+  .term dd :global(strong) {
+    color: var(--c-ink);
+  }
+</style>

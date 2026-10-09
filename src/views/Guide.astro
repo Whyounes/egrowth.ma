@@ -1,0 +1,285 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+
+import { t } from '../i18n';
+import { site } from '../data/site';
+import { guideByRoute, guides } from '../data/guides';
+import { pathFor, isBuilt, localeTags, type Locale, type RouteKey } from '../data/routes';
+import { breadcrumbSchema, faqSchema } from '../lib/schema';
+import { richText } from '../lib/text';
+
+export interface Props {
+  lang: Locale;
+  routeKey: RouteKey;
+}
+
+const { lang, routeKey } = Astro.props;
+const c = t(lang);
+const g = c.guides;
+
+const guide = guideByRoute[routeKey];
+if (!guide) throw new Error(`No guide mapped to route "${routeKey}"`);
+
+const copy = g[guide.key];
+const others = guides.filter((x) => x.key !== guide.key && isBuilt(x.routeKey));
+
+const trail = [
+  { label: c.nav.resources, key: 'resources' as RouteKey },
+  { label: copy.title, key: routeKey },
+];
+
+const updated = new Intl.DateTimeFormat(localeTags[lang], {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(new Date(guide.updated));
+
+const schema = [
+  breadcrumbSchema([{ label: c.nav.home, key: 'home' as RouteKey }, ...trail], lang, site.url),
+  {
+    '@type': 'Article',
+    headline: copy.title,
+    description: copy.metaDescription,
+    inLanguage: localeTags[lang],
+    datePublished: guide.updated,
+    dateModified: guide.updated,
+    author: { '@id': `${site.url}/#organization` },
+    publisher: { '@id': `${site.url}/#organization` },
+    isAccessibleForFree: true,
+  },
+  faqSchema(copy.faq),
+];
+---
+
+<Base
+  lang={lang}
+  routeKey={routeKey}
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  schema={schema}
+>
+  <Header lang={lang} routeKey={routeKey} />
+  <Breadcrumb lang={lang} trail={trail} />
+
+  <main id="main">
+    <article>
+      <header class="gh">
+        <div class="container gh__inner">
+          <p class="eyebrow" data-eyebrow={guide.accentKey}>{c.nav.resources}</p>
+          <h1>{copy.title}</h1>
+          <p class="lead gh__lead">{copy.standfirst}</p>
+          <p class="gh__meta">
+            <time datetime={guide.updated}>{g.updatedLabel} {updated}</time>
+            <span aria-hidden="true">·</span>
+            <span>{site.brandName}</span>
+          </p>
+        </div>
+      </header>
+
+      <!-- The answer, before anything else. This block is what an assistant
+           quotes, and what a reader in a hurry needs. -->
+      <section class="container">
+        <aside class="tldr" aria-labelledby={`tldr-${guide.key}`}>
+          <h2 class="tldr__t" id={`tldr-${guide.key}`}>{g.summaryLabel}</h2>
+          <ul>
+            {copy.summary.map((item) => <li set:html={richText(item)} />)}
+          </ul>
+        </aside>
+      </section>
+
+      <div class="container prose">
+        {
+          copy.sections.map((section) => (
+            <section class="prose__section">
+              <h2>{section.h}</h2>
+              {section.body.map((para) => <p set:html={richText(para)} />)}
+            </section>
+          ))
+        }
+
+        <section class="prose__section">
+          <h2>{g.sourcesLabel}</h2>
+          <ul class="sources">
+            {
+              guide.sources.map((s) => (
+                <li>
+                  <a href={s.url} rel="noopener nofollow">{s.label}</a>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="disclaimer">{copy.disclaimer}</p>
+        </section>
+
+        {
+          others.length > 0 && (
+            <nav class="more" aria-label={g.moreLabel}>
+              <h2 class="more__t">{g.moreLabel}</h2>
+              <ul>
+                {others.map((o) => (
+                  <li>
+                    <a href={pathFor(o.routeKey, lang)}>{g[o.key].title}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )
+        }
+      </div>
+    </article>
+
+    <Faq title={copy.faqTitle} items={copy.faq} />
+    <CtaBand lang={lang} title={copy.ctaTitle} lead={copy.ctaLead} dark />
+  </main>
+
+  <Footer lang={lang} routeKey={routeKey} />
+</Base>
+
+<style>
+  .gh {
+    padding-block: var(--section-y) var(--s-8);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-2) 100%);
+  }
+
+  .gh__inner {
+    max-width: 48rem;
+  }
+
+  .gh__inner .eyebrow {
+    margin-block-end: var(--s-3);
+  }
+
+  [data-eyebrow='ochre'] { color: var(--c-ochre); }
+  [data-eyebrow='blue'] { color: var(--c-blue); }
+  [data-eyebrow='clay'] { color: var(--c-clay); }
+  [data-eyebrow='green'] { color: var(--c-green); }
+
+  .gh__lead {
+    margin-block-start: var(--s-6);
+  }
+
+  .gh__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-block-start: var(--s-6);
+    font-size: var(--t-xs);
+    color: var(--c-ink-3);
+  }
+
+  .tldr {
+    max-width: 48rem;
+    margin-block: var(--s-12) 0;
+    padding: var(--s-6);
+    background: var(--c-green-tint);
+    border: 1px solid var(--c-green-line);
+    border-radius: var(--r-panel);
+  }
+
+  .tldr__t {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-green);
+    margin-block-end: var(--s-4);
+  }
+
+  :global(html[lang='ar']) .tldr__t {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .tldr ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    padding-inline-start: 1.1rem;
+  }
+
+  .tldr li {
+    font-size: 0.96875rem;
+    line-height: 1.6;
+    color: #30483d;
+  }
+
+  .prose {
+    max-width: 48rem;
+    padding-block: var(--s-12) var(--section-y);
+  }
+
+  .prose__section + .prose__section {
+    margin-block-start: var(--s-12);
+  }
+
+  .prose h2 {
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 1.875rem);
+    margin-block-end: var(--s-4);
+  }
+
+  .prose p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--c-ink-2);
+  }
+
+  :global(html[lang='ar']) .prose p {
+    line-height: 1.95;
+  }
+
+  .prose p + p {
+    margin-block-start: var(--s-4);
+  }
+
+  .prose :global(strong) {
+    color: var(--c-ink);
+    font-weight: 700;
+  }
+
+  .sources {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    padding-inline-start: 1.1rem;
+  }
+
+  .sources li {
+    font-size: var(--t-small);
+    line-height: 1.55;
+  }
+
+  .disclaimer {
+    margin-block-start: var(--s-6);
+    font-size: var(--t-xs) !important;
+    line-height: 1.6 !important;
+    color: var(--c-ink-3) !important;
+  }
+
+  .more {
+    margin-block-start: var(--s-16);
+    padding-block-start: var(--s-6);
+    border-block-start: 1px solid var(--c-line);
+  }
+
+  .more__t {
+    font-size: 1.0625rem !important;
+    margin-block-end: var(--s-3) !important;
+  }
+
+  .more ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+  }
+
+  .more a {
+    font-size: var(--t-small);
+    font-weight: 600;
+  }
+</style>
